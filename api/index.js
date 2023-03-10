@@ -23,12 +23,9 @@ app.use(CookieParser());
 app.use("/uploads", express.static(__dirname+"/uploads"));
 app.use(cors({
     credentials: true,
-    origin: "*",
+    origin: "http://localhost:3000",
 }));
 
-app.options('*', cors()); // Enable preflight requests for all routes
-
-// Other routes and middleware here
 
 
 
