@@ -1,0 +1,25 @@
+.header2{
+    position: relative;
+    overflow: hidden;
+}
+
+
+
+#contact-info-bg-1{
+    background: #00000079;
+    opacity: 100;
+    font-weight: 600;
+}
+#contact-info-bg-2{
+    background: #59595965;
+    opacity: 100;
+    font-weight: 600;
+}
+#contact-info-bg-1 h2 ,h4{
+    
+    font-weight: 600;
+}
+#contact-info-bg-2 h2 ,h4{
+    
+    font-weight: 600;
+}
