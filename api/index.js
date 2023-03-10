@@ -23,17 +23,10 @@ app.use(CookieParser());
 app.use("/uploads", express.static(__dirname+"/uploads"));
 app.use(cors({
     credentials: true,
-    origin: "https://ls-auto2-nd3l.vercel.app/",
+    origin: "http://localhost:3000",
 }));
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://ls-auto2-nd3l.vercel.app/");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+
 
 
 async function uploadToS3(path, originalFilename, mimetype) {
