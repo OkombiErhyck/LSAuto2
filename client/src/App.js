@@ -19,7 +19,7 @@ import ResetPassword from './reset-password';
 import Despre from './despre';
 import CookiePolicyPopup from './CookiePolicyPopup';
 
-axios.defaults.baseURL = "http://localhost:4000";
+axios.defaults.baseURL = "https://ls-auto2-lhej43736-okombierhyck.vercel.app/";
 axios.defaults.withCredentials = true;
 
 
