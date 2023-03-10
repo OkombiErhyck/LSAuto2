@@ -26,6 +26,9 @@ app.use(cors({
     origin: "*",
 }));
 
+app.options('*', cors()); // Enable preflight requests for all routes
+
+// Other routes and middleware here
 
 
 
