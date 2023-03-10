@@ -19,7 +19,7 @@ import ResetPassword from './reset-password';
 import Despre from './despre';
 import CookiePolicyPopup from './CookiePolicyPopup';
 
-axios.defaults.baseURL = "http://localhost:4000";
+axios.defaults.baseURL = "https://ls-auto2.vercel.app/api";
 axios.defaults.withCredentials = true;
 
 
