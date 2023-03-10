@@ -19,7 +19,7 @@ import ResetPassword from './reset-password';
 import Despre from './despre';
 import CookiePolicyPopup from './CookiePolicyPopup';
 
-axios.defaults.baseURL = import.meta.env.REACT_APP_API_BASE_URL;
+axios.defaults.baseURL = "http://localhost:4000";
 axios.defaults.withCredentials = true;
 
 
