@@ -23,7 +23,7 @@ app.use(CookieParser());
 app.use("/uploads", express.static(__dirname+"/uploads"));
 app.use(cors({
     credentials: true,
-    origin: "https://ls-auto2-nd3l-git-master-okombierhyck.vercel.app/",
+    origin: "http://localhost:3000",
 }));
 
 
