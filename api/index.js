@@ -125,11 +125,10 @@ app.post("/login", async (req, res) => {
 
 
   app.post("/logout", (req, res) => {
-    mongoose.connect(process.env.MONGO_URL);
-    res.header("Access-Control-Allow-Credentials", "true");
-    res.set("Access-Control-Allow-Origin", "https://ls-auto2-nd3l.vercel.app");
-    res.clearCookie("token").json({ message: "Logged out" });
+    res.clearCookie("token");
+    res.json("Logged out successfully");
   });
+  
 
 
 
