@@ -15,6 +15,21 @@ export function UserContextProvider({children}) {
       });
     }
   }, []);
+
+
+  useEffect(() => {
+    axios
+      .get("https://ls-auto2.vercel.app/profile", { withCredentials: true })
+      .then((res) => {
+        setUser(res.data);
+        setReady(true);
+      })
+      .catch(() => {
+        setReady(true);
+      });
+  }, []);
+
+
   return (
     <UserContext.Provider value={{user,setUser,ready}}>
       {children}
