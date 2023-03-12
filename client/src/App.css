@@ -35,3 +35,6 @@ html::-webkit-scrollbar-track{
    background: #000000;
 }
 
+body {
+    overflow: hidden;
+  }
