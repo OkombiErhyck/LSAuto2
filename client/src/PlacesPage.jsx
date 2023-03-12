@@ -1,28 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link, useParams } from 'react-router-dom';
 import './Myadds.css';
 import Image from './image';
+import { Link, useParams } from 'react-router-dom';
 
-export default function PlacesPage () {
-  const [places,setPlaces] = useState([]);
-  
+
+
+export default function PlacesPage() {
+  const [places, setPlaces] = useState([]);
+
   useEffect(() => {
-    axios.get("/user-places").then(({data}) => {
+    axios.get('/user-places').then(({ data }) => {
       setPlaces(data);
     });
   }, []);
 
-  const handleDelete = (id) => {
-    axios.delete(`/delete/${id}`).then(() => {
-      setPlaces(places.filter(place => place._id !== id));
+  const handleDelete = (event, id) => {
+    event.preventDefault();
+    axios.delete(`/places/${id}`).then(() => {
+      setPlaces((prevPlaces) => prevPlaces.filter((place) => place._id !== id));
     });
   };
+  
 
   return (
-    <> 
+    <>
       <div className="top"></div>
+
       <div className="main2"> 
+       
         <div className="container">
           <div className="details container">
             <div className="row row-cols-1 row-cols-md-3 g-4">
@@ -39,9 +45,10 @@ export default function PlacesPage () {
                         <h6> {place.km}Km</h6>
                         <h6>{place.anul}</h6>
                         <h6>{place.putere }cp</h6>
-                        <button className="btn1">Editeaza</button>
-                         <button className="btn1" onClick={() => handleDelete(place._id)}>Sterge</button>
-                      </div>
+                        <button style={{background : "var(--main)"}} className="btn1">Editeaza</button>
+                         
+                        <button style={{color : "red"}} className="btn1" onClick={(event) => handleDelete(event, place._id)}>Sterge</button>
+                     </div>
                     </div>
                   </div>
                 </Link>

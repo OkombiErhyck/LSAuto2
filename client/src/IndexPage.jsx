@@ -297,7 +297,7 @@ export default function IndexPage() {
                       <h6>{place.anul}</h6>
                       <h6>{place.putere }cp</h6>
                      
-                      <button className="btn1">Detalii</button>
+                      <button style={{background : "var(--main)"}} className="btn1">Detalii<span class="arrow"></span></button>
                     </div>
                   </div>
                 </div>

@@ -289,7 +289,19 @@ app.post('/reset-password', async (req, res) => {
 
 
 
-
+app.delete("/places/:id", (req,res) => {
+  mongoose.connect(process.env.MONGO_URL);
+  const {id} = req.params;
+  Place.findByIdAndDelete(id, (err, deletedPlace) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Failed to delete place.");
+    } else {
+      console.log(deletedPlace);
+      res.json(deletedPlace);
+    }
+  });
+});
 
 
 

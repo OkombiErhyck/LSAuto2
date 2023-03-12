@@ -51,7 +51,7 @@ export default function Details() {
                       <h6>{place.anul}</h6>
                       <h6>{place.putere }cp</h6>
                      
-                      <button className="btn1">Detalii</button>
+                      <button style={{background : "var(--main)"}} className="btn1">Detalii</button>
                     </div>
                   </div>
                 </div>
@@ -60,6 +60,11 @@ export default function Details() {
           </div>
         </div>
       </div>
+      <div className="center">
+      <Link to="/IndexPage" className="btn">
+        Vezi toate <span>anunturile</span>
+      </Link>
+    </div>
     </div>
   );
 };
