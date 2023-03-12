@@ -94,7 +94,7 @@ app.post("/login", async (req, res) => {
         jwt.sign({email:userDoc.email, id:userDoc._id, name:userDoc.name}, jwtSecret, {}, (err, token) => {
              if (err) throw err;
         
-        res.cookie("token", token).json(userDoc);
+        res.cookie("token", token, { sameSite: 'none', secure: true }).json(userDoc);
 
     });
 
@@ -105,7 +105,7 @@ app.post("/login", async (req, res) => {
       res.status(404).json("not found");
     }
   });
-  
+
   app.get("/profile", (req,res) => {
     mongoose.connect(process.env.MONGO_URL);
     res.header("Access-Control-Allow-Credentials", "true");
