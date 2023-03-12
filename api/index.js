@@ -86,26 +86,34 @@ app.post("/login", async (req, res) => {
   mongoose.connect(process.env.MONGO_URL);
   res.header("Access-Control-Allow-Credentials", "true");
   res.set("Access-Control-Allow-Origin", "https://ls-auto2-nd3l.vercel.app");
-    const { email, password } = req.body;
-    const userDoc = await User.findOne({ email });
-    if (userDoc) {
-      const passOk = bcrypt.compareSync(password, userDoc.password);
-      if (passOk) {
-        jwt.sign({email:userDoc.email, id:userDoc._id, name:userDoc.name}, jwtSecret, {}, (err, token) => {
-             if (err) throw err;
-        
-        res.cookie("token", token).json(userDoc);
+  const { email, password } = req.body;
+  const userDoc = await User.findOne({ email });
+  if (userDoc) {
+    const passOk = bcrypt.compareSync(password, userDoc.password);
+    if (passOk) {
+      jwt.sign(
+        { email: userDoc.email, id: userDoc._id, name: userDoc.name },
+        jwtSecret,
+        {},
+        (err, token) => {
+          if (err) throw err;
 
-    });
-
-      } else {
-        res.status(422).json("pass not ok");
-      }
+          res
+            .cookie("token", token, {
+              httpOnly: true,
+              secure: true,
+              sameSite: "strict",
+            })
+            .json(userDoc);
+        }
+      );
     } else {
-      res.status(404).json("not found");
+      res.status(422).json("pass not ok");
     }
-  });
-  
+  } else {
+    res.status(404).json("not found");
+  }
+});
   app.get("/profile", (req,res) => {
     res.set("Access-Control-Allow-Origin", "https://ls-auto2-nd3l.vercel.app");
     mongoose.connect(process.env.MONGO_URL);
