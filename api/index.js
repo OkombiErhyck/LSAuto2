@@ -123,11 +123,11 @@ app.post("/login", async (req, res) => {
   });
   
 
-app.post("/logout", (req,res) => {
+  app.post("/logout", (req, res) => {
+    res.clearCookie("token");
+    res.send("Logged out successfully");
+  });
   
-  res.cookie("token", "").json(true);
-});
-
 
  const photosMiddleware = multer({dest:'/tmp'});
 app.post("/upload",photosMiddleware.array('photos',100), async (req,res) => {
