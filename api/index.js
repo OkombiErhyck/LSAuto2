@@ -86,40 +86,42 @@ app.post("/login", async (req, res) => {
   mongoose.connect(process.env.MONGO_URL);
   res.header("Access-Control-Allow-Credentials", "true");
   res.set("Access-Control-Allow-Origin", "https://ls-auto2-nd3l.vercel.app");
-    const { email, password } = req.body;
-    const userDoc = await User.findOne({ email });
-    if (userDoc) {
-      const passOk = bcrypt.compareSync(password, userDoc.password);
-      if (passOk) {
-        jwt.sign({email:userDoc.email, id:userDoc._id, name:userDoc.name}, jwtSecret, {}, (err, token) => {
-             if (err) throw err;
-        
-        res.cookie("token", token).json(userDoc);
-
-    });
-
-      } else {
-        res.status(422).json("pass not ok");
-      }
+  const { email, password } = req.body;
+  const userDoc = await User.findOne({ email });
+  if (userDoc) {
+    const passOk = bcrypt.compareSync(password, userDoc.password);
+    if (passOk) {
+      const sessionID = generateSessionID(); // Generate a unique session ID
+      // Store the session ID and user ID in your database or in-memory data store
+      // ...
+      // Set a session cookie on the client-side with the session ID
+      res.cookie("sessionID", sessionID, { httpOnly: true, sameSite: "lax" });
+      jwt.sign({ email: userDoc.email, id: userDoc._id, name: userDoc.name }, jwtSecret, {}, (err, token) => {
+        if (err) throw err;
+        res.json(userDoc);
+      });
     } else {
-      res.status(404).json("not found");
+      res.status(422).json("pass not ok");
     }
-  });
-  
-  app.get("/profile", (req,res) => {
-    res.set("Access-Control-Allow-Origin", "https://ls-auto2-nd3l.vercel.app");
-    mongoose.connect(process.env.MONGO_URL);
-    const {token} = req.cookies;
-    if (token) {
-        jwt.verify(token, jwtSecret, {}, async (err, user) => {
-               if (err) throw err;
-               
-               res.json(user);
-         });
-    } else {
-        res.json(null);
-    }
-  });
+  } else {
+    res.status(404).json("not found");
+  }
+});
+app.get("/profile", async (req, res) => {
+  res.set("Access-Control-Allow-Origin", "https://ls-auto2-nd3l.vercel.app");
+  mongoose.connect(process.env.MONGO_URL);
+  const { sessionID } = req.cookies;
+  if (sessionID) {
+    // Look up the session data associated with the session ID
+    // ...
+    // If the session data includes a user ID, return the user object
+    const userDoc = await User.findOne({ _id: sessionData.userID });
+    res.json(userDoc);
+  } else {
+    res.json(null);
+  }
+});
+
 
 
 app.post("/logout", (req,res) => {
