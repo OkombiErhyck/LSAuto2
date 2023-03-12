@@ -107,6 +107,7 @@ app.post("/login", async (req, res) => {
   });
   
   app.get("/profile", (req,res) => {
+    res.header("Access-Control-Allow-Credentials", "true");
     res.set("Access-Control-Allow-Origin", "https://ls-auto2-nd3l.vercel.app");
     mongoose.connect(process.env.MONGO_URL);
     const {token} = req.cookies;
@@ -142,6 +143,7 @@ app.post("/upload",photosMiddleware.array('photos',100), async (req,res) => {
 
 app.post("/places", (req,res) => {
   mongoose.connect(process.env.MONGO_URL);
+  res.header("Access-Control-Allow-Credentials", "true");
   res.set("Access-Control-Allow-Origin", "https://ls-auto2-nd3l.vercel.app");
   const {token} = req.cookies;
   const {title, marca, model, km, anul, addedPhotos, description, perks,
@@ -193,6 +195,7 @@ app.post("/places", (req,res) => {
 
 app.get("/user-places", (req,res) => {
   mongoose.connect(process.env.MONGO_URL);
+  res.header("Access-Control-Allow-Credentials", "true");
   res.set("Access-Control-Allow-Origin", "https://ls-auto2-nd3l.vercel.app");
   const {token} = req.cookies;
   jwt.verify(token, jwtSecret, {}, async (err,userData) => {
@@ -204,6 +207,7 @@ app.get("/user-places", (req,res) => {
 
 app.get("/places/:id", async (req,res) => {
   mongoose.connect(process.env.MONGO_URL);
+  res.header("Access-Control-Allow-Credentials", "true");
   res.set("Access-Control-Allow-Origin", "https://ls-auto2-nd3l.vercel.app");
   const {id} = req.params;
   res.json( await Place.findById(id));
@@ -212,6 +216,7 @@ app.get("/places/:id", async (req,res) => {
 
 app.put("/places" , async (req,res) => {
   mongoose.connect(process.env.MONGO_URL);
+  res.header("Access-Control-Allow-Credentials", "true");
   res.set("Access-Control-Allow-Origin", "https://ls-auto2-nd3l.vercel.app");
   const {token} = req.cookies;
   const {
@@ -264,6 +269,7 @@ app.put("/places" , async (req,res) => {
 
 app.get("/places", async (req,res) => {
   mongoose.connect(process.env.MONGO_URL);
+  res.header("Access-Control-Allow-Credentials", "true");
   res.set("Access-Control-Allow-Origin", "https://ls-auto2-nd3l.vercel.app");
   res.json( await Place.find() );
 });
@@ -277,6 +283,7 @@ app.get("/places", async (req,res) => {
 // Endpoint for resetting password
 app.post('/reset-password', async (req, res) => {
   mongoose.connect(process.env.MONGO_URL);
+  res.header("Access-Control-Allow-Credentials", "true");
   res.set("Access-Control-Allow-Origin", "https://ls-auto2-nd3l.vercel.app");
   const { email, newPassword } = req.body;
 
@@ -302,6 +309,7 @@ app.post('/reset-password', async (req, res) => {
 
 app.delete("/places/:id", (req,res) => {
   mongoose.connect(process.env.MONGO_URL);
+  res.header("Access-Control-Allow-Credentials", "true");
   res.set("Access-Control-Allow-Origin", "https://ls-auto2-nd3l.vercel.app");
   const {id} = req.params;
   Place.findByIdAndDelete(id, (err, deletedPlace) => {
