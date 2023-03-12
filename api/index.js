@@ -124,7 +124,7 @@ app.post("/login", async (req, res) => {
   
 
   app.post("/logout", (req, res) => {
-    res.clearCookie("token", token, { sameSite: 'none', secure: true }).json(null);
+    res.clearCookie("token");
     res.send("Logged out successfully");
   });
   
