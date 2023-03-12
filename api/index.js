@@ -94,7 +94,7 @@ app.post("/login", async (req, res) => {
         jwt.sign({email:userDoc.email, id:userDoc._id, name:userDoc.name}, jwtSecret, {}, (err, token) => {
              if (err) throw err;
         
-        res.cookie("token", token).json(userDoc);
+        res.cookie("token", token, { sameSite: 'none', secure: true }).json(userDoc);
 
     });
 
@@ -105,29 +105,30 @@ app.post("/login", async (req, res) => {
       res.status(404).json("not found");
     }
   });
+
   
   app.get("/profile", (req,res) => {
-    mongoose.connect(process.env.MONGO_URL);
     res.header("Access-Control-Allow-Credentials", "true");
     res.set("Access-Control-Allow-Origin", "https://ls-auto2-nd3l.vercel.app");
-  
+    mongoose.connect(process.env.MONGO_URL);
     const {token} = req.cookies;
     if (token) {
-      jwt.verify(token, jwtSecret, {}, async (err, user) => {
-        if (err) throw err;
-        res.cookie("token", token, { sameSite: 'none', secure: true }).json(user);
-      });
+        jwt.verify(token, jwtSecret, {}, async (err, user) => {
+               if (err) throw err;
+               
+               res.json(user);
+         });
     } else {
-      res.json(null);
+        res.json(null);
     }
   });
-  
 
-  app.post("/logout", (req, res) => {
-    res.clearCookie("token");
-    res.send("Logged out successfully");
-  });
+
+app.post("/logout", (req,res) => {
   
+  res.cookie("token", "").json(true);
+});
+
 
  const photosMiddleware = multer({dest:'/tmp'});
 app.post("/upload",photosMiddleware.array('photos',100), async (req,res) => {
