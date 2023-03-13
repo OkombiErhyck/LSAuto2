@@ -77,7 +77,7 @@ if (redirect) {
                            <a href="/IndexPage">
                            <img src={toate} className="img-fluid" alt=""/>
                           
-                               <button className="btn1">Toate anunturile</button>
+                               <button className="btn1">Toate Anunturile</button>
                            </a>
                            </div>
                        </div>

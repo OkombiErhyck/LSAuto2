@@ -29,7 +29,7 @@ export default function Details() {
     return array;
   };
 
-  const limitedPlaces = shuffleArray(places).slice(0, 9); // display 3 random posts
+  const limitedPlaces = shuffleArray(places).slice(0, 6); // display 3 random posts
 
   return(
     <div className="main2"> 

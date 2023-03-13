@@ -90,6 +90,7 @@
 
 .infoRow {
   display: flex  ;
+  font-size: small;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 5px;
