@@ -129,7 +129,7 @@ app.post("/logout", (req,res) => {
 });
 
 
- const photosMiddleware = multer({dest:'/tmp'});
+ const photosMiddleware = multer({dest:'/tmp',  limits: { fileSize: 80000000 }});
  app.options("/upload", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "POST");
