@@ -11,7 +11,7 @@
      }
      .usercontent {
 
-     margin-top:80px ;
+     margin-top:100px ;
 
      }
      
@@ -19,7 +19,7 @@
  }
 
  .userbox .usercontent {
-
+text-decoration: #000000;
     position: absolute;
     top: 70%;
     left: 50%;
