@@ -74,7 +74,6 @@ export default function PhotosUploader({ addedPhotos, onChange }) {
         setUploadProgress(0);
       });
   }
-
   return (
     <>
       <label>
