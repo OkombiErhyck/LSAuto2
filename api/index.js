@@ -130,6 +130,12 @@ app.post("/logout", (req,res) => {
 
 
  const photosMiddleware = multer({dest:'/tmp'});
+ app.options("/upload", (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "POST");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  res.send();
+});
 app.post("/upload",photosMiddleware.array('photos',100), async (req,res) => {
   const uploadedFiles = [];
   for (let i = 0; i < req.files.length; i++) {
