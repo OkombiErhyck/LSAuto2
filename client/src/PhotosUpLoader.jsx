@@ -12,29 +12,19 @@ export default function PhotosUpLoader({addedPhotos,onChange}) {
     for (let i = 0; i < files.length; i++) {
       data.append("photos", files[i]);
     }
-  
-    const config = {
-      headers: {"Content-type": "multipart/form-data"},
-      onUploadProgress: (progressEvent) => {
-        const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-        setUploadProgress(percentCompleted);
-      },
-    };
-  
     setIsLoading(true);
-    setUploadProgress(0);
-    axios.post("/upload", data, config)
-      .then(response => {
-        const { data: filenames } = response;
-        onChange(prev => [...prev, ...filenames]);
-        setIsLoading(false);
-        setUploadProgress(0);
-      })
-      .catch(error => {
-        console.error(error);
-        setIsLoading(false);
-        setUploadProgress(0);
+    axios.post("/upload", data, {
+      headers: {"Content-type": "multipart/form-data"}
+    }).then(response => {
+      const {data:filenames} = response;
+      onChange(prev => {
+        return[...prev, ...filenames];
       });
+      setIsLoading(false);
+    }).catch(error => {
+      console.error(error);
+      setIsLoading(false);
+    });
   };
 
   function removePhoto(ev,filename) {
