@@ -57,7 +57,7 @@ export default function PhotosUpLoader({ addedPhotos, onChange }) {
     <>
       <label>
         <input type="file" multiple className="hidden" onChange={uploadPhoto} />
-        {isLoading && <div className="loading">Loading...</div>}
+        {isLoading && <div className="loading">Se incarca...</div>}
         {uploadProgress > 0 && (
           <progress
             value={uploadProgress}
@@ -92,17 +92,11 @@ export default function PhotosUpLoader({ addedPhotos, onChange }) {
               />
             </svg>
           </button>
-          <button
-            onClick={(ev) => selectAsMainPhoto(ev, link)}
-            className="my-button"
-            style={{ top: 0, right: 0, position: "absolute" }}
-          >
-            Set as main
-          </button>
+        
         </div>
       ))}
     {addedPhotos.length === 0 && (
-      <div className="text-gray-400">No photos added yet</div>
+      <div className="text-gray-400">Nu au fot adaugate poze inca</div>
     )}
   </label>
 </>
