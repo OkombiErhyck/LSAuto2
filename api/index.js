@@ -148,7 +148,26 @@ app.post("/upload",photosMiddleware.array('photos',100), async (req,res) => {
 });
 
 
+app.post("/uploadOneByOne", photosMiddleware.array('photos', 100), async (req, res) => {
+  const uploadedFiles = [];
 
+  for (let i = 0; i < req.files.length; i++) {
+    const {path, originalname, mimetype} = req.files[i];
+    const url = await uploadToS3(path, originalname, mimetype);
+    uploadedFiles.push(url);
+  }
+
+  res.json(uploadedFiles);
+});
+
+app.post("/uploadOneByOne/:index", photosMiddleware.single('photo'), async (req, res) => {
+  const {path, originalname, mimetype} = req.file;
+  const index = parseInt(req.params.index);
+
+  const url = await uploadToS3(path, originalname, mimetype);
+
+  res.json({url, index});
+});
 
 app.post("/places", (req,res) => {
   mongoose.connect(process.env.MONGO_URL);
