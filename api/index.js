@@ -11,8 +11,9 @@ const {S3Client, PutObjectCommand} = require('@aws-sdk/client-s3');
 const fs =require("fs");
 const Place =require("./models/Place.js");
 const multer = require('multer');
-
-
+const bodyParser = require('body-parser');
+const jsonParser = bodyParser.json({ limit: '50mb' });
+app.use(jsonParser);
 
 const bcryptSalt = bcrypt.genSaltSync(10);
 const jwtSecret = "123456789";
@@ -25,8 +26,6 @@ app.use(cors({
     credentials: true,
     origin: "https://ls-auto2-nd3l.vercel.app",
 }));
-
-
 
 
 async function uploadToS3(path, originalFilename, mimetype) {
