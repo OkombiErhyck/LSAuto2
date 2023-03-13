@@ -33,12 +33,13 @@
 
 
  .userbox {
-margin-bottom: 80px;
+
 height: 1370px;
 background: #3b3b3b;
 
  }
  .usercontent{
+   margin-bottom: 80px;
    box-shadow: 0px 15px 15px 10px rgba(0, 0, 0, 0.545);
 position:relative
  }
