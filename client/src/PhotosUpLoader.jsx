@@ -11,44 +11,68 @@ export default function PhotosUploader({ addedPhotos, onChange }) {
   function uploadPhoto(ev) {
     const files = ev.target.files;
     const data = new FormData();
-  
-    // Compress and append each selected file to the form data
-    for (let i = 0; i < files.length; i++) {
-      const compressedFile = await imageCompression(files[i], {
-        maxSizeMB: 1, // Maximum size of the compressed image
-        maxWidthOrHeight: 1920, // Maximum width or height of the compressed image
-        useWebWorker: true, // Use a web worker for the compression process
-      });
-      data.append("photos", compressedFile);
-    }
-  
     setIsLoading(true);
-  
-    axios
-      .post("/upload", data, {
-        headers: { "Content-type": "multipart/form-data" },
-        onUploadProgress: (progressEvent) => {
-          const progress = Math.round(
-            (progressEvent.loaded / progressEvent.total) * 100
-          );
-          setUploadProgress(progress);
-        },
-      })
-      .then((response) => {
-        const { data: filenames } = response;
-        onChange((prev) => {
-          return [...prev, ...filenames];
+
+    const promises = [];
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      const promise = new Promise((resolve, reject) => {
+        new Compressor(file, {
+          quality: 0.6,
+          success: (compressedFile) => {
+            const compressedBlob = new Blob([compressedFile]);
+            const compressedFileWithMeta = new File(
+              [compressedBlob],
+              file.name,
+              {
+                type: file.type,
+                lastModified: file.lastModified,
+              }
+            );
+            data.append("photos", compressedFileWithMeta);
+            resolve();
+          },
+          error: (err) => {
+            console.error(err.message);
+            reject(err);
+          },
         });
-        setIsLoading(false);
-        setUploadProgress(0);
+      });
+      promises.push(promise);
+    }
+
+    Promise.all(promises)
+      .then(() => {
+        axios
+          .post("/upload", data, {
+            headers: { "Content-type": "multipart/form-data" },
+            onUploadProgress: (progressEvent) => {
+              const progress = Math.round(
+                (progressEvent.loaded / progressEvent.total) * 100
+              );
+              setUploadProgress(progress);
+            },
+          })
+          .then((response) => {
+            const { data: filenames } = response;
+            onChange((prev) => {
+              return [...prev, ...filenames];
+            });
+            setIsLoading(false);
+            setUploadProgress(0);
+          })
+          .catch((error) => {
+            console.error(error);
+            setIsLoading(false);
+            setUploadProgress(0);
+          });
       })
       .catch((error) => {
         console.error(error);
         setIsLoading(false);
         setUploadProgress(0);
       });
-  
-  
   }
   return (
     <>
