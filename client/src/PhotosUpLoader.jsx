@@ -2,71 +2,35 @@ import axios from "axios";
 import { useState } from "react";
 import "./PhotosUploader.css";
 import Image from "./image";
-import Compressor from "compressorjs";
 
-export default function PhotosUploader({ addedPhotos, onChange }) {
+export default function PhotosUpLoader({ addedPhotos, onChange }) {
   const [isLoading, setIsLoading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
 
   function uploadPhoto(ev) {
     const files = ev.target.files;
     const data = new FormData();
-    setIsLoading(true);
-
-    const promises = [];
-
     for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      const promise = new Promise((resolve, reject) => {
-        new Compressor(file, {
-          quality: 0.6,
-          success: (compressedFile) => {
-            const compressedBlob = new Blob([compressedFile]);
-            const compressedFileWithMeta = new File(
-              [compressedBlob],
-              file.name,
-              {
-                type: file.type,
-                lastModified: file.lastModified,
-              }
-            );
-            data.append("photos", compressedFileWithMeta);
-            resolve();
-          },
-          error: (err) => {
-            console.error(err.message);
-            reject(err);
-          },
-        });
-      });
-      promises.push(promise);
+      data.append("photos", files[i]);
     }
-
-    Promise.all(promises)
-      .then(() => {
-        axios
-          .post("/upload", data, {
-            headers: { "Content-type": "multipart/form-data" },
-            onUploadProgress: (progressEvent) => {
-              const progress = Math.round(
-                (progressEvent.loaded / progressEvent.total) * 100
-              );
-              setUploadProgress(progress);
-            },
-          })
-          .then((response) => {
-            const { data: filenames } = response;
-            onChange((prev) => {
-              return [...prev, ...filenames];
-            });
-            setIsLoading(false);
-            setUploadProgress(0);
-          })
-          .catch((error) => {
-            console.error(error);
-            setIsLoading(false);
-            setUploadProgress(0);
-          });
+    setIsLoading(true);
+    axios
+      .post("/upload", data, {
+        headers: { "Content-type": "multipart/form-data" },
+        onUploadProgress: (progressEvent) => {
+          const progress = Math.round(
+            (progressEvent.loaded / progressEvent.total) * 100
+          );
+          setUploadProgress(progress);
+        },
+      })
+      .then((response) => {
+        const { data: filenames } = response;
+        onChange((prev) => {
+          return [...prev, ...filenames];
+        });
+        setIsLoading(false);
+        setUploadProgress(0);
       })
       .catch((error) => {
         console.error(error);
@@ -74,6 +38,21 @@ export default function PhotosUploader({ addedPhotos, onChange }) {
         setUploadProgress(0);
       });
   }
+
+  function removePhoto(ev, filename) {
+    ev.preventDefault();
+    onChange([...addedPhotos.filter((photo) => photo !== filename)]);
+  }
+
+  function selectAsMainPhoto(ev, filename) {
+    ev.preventDefault();
+    const addedPhotosWithoutSelected = addedPhotos.filter(
+      (photo) => photo !== filename
+    );
+    const newAddedPhotos = [filename, ...addedPhotosWithoutSelected];
+    onChange(newAddedPhotos);
+  }
+
   return (
     <>
       <label>
