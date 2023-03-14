@@ -45,7 +45,7 @@ const NavBar =() => {
                 </div>
                 <div className="nav-item">
                   <a href="/IndexPage" className="nav-link">
-                    Vezi Anunturile
+                  Anunturi
                   </a>
                 </div>
                
