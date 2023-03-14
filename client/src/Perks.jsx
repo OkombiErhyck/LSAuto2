@@ -1,3 +1,7 @@
+import "./perks.css";
+
+
+
 export default function Perks({selected,onChange}) {
 
   function handleCbClick(ev) {
