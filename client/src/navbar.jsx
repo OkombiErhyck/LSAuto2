@@ -43,6 +43,11 @@ const NavBar =() => {
                     Acasa
                   </a>
                 </div>
+                <div className="nav-item">
+                  <a href="/IndexPage" className="nav-link">
+                    Vezi Anunturile
+                  </a>
+                </div>
                
             {user ? (
               <div className="nav-item">
