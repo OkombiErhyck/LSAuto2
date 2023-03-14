@@ -84,39 +84,39 @@ export default function PlacePage() {
   <br></br>
     <div className="infoRow">
     
-      <p>Culoare  </p>
+      <h6>Culoare  </h6>
       
-      <p>{place.culoare}</p>
+      <h6>{place.culoare}</h6>
     </div>
     <div className="infoRow">
-      <p>Combustibil</p>
-      <p>{place.combustibil}</p>
+      <h6>Combustibil</h6>
+      <h6>{place.combustibil}</h6>
     </div>
     <div className="infoRow">
-      <p>Tractiune</p>
-      <p>{place.tractiune}</p>
+      <h6>Tractiune</h6>
+      <h6>{place.tractiune}</h6>
     </div>
   </div>
   <div className="infoColumn">
     <div className="infoRow">
-      <p>Transmisie</p>
-      <p>{place.transmisie}</p>
+      <h6>Transmisie</h6>
+      <h6>{place.transmisie}</h6>
     </div>
     <div className="infoRow">
-      <p>Norma Euro</p>
-      <p>{place.normaeuro}</p>
+      <h6>Norma Euro</h6>
+      <h6>{place.normaeuro}</h6>
     </div>
     <div className="infoRow">
-      <p>Serie Sasiu</p>
-      <p>{place.seriesasiu}</p>
+      <h6>Serie Sasiu</h6>
+      <h6>{place.seriesasiu}</h6>
     </div>
     <div className="infoRow">
-      <p>Caroserie</p>
-      <p>{place.caroserie}</p>
+      <h6>Caroserie</h6>
+      <h6>{place.caroserie}</h6>
     </div>
     <div className="infoRow">
-      <p>Cilindree</p>
-      <p>{place.cilindre}cc</p>
+      <h6>Cilindree</h6>
+      <h6>{place.cilindre}cc</h6>
     </div>
   </div>
   
