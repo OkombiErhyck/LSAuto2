@@ -11,9 +11,7 @@ const {S3Client, PutObjectCommand} = require('@aws-sdk/client-s3');
 const fs =require("fs");
 const Place =require("./models/Place.js");
 const multer = require('multer');
-const bodyParser = require('body-parser');
-const jsonParser = bodyParser.json({ limit: '100mb' });
-app.use(jsonParser);
+
 
 const bcryptSalt = bcrypt.genSaltSync(10);
 const jwtSecret = "123456789";
@@ -129,9 +127,7 @@ app.post("/logout", (req,res) => {
 });
 
 
-
-const photosMiddleware = multer({dest:'/tmp', limits: { fileSize: 100 * 1024 * 1024 }});
-
+ const photosMiddleware = multer({dest:'/tmp'});
  
 app.post("/upload",photosMiddleware.array('photos',100), async (req,res) => {
   const uploadedFiles = [];
