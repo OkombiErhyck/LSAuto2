@@ -74,7 +74,7 @@
 
 .containere > div.contContainer {
   flex-basis: 28%;
-  height: 240px;
+  height: 220px;
 }
 
 .containere > div:last-of-type {
