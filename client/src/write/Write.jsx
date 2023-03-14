@@ -235,11 +235,11 @@ if (redirect) {
 const generateModelOptions = () => {
   const selectedCar = cars.find(car => car.brand === marca);
   if (!selectedCar) {
-    return <option value="">Selecteaza model-ul</option>;
+    return <option  value="">Selecteaza model-ul</option>;
   }
   return (
     <>
-      <option value="">Selecteaza model-ul</option>
+      <option   value="">Selecteaza model-ul</option>
       {selectedCar.models.map(model => (
         <option key={model} value={model}>{model}</option>
       ))}
@@ -271,7 +271,7 @@ const generateModelOptions = () => {
       value={marca}
       onChange={ev => setMarca(ev.target.value)}
     >
-      <option value="">Selecteaza marca</option>
+      <option style={{color:"#000"}} value="">Selecteaza marca</option>
       {cars.map(car => (
         <option key={car.brand} value={car.brand}>{car.brand}</option>
       ))}
@@ -286,7 +286,7 @@ const generateModelOptions = () => {
     </select>
              <h5>Caroserie</h5>
              <select className="writeInput" value={caroserie} onChange={ev => setCaroserie(ev.target.value)}>
-  <option value="">Selecteaza caroseria</option>
+  <option style={{color:"#000"}} value="">Selecteaza caroseria</option>
   <option value="Coupe">Coupe</option>
   <option value="Compacta">Compacta</option>
   <option value="Berlina">Berlina</option>
@@ -308,7 +308,7 @@ const generateModelOptions = () => {
             />
             <h5>Combustibil</h5>
             <select className="writeInput" value={combustibil} onChange={ev => setCombustibil(ev.target.value)}>
-  <option value="">Selecteaza combustibil-ul</option>
+  <option style={{color:"#000"}} value="">Selecteaza combustibil-ul</option>
   <option value="Benzina">Benzina</option>
   <option value="Diesel">Diesel</option>
   <option value="Electric">Electric</option>
@@ -329,7 +329,7 @@ const generateModelOptions = () => {
             />
             <h5>Tractiune</h5>
             <select className="writeInput" value={tractiune} onChange={ev => setTractiune(ev.target.value)}>
-  <option value="">Selecteaza tractiunea</option>
+  <option style={{color:"#000"}} value="">Selecteaza tractiunea</option>
   <option value="Fata">Fata</option>
   <option value="Spate">Spate</option>
   <option value="4x4">4x4</option>
@@ -340,7 +340,7 @@ const generateModelOptions = () => {
 </select>
             <h5>Culoare</h5>
             <select className="writeInput" value={culoare} onChange={ev => setCuloare(ev.target.value)}>
-  <option value="">Selectează culoarea</option>
+  <option style={{color:"#000"}} value="">Selectează culoarea</option>
   <option value="Alb">Alb</option>
   <option value="Negru">Negru</option>
   <option value="Gri">Gri</option>
@@ -359,7 +359,7 @@ const generateModelOptions = () => {
             
             <h5>Norma Euro</h5>
             <select className="writeInput" value={normaeuro} onChange={ev => setNormaeuro(ev.target.value)}>
-  <option value="">Selecteaza Norma Euro</option>
+  <option style={{color:"#000"}} value="">Selecteaza Norma Euro</option>
   <option value="euro0">Non euro</option>
   <option value="euro1">Euro 1</option>
   <option value="euro2">Euro 2</option>
@@ -371,7 +371,7 @@ const generateModelOptions = () => {
 </select>
             <h5>Transmisie</h5>
             <select className="writeInput" value={transmisie} onChange={ev => setTransmisie(ev.target.value)}>
-  <option value="">Selecteaza Transmisia</option>
+  <option style={{color:"#000"}} value="">Selecteaza Transmisia</option>
   <option value="CVT">CVT</option>
   <option value="Automata"> Automata</option>
   <option value="Semi-Automata">Semi-Automata</option>
@@ -423,6 +423,7 @@ const generateModelOptions = () => {
             />
              
              <PhotosUpLoader addedPhotos={addedPhotos} onChange={setAddedPhotos}/>
+             <br></br>
             <Perks selected={perks} onChange={setPerks}/>
           
           </div>
@@ -433,10 +434,10 @@ const generateModelOptions = () => {
            
           <div className="writeFormGroup">
 
-          <h5>Descriere</h5>
+          <h4>Descriere</h4>
           <textarea
   className="writeInput writeText"
-  placeholder="Tell your story..."
+  placeholder="Detalii despre vehicul"
   type="text"
   value={description}
   onChange={ev => setDescription(ev.target.value)}

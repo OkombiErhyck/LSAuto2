@@ -19,7 +19,7 @@ export default function Perks({selected,onChange}) {
 
     return(
         <>
-            <h2>Optiuni</h2>
+            <h4>Optiuni</h4>
           <p>Selectacti din optiunile</p>
           <div className="optiuni">
           <div>
