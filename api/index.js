@@ -12,7 +12,7 @@ const fs =require("fs");
 const Place =require("./models/Place.js");
 const multer = require('multer');
 const bodyParser = require('body-parser');
-const jsonParser = bodyParser.json({ limit: '50mb' });
+const jsonParser = bodyParser.json({ limit: '100mb' });
 app.use(jsonParser);
 
 const bcryptSalt = bcrypt.genSaltSync(10);
@@ -129,16 +129,19 @@ app.post("/logout", (req,res) => {
 });
 
 
-const photosMiddleware = multer({dest:'/tmp'}).array('photos', 100);
 
-app.post("/upload", photosMiddleware, async (req, res) => {
+const photosMiddleware = multer({dest:'/tmp', limits: { fileSize: 100 * 1024 * 1024 }});
+
+ 
+app.post("/upload",photosMiddleware.array('photos',100), async (req,res) => {
   const uploadedFiles = [];
   for (let i = 0; i < req.files.length; i++) {
-    const {path, originalname, mimetype} = req.files[i];
-    const url = await uploadToS3(path, originalname, mimetype);
-    uploadedFiles.push(url);
+    const {path,originalname ,mimetype} = req.files[i];
+   const url = await uploadToS3(path, originalname, mimetype);
+   uploadedFiles.push(url);
   }
-  res.json(uploadedFiles);
+    res.json(uploadedFiles);
+
 });
 
 
