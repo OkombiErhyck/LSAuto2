@@ -84,39 +84,39 @@ export default function PlacePage() {
   <br></br>
     <div className="infoRow">
     
-      <h5>Culoare  </h5>
+      <p>Culoare  </p>
       
-      <h5>{place.culoare}</h5>
+      <p>{place.culoare}</p>
     </div>
     <div className="infoRow">
-      <h5>Combustibil</h5>
-      <h5>{place.combustibil}</h5>
+      <p>Combustibil</p>
+      <p>{place.combustibil}</p>
     </div>
     <div className="infoRow">
-      <h5>Tractiune</h5>
-      <h5>{place.tractiune}</h5>
+      <p>Tractiune</p>
+      <p>{place.tractiune}</p>
     </div>
   </div>
   <div className="infoColumn">
     <div className="infoRow">
-      <h5>Transmisie</h5>
-      <h5>{place.transmisie}</h5>
+      <p>Transmisie</p>
+      <p>{place.transmisie}</p>
     </div>
     <div className="infoRow">
-      <h5>Norma Euro</h5>
-      <h5>{place.normaeuro}</h5>
+      <p>Norma Euro</p>
+      <p>{place.normaeuro}</p>
     </div>
     <div className="infoRow">
-      <h5>Serie Sasiu</h5>
-      <h5>{place.seriesasiu}</h5>
+      <p>Serie Sasiu</p>
+      <p>{place.seriesasiu}</p>
     </div>
     <div className="infoRow">
-      <h5>Caroserie</h5>
-      <h5>{place.caroserie}</h5>
+      <p>Caroserie</p>
+      <p>{place.caroserie}</p>
     </div>
     <div className="infoRow">
-      <h5>Cilindree</h5>
-      <h5>{place.cilindre}cc</h5>
+      <p>Cilindree</p>
+      <p>{place.cilindre}cc</p>
     </div>
   </div>
   
@@ -127,11 +127,11 @@ export default function PlacePage() {
 <div className="contContainer">
 <h3>CONTACT</h3>
    <br></br>
-   <h5><span style={{color:"var(--main)"}}>Nume:</span>     {place.nume}</h5> 
+   <h6><span style={{color:"var(--main)"}}>Nume:</span>     {place.nume}</h6> 
    
-   <h5><span style={{color:"var(--main)"}}>Telefon:</span>    {place.telefon}</h5>
+   <h6><span style={{color:"var(--main)"}}>Telefon:</span>    {place.telefon}</h6>
     
-   <h5><span style={{color:"var(--main)"}}>Email: </span>     {place.mail}</h5>
+   <h6><span style={{color:"var(--main)"}}>Email: </span>     {place.mail}</h6>
 </div>
 
 </div>
