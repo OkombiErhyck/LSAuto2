@@ -1,18 +1,26 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "*.js",
-      "use": "@vercel/node"
+  "functions": {
+    "api": {
+      "memory": 1024,
+      "maxDuration": 60,
+      "env": {
+        "AWS_NODEJS_CONNECTION_REUSE_ENABLED": 1
+      },
+      "events": [
+        {
+          "http": {
+            "method": "post",
+            "path": "/api",
+            "request": {
+              "content": {
+                "maxSize": "100mb"
+              }
+            }
+          }
+        }
+      ]
     }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/"
-    }
-  ],
-  "limits": {
-    "maxPayloadSize": "150mb"
   }
 }
+
