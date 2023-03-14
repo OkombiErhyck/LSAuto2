@@ -46,19 +46,21 @@ export default function Details() {
                     <div className="box_content">
                      <h4> {place.marca} {place.model}</h4>
                      <div className="row pl-2 pr-2">
-                          <div class="col-lg-6 col-sm-6 col-6 text-right" ><h6> {place.km}</h6></div>
-                          <div class="col-lg-6 col-sm-6 col-6 text-left" >Kilometri</div>
+                          <div class="col-lg-6 col-sm-6 col-6 text-left" ><h6> {place.km}</h6></div>
+                          <div class="col-lg-6 col-sm-6 col-6 text-right" >Kilometri</div>
                      </div>
                      <div className="row pl-2 pr-2">
-                     <div class="col-lg-6 col-sm-6 col-6 text-right" ><h6>{place.anul}</h6></div>
-                     <div class="col-lg-6 col-sm-6 col-6 text-left" >Anul</div>
+                     <div class="col-lg-6 col-sm-6 col-6 text-left" ><h6>{place.anul}</h6></div>
+                     <div class="col-lg-6 col-sm-6 col-6 text-right" >Anul</div>
+                    </div>
+                    <div className="row pl-2 pr-2" style={{borderBottomColor:"#000"}}>
+                    <div class="col-lg-6 col-sm-6 col-6 text-left" ><h6>{place.putere }</h6></div>
+                    <div class="col-lg-6 col-sm-6 col-6 text-right" >Putere</div>
                     </div>
                     <div className="row pl-2 pr-2">
-                    <div class="col-lg-6 col-sm-6 col-6 text-right" ><h6>{place.putere }</h6></div>
-                    <div class="col-lg-6 col-sm-6 col-6 text-left" >Putere</div>
+                    <div class="col-lg-6 col-sm-6 col-6 text-left" ><h6> {place.title}€ </h6></div>
+                    <div class="col-lg-6 col-sm-6 col-6 text-right" >Pret net</div>
                     </div>
-                      <h6> {place.title}€ </h6>
-                     
                       <button style={{background : "var(--main)"}} className="btn1">Detalii</button>
                     </div>
                   </div>
