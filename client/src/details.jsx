@@ -45,25 +45,73 @@ export default function Details() {
                     )}
                     <div className="box_content">
                      <h4> {place.marca} {place.model}</h4>
-                     <div className="row pl-2 pr-2 justify-content-between">
-  <div class="col-lg-6 col-sm-6 col-6 text-right"><h6> {place.km}</h6></div>
-  <div class="col-lg-6 col-sm-6 col-6  ">⛐ Rulaj</div>
-</div>
+                     <div className="row pl-2 pr-2">
+    <div
+      className="col-lg-6 col-sm-6 col-6 text-left"
+      style={{ fontSize: "0.9em", color: "#636363" }}
+    >
+      <span
+        className="fas fa-calendar-alt  mr-2"
+        style={{ color: "#77838f", width: 16, textAlign: "center" }}
+      />{" "}
+      an
+    </div>
+    <div
+      className="col-lg-6 col-sm-6 col-6 text-right"
+      style={{ fontWeight: 500 }}
+    >
+      {place.anul}
+    </div>
+  </div>
+  <div className="row pl-2 pr-2">
+    <div
+      className="col-lg-6 col-sm-6 col-6 text-left"
+      style={{ fontSize: "0.9em", color: "#636363" }}
+    >
+      <span
+        className="fas fa-road  mr-2"
+        style={{ color: "#77838f", width: 16 }}
+      />{" "}
+      rulaj
+    </div>
+    <div
+      className="col-lg-6 col-sm-6 col-6 text-right"
+      style={{ fontWeight: 500 }}
+    >
+      {place.km} km
+    </div>
+  </div>
+  <div className="row pl-2 pr-2">
+    <div
+      className="col-lg-6 col-6 text-left"
+      style={{ fontSize: "0.9em", color: "#636363" }}
+    >
+      <span
+        className="fas fa-box  mr-2"
+        style={{ color: "#77838f", width: 16 }}
+      />{" "}
+      putere
+    </div>
+    <div className="col-lg-6 col-6 text-right" style={{ fontWeight: 500 }}>
+      {place.putere} cp
+    </div>
+  </div>
+  <div
+    className="row pl-2 pr-2"
+    style={{
+      fontSize: "1em",
+      fontWeight: "bold",
+      borderTop: "1px solid #d4d4d4",
+      marginTop: 10,
+      paddingTop: 10,
+      paddingBottom: 10
+    }}
+  >
+    <div className="col-lg-7 col-7">Pret Net</div>
+    <div className="col-lg-5 col-5 text-right">{place.title} Euro</div>
+  </div>
 
-<div className="row pl-2 pr-2 justify-content-between">
-  <div class="col-lg-6 col-sm-6 col-6 text-right"><h6>{place.anul}</h6></div>
-  <div class="col-lg-6 col-sm-6 col-6  ">📆 Anul</div>
-</div>
 
-<div className="row pl-2 pr-2 justify-content-between" style={{borderBottom: '1px solid black'}}>
-  <div class="col-lg-6 col-sm-6 col-6 text-right"><h6>{place.putere}</h6></div>
-  <div class="col-lg-6 col-sm-6 col-6  ">🚘 Putere</div>
-</div>
-
-<div className="row pl-2 pr-2 justify-content-between">
-  <div class="col-lg-6 col-sm-6 col-6 text-right"><h5>{place.title} €</h5></div>
-  <div class="col-lg-6 col-sm-6 col-6  ">Pret Net</div>
-</div>
 
                       <button style={{background : "var(--main)"}} className="btn1">Detalii</button>
                     </div>
