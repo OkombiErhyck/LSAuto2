@@ -1,7 +1,7 @@
 .main2{
    background-color:  rgba(0, 0, 0, 0.808);
    padding: 1px;
-    
+    overflow: hidden;
 }
 .details {
     margin-top: 50px;
