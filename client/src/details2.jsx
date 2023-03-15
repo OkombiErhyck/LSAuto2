@@ -69,7 +69,7 @@ export default function Details() {
   </div>
 
                      
-                      <button style={{background : "var(--main)"}} className="btn1">Detalii</button>
+                      <button style={{background : "#cccccc00"}} className="btn1">Detalii</button>
                     </div>
                   </div>
                 </div>

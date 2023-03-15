@@ -72,7 +72,7 @@ export default function PlacePage() {
             }}>  {place.marca} {place.model} </span> €{place.title}
           </h2>
           <div> 
-      {place.putere}| {place.anul}| {place.km}
+      {place.putere} cp | {place.anul}| {place.km} km
   </div>
         </div>
     <br></br>
