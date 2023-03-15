@@ -48,7 +48,7 @@ export default function Details() {
                     {place.photos.length > 0 && (
                       <Image src={place.photos[0]} className="img-fluid" style={{height: "270px", width: "100%", objectFit: "cover"}}/>
                     )}
-                    <div className="d-flex justify-content-center"> 
+                    
                     <div className="box_content">
                      <h4> {place.marca} {place.model}</h4>
                      <div className="row pl-2 pr-2">
@@ -118,7 +118,6 @@ export default function Details() {
 
                       <button style={{background : "var(--main)"}} className="btn1">Detalii</button>
                     </div>
-                  </div>
                   </div>
                 </div>
               </Link>
