@@ -3,6 +3,11 @@ import axios from "axios";
 import "./IndexPage.css"
 import { Link } from "react-router-dom";
 import Image from "./image";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBox, faCalendarAlt,faRoad } from '@fortawesome/free-solid-svg-icons';
+
+
+
 
 export default function Details() {
   const [places, setPlaces] = useState([]);
@@ -48,10 +53,10 @@ export default function Details() {
                      <div className="row pl-2 pr-2">
     <div
       className="col-lg-6 col-sm-6 col-6 text-left"
-      style={{ marginLeft: "20px" ,fontSize: "0.9em", color: "#636363" }}
+      style={{ fontSize: "0.9em", color: "#636363" }}
     >
       <span
-        className="fas fa-calendar-alt  mr-2"
+       icon={faCalendarAlt} className="mr-2"
         style={{ color:"var(--main)", width: 16, textAlign: "center" }}
       />{" "}
       an
@@ -66,10 +71,10 @@ export default function Details() {
   <div className="row pl-2 pr-2">
     <div
       className="col-lg-6 col-sm-6 col-6 text-left"
-      style={{  marginLeft: "20px" , fontSize: "0.9em", color: "#636363" }}
+      style={{ fontSize: "0.9em", color: "#636363" }}
     >
       <span
-        className="fas fa-road  mr-2"
+       icon={faRoad} className="mr-2"
         style={{ color:"var(--main)", width: 16 }}
       />{" "}
       rulaj
@@ -84,10 +89,10 @@ export default function Details() {
   <div className="row pl-2 pr-2">
     <div
       className="col-lg-6 col-6 text-left"
-      style={{ marginLeft: "20px" , fontSize: "0.9em", color: "#636363" }}
+      style={{ fontSize: "0.9em", color: "#636363" }}
     >
       <span
-        className="fas fa-box  mr-2"
+       icon={faBox} className="mr-2"
         style={{ color:"var(--main)", width: 16 }}
       />{" "}
       putere
@@ -108,7 +113,7 @@ export default function Details() {
     }}
   >
     <div className="col-lg-7 col-7"><h5>Pret Net</h5></div>
-    <div className="col-lg-5 col-5 text-right"><h5>{place.title}</h5>Euro</div>
+    <div className="col-lg-5 col-5 text-right"><h5>{place.title}</h5>€</div>
   </div>
 
 
