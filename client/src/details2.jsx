@@ -50,52 +50,8 @@ export default function Details() {
                     <div className="box_content">
                      <h4> {place.marca} {place.model}</h4>
                      <div className="row pl-2 pr-2">
-    <div
-      className="col-lg-6 col-sm-6 col-6 text-left"
-      style={{ fontSize: "0.9em", color: "#636363" }}
-    >
-       <span style={{ color:"var(--main)", width: 16, textAlign: "center" }}>
-        <FontAwesomeIcon icon={faCalendarAlt} className="mr-2" />
-      </span>{" "}
-      an
-    </div>
-    <div
-      className="col-lg-6 col-sm-6 col-6 text-right"
-      style={{ fontWeight: 500 }}
-    >
-      {place.anul}
-    </div>
-  </div>
-  <div className="row pl-2 pr-2">
-    <div
-      className="col-lg-6 col-sm-6 col-6 text-left"
-      style={{ fontSize: "0.9em", color: "#636363" }}
-    >
-       <span style={{ color:"var(--main)", width: 16, textAlign: "center" }}>
-        <FontAwesomeIcon icon={faRoad} className="mr-2" />
-      </span>{" "}
-      rulaj
-    </div>
-    <div
-      className="col-lg-6 col-sm-6 col-6 text-right"
-      style={{ fontWeight: 500 }}
-    >
-      {place.km} km
-    </div>
-  </div>
-  <div className="row pl-2 pr-2">
-    <div
-      className="col-lg-6 col-6 text-left"
-      style={{ fontSize: "0.9em", color: "#636363" }}
-    >
-       <span style={{ color:"var(--main)", width: 16, textAlign: "center" }}>
-        <FontAwesomeIcon icon={faBox} className="mr-2" />
-      </span>{" "}
-      putere
-    </div>
-    <div className="col-lg-6 col-6 text-right" style={{ fontWeight: 500 }}>
-      {place.putere} cp
-    </div>
+    <div> 
+      {place.putere}| {place.anul}| {place.km}
   </div>
   <div
     className="row pl-2 pr-2"
@@ -116,6 +72,7 @@ export default function Details() {
                       <button style={{background : "var(--main)"}} className="btn1">Detalii</button>
                     </div>
                   </div>
+                </div>
                 </div>
               </Link>
             ))}
