@@ -51,7 +51,7 @@ export default function Details() {
                      <h4> {place.marca} {place.model}</h4>
                      <div className="row pl-2 pr-2">
     <div> 
-      {place.putere}| {place.anul}| {place.km}
+      {place.putere} cp | {place.anul}| {place.km} km
   </div>
   <div
     className="row pl-2 pr-2"
