@@ -108,7 +108,7 @@
 }
 .infoRow {
   display: flex  ;
-  font-size:  small;
+  font-size: medium;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 5px;

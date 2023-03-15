@@ -55,10 +55,9 @@ export default function Details() {
       className="col-lg-6 col-sm-6 col-6 text-left"
       style={{ fontSize: "0.9em", color: "#636363" }}
     >
-      <span
-       icon={faCalendarAlt} className="mr-2"
-        style={{ color:"var(--main)", width: 16, textAlign: "center" }}
-      />{" "}
+       <span style={{ color:"var(--main)", width: 16, textAlign: "center" }}>
+        <FontAwesomeIcon icon={faCalendarAlt} className="mr-2" />
+      </span>{" "}
       an
     </div>
     <div
@@ -73,10 +72,9 @@ export default function Details() {
       className="col-lg-6 col-sm-6 col-6 text-left"
       style={{ fontSize: "0.9em", color: "#636363" }}
     >
-      <span
-       icon={faRoad} className="mr-2"
-        style={{ color:"var(--main)", width: 16 }}
-      />{" "}
+       <span style={{ color:"var(--main)", width: 16, textAlign: "center" }}>
+        <FontAwesomeIcon icon={faRoad} className="mr-2" />
+      </span>{" "}
       rulaj
     </div>
     <div
@@ -91,10 +89,9 @@ export default function Details() {
       className="col-lg-6 col-6 text-left"
       style={{ fontSize: "0.9em", color: "#636363" }}
     >
-      <span
-       icon={faBox} className="mr-2"
-        style={{ color:"var(--main)", width: 16 }}
-      />{" "}
+       <span style={{ color:"var(--main)", width: 16, textAlign: "center" }}>
+        <FontAwesomeIcon icon={faBox} className="mr-2" />
+      </span>{" "}
       putere
     </div>
     <div className="col-lg-6 col-6 text-right" style={{ fontWeight: 500 }}>
@@ -112,8 +109,8 @@ export default function Details() {
       paddingBottom: 10
     }}
   >
-    <div className="col-lg-7 col-7"><h5>Pret Net</h5></div>
-    <div className="col-lg-5 col-5 text-right"><h5>{place.title}</h5>€</div>
+    <div className="col-lg-7 col-7"><h6>Pret Net</h6></div>
+    <div className="col-lg-5 col-5 text-right"><h6>{place.title}</h6>€</div>
   </div>
 
 
