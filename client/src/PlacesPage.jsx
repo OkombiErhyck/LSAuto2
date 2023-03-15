@@ -40,17 +40,21 @@ export default function PlacesPage() {
                         <Image src={place.photos[0]} className="img-fluid" style={{height: "270px", width: "100%", objectFit: "cover"}}/>
                       )}
                       <div className="box_content">
-                        <h4> {place.marca} {place.model}</h4>
-                        <h6> {place.title}€ </h6>
-                        <h6> {place.km}Km</h6>
-                        <h6>{place.anul}</h6>
-                        <h6>{place.putere }cp</h6>
-                        <button style={{background : "var(--main)"}} className="btn1">Editeaza</button>
+                     <h4> {place.marca} {place.model}</h4>
+                     <div className="row pl-2 pr-2">
+    <div > 
+      {place.putere} cp | {place.anul} | {place.km} km     <h5> {place.title}€</h5>
+  </div>
+ 
+                     
+
+
+  <button style={{background : "#cccccc00", color : "var(--main)"}} className="btn1">Detalii</button>
                          
                         <button style={{color : "red"}} className="btn1" onClick={(event) => handleDelete(event, place._id)}>Sterge</button>
                      </div>
                     </div>
-                  </div>
+                  </div></div>
                 </Link>
               ))}
             </div>

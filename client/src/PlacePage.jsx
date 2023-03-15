@@ -29,7 +29,7 @@ export default function PlacePage() {
      
   return (
     <> 
-    <div className="main3">
+   <div className="main3"> 
       <div className="carousel-container">
         <Carousel className="carousel">
           {place.photos?.map((photo, index) => (
@@ -58,7 +58,7 @@ export default function PlacePage() {
           <h2
             className="h_det"
             style={{
-              color: "#e26c18",
+              color: "var(--main)",
               fontWeight: "bold",
               textAlign: "left",
               marginBottom: 0,
@@ -71,8 +71,8 @@ export default function PlacePage() {
               marginBottom: 0,
             }}>  {place.marca} {place.model} </span> €{place.title}
           </h2>
-          <div> 
-      {place.putere} cp | {place.anul}| {place.km} km
+          <div style={{color:"white"}}> 
+      {place.putere} cp | {place.anul} | {place.km} km
   </div>
         </div>
     <br></br>
@@ -80,44 +80,44 @@ export default function PlacePage() {
 <div className="containere">
 
 <div className="infoContainer">
-
+ 
   <div className="infoColumn">
   <h3>Detalii</h3>
   <br></br>
     <div className="infoRow">
     
-      <p>Culoare  </p>
+      <p style={{color:"var(--main)"}}>Culoare  </p>
       
       <p>{place.culoare}</p>
     </div>
     <div className="infoRow">
-      <p>Combustibil</p>
+      <p style={{color:"var(--main)"}}>Combustibil</p>
       <p>{place.combustibil}</p>
     </div>
     <div className="infoRow">
-      <p>Tractiune</p>
+      <p style={{color:"var(--main)"}}>Tractiune</p>
       <p>{place.tractiune}</p>
     </div>
   </div>
   <div className="infoColumn">
     <div className="infoRow">
-      <p>Transmisie</p>
+      <p style={{color:"var(--main)"}}>Transmisie</p>
       <p>{place.transmisie}</p>
     </div>
     <div className="infoRow">
-      <p>Norma Euro</p>
+      <p style={{color:"var(--main)"}}>Norma Euro</p>
       <p>{place.normaeuro}</p>
     </div>
     <div className="infoRow">
-      <p>Serie Sasiu</p>
-      <p>{place.seriesasiu}</p>
+      <p style={{color:"var(--main)"}}>Serie Sasiu</p>
+      <p st>{place.seriesasiu}</p>
     </div>
     <div className="infoRow">
-      <p>Caroserie</p>
+      <p style={{color:"var(--main)"}}>Caroserie</p>
       <p>{place.caroserie}</p>
     </div>
     <div className="infoRow">
-      <p>Cilindree</p>
+      <p style={{color:"var(--main)"}}>Cilindree</p>
       <p>{place.cilindre}cc</p>
     </div>
   </div>
@@ -138,6 +138,7 @@ export default function PlacePage() {
 
 </div>
 <div className="desContainer  "   >
+
 <h3>
           
           <button onClick={() => setShowPerks(!showPerks)}>
@@ -158,7 +159,7 @@ export default function PlacePage() {
  <br></br>
   
  </div>
-</div>
+  </div>
     </>
   );
 }

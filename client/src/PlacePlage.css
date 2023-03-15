@@ -1,17 +1,4 @@
-.perksList {
-  list-style: none;
-  padding: 0;
-}
-
-.perksList li::before {
-  content: "\2714";
-  display: inline-block;
-  width: 1em;
-  margin-right: 0.5em;
-  color:var(--main);
-  font-weight: bold;
-}
-
+ 
  
   .main3{
 
@@ -40,7 +27,7 @@
    
   /* Styling for main container */
 .m2 {
-  margin: 20px auto;
+  margin: -11px auto;
   max-width: 1250px;
    
   padding: 20px;
@@ -74,7 +61,7 @@
 
 .containere > div.contContainer {
   flex-basis: 28%;
-  height: 210px;
+  height: 215px;
 }
 
 .containere > div:last-of-type {
@@ -86,9 +73,8 @@
 }
 
 .infoContainer {
-  overflow: hidden;
   display: flex;
-   
+ 
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
@@ -102,16 +88,14 @@
   margin-bottom: 10px;
 }
 
-
-.contContainer{
-  font-size:  small;
-}
 .infoRow {
   display: flex  ;
-  font-size: medium;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 5px;
+  font-size:  medium;
+  font-weight: 700;
+  margin-bottom: -7px;
+  margin-left: -4px;
 }
 
 .infoContainer h3,
@@ -143,13 +127,12 @@
 }
 
 .desContainer {
-  
+   
   margin-bottom: 20px;
   border: 2px solid #e26c18;
   padding: 20px;
   box-shadow: 0px 2px  10px  #e26c18;;
   border-radius: 5px;
-  font-size:  small;
   color: rgb(3, 3, 3);
   background-color: rgba(255, 255, 255, 0.863);
 }
@@ -217,286 +200,26 @@
 
 
 
-  @media (max-width: 433px) {
-    .carousel {
-      height: 40vh;
-    }
-    .carousel-container {
-      height: 40vh;
-    }
-    .d-block {
-      height: 50vh;
-      margin-top: -200px;
-    }
-    .main3 {
-      margin-top: 80px;
-    }
+@media (max-width: 733px) {
+  .carousel-container {
+    min-height: 10vh;
   }
-  
-  @media (min-width: 433px) {
-    .carousel {
-      height: 45vh;
-    }
-    .carousel-container {
-      height: 45vh;
-    }
-    .d-block {
-      height: 50vh;
-      margin-top: -180px;
-    }
-    .main3 {
-      margin-top: 80px;
-    }
-     
+  .carousel-inner {
+    height: 100%;
   }
-  
-  @media (min-width: 440px) {
-    .carousel {
-      height: 50vh;
-    }
-    .carousel-container {
-      height: 50vh;
-    }
-    .d-block {
-      height: 50vh;
-      margin-top: -160px;
-    }
-    .main3 {
-      margin-top: 60px;
-    }
-     
+  .d-block {
+    height: auto;
+    
+    max-height: 35vh;
+    margin-top: 0vh;
   }
-  
-  @media (min-width: 500px) {
-    .carousel {
-      height: 52vh;
-    }
-    .carousel-container {
-      height: 52vh;
-    }
-    .d-block {
-      height: 50vh;
-      margin-top: -150px;
-    }
-    .main3 {
-      margin-top: 60px;
-    }
-     
+  .main3 {
+    margin-top: 80px;
   }
-  
-  @media (min-width: 519px) {
-    .carousel {
-      height: 54vh;
-    }
-    .carousel-container {
-      height: 54vh;
-    }
-    .d-block {
-      height: 50vh;
-      margin-top: -140px;
-    }
-    .main3 {
-      margin-top: 60px;
-    }
-  }
-  
-  @media (min-width: 529px) {
-    .carousel {
-      height: 56vh;
-    }
-    .carousel-container {
-      height: 56vh;
-    }
-    .d-block {
-      height: 50vh;
-      margin-top: -130px;
-    }
-    .main3 {
-      margin-top: 60px;
-    }
-  }
-  
-  @media (min-width: 539px) {
-    .carousel {
-      height: 58vh;
-    }
-    .carousel-container {
-      height: 58vh;
-    }
-    .d-block {
-      height: 50vh;
-      margin-top: -120px;
-    }
-    .main3 {
-      margin-top: 50px;
-       
-    }
-  }
-  
-  @media (min-width: 561px) {
-    .carousel {
-      height: 60vh;
-    }
-    .carousel-container {
-      height: 60vh;
-    }
-    .d-block {
-      height: 50vh;
-      margin-top: -110px;
-    }
-    .main3 {
-      margin-top: 34px;
-       
-    }
-     
-  }
-  
-  @media (min-width: 579px) {
-    .carousel {
-    height: 62vh;
-    }
-    .carousel-container {
-    height: 62vh;
-    }
-    .d-block {
-    height: 50vh;
-    margin-top: -100px;
-    }
-    .main3 {
-    margin-top: 0px;
-     
-    }
-    }
-    
-    @media (min-width: 601px) {
-    .carousel {
-    height: 64vh;
-    }
-    .carousel-container {
-    height: 64vh;
-    }
-    .d-block {
-    height: 50vh;
-    margin-top: -90px;
-    }
-    .main3 {
-    margin-top: 0px;
-     
-    }
-    }
-    
-    @media (min-width: 621px) {
-    .carousel {
-    height: 66vh;
-    }
-    .carousel-container {
-    height: 66vh;
-    }
-    .d-block {
-    height: 50vh;
-    margin-top: -80px;
-    }
-    .main3 {
-    margin-top: 25px;
-    }
-    }
-    
-    @media (min-width: 641px) {
-    .carousel {
-    height: 68vh;
-    }
-    .carousel-container {
-    height: 68vh;
-    }
-    .d-block {
-    height: 50vh;
-    margin-top: -70px;
-    }
-    .main3 {
-    margin-top: 50px;
-    }
-    }
-    
-    @media (min-width: 661px) {
-    .carousel {
-    height: 70vh;
-    }
-    .carousel-container {
-    height: 70vh;
-    }
-    .d-block {
-    height: 50vh;
-    margin-top: -60px;
-    }
-    .main3 {
-    margin-top: 50px;
-    }
-    }
-    
-    @media (min-width: 681px) {
-    .carousel {
-    height: 72vh;
-    }
-    .carousel-container {
-    height: 72vh;
-    }
-    .d-block {
-    height: 50vh;
-    margin-top: -50px;
-    }
-    .main3 {
-    margin-top: 50px;
-    }
-    }
-    
-    @media (min-width: 701px) {
-    .carousel {
-    height: 74vh;
-    }
-    .carousel-container {
-    height: 74vh;
-    }
-    .d-block {
-    height: 50vh;
-    margin-top: -40px;
-    }
-    .main3 {
-    margin-top: 60px;
-    }
-    }
-    
-    @media (min-width: 721px) {
-    .carousel {
-    height: 76vh;
-    }
-    .carousel-container {
-    height: 76vh;
-    }
-    .d-block {
-    height: 50vh;
-    margin-top: -30px;
-    }
-    .main3 {
-    margin-top: 60px;
-    }
-    }
-    
-    @media (min-width: 741px) {
-    .carousel {
-    height: 88vh;
-    }
-    .carousel-container {
-    height: 88vh;
-    }
-    .d-block {
-    height: 50vh;
-    margin-top: -20px;
-    }
-    .main3 {
-    margin-top: 60px;
-    }
-    }
-  
+  .infoRow{font-size:  x-small;
+    font-weight: 700;}
+}
+
   
   
   
