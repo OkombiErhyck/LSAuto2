@@ -6,12 +6,13 @@ const jwt = require("jsonwebtoken");
 const User = require("./models/User.js");
 require("dotenv").config();
 const app = express();
+ 
 const CookieParser = require("cookie-parser");
 const {S3Client, PutObjectCommand} = require('@aws-sdk/client-s3');
 const fs =require("fs");
 const Place =require("./models/Place.js");
 const multer = require('multer');
-const sharp = require('sharp');
+
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json({ limit: '50mb' });
 app.use(jsonParser);
@@ -149,7 +150,8 @@ const photosMiddleware = multer({
 });
 
 app.options("/upload", (req, res) => {
- res.header("Access-Control-Allow-Origin", "https://ls-auto2-nd3l.vercel.app");
+  res.header("Access-Control-Allow-Credentials", "true");
+    res.set("Access-Control-Allow-Origin", "https://ls-auto2-nd3l.vercel.app");
  res.header("Access-Control-Allow-Methods", "POST");
  res.header("Access-Control-Allow-Headers", "Content-Type");
  res.send();
