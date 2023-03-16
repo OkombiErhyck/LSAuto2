@@ -15,6 +15,9 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json({ limit: '50mb' });
 app.use(jsonParser);
 
+
+
+
 const bcryptSalt = bcrypt.genSaltSync(10);
 const jwtSecret = "123456789";
 const bucket = 'lsauto';
@@ -130,22 +133,28 @@ app.post("/logout", (req,res) => {
 const photosMiddleware = multer({ storage: multer.memoryStorage(), limits: { fileSize: 80000000 } });
 
 app.options("/upload", (req, res) => {
- res.header("Access-Control-Allow-Origin", "*");
- res.header("Access-Control-Allow-Methods", "POST");
- res.header("Access-Control-Allow-Headers", "Content-Type");
- res.send();
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "POST");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  res.send();
 });
- 
+
 app.post("/upload", photosMiddleware.array('photos', 100), async (req, res) => {
   const uploadedFiles = [];
   for (let i = 0; i < req.files.length; i++) {
     const { buffer, originalname, mimetype } = req.files[i];
-    const url = await uploadToS3(buffer, originalname, mimetype);
-    uploadedFiles.push(url);
+    if (buffer.length > 10000000) {
+      const url = await uploadToS3(buffer, originalname, mimetype);
+      uploadedFiles.push(url);
+    } else {
+      const filename = Date.now() + '-' + originalname;
+      const path = __dirname + '/uploads/' + filename;
+      fs.writeFileSync(path, buffer);
+      uploadedFiles.push('/uploads/' + filename);
+    }
   }
   res.json(uploadedFiles);
 });
-
 
 
 
