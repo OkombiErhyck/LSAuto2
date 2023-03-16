@@ -128,12 +128,12 @@ export default function PlacePage() {
    
 <div className="contContainer">
 <h3>CONTACT</h3>
-   <br></br>
-   <h6><span style={{color:"var(--main)"}}>Nume:</span>     {place.nume}</h6> 
    
-   <h6><span style={{color:"var(--main)"}}>Telefon:</span>    {place.telefon}</h6>
+   <p><span style={{color:"var(--main)"}}>Nume:</span>     {place.nume}</p> 
+   
+   <p><span style={{color:"var(--main)"}}>Telefon:</span>    {place.telefon}</p>
     
-   <h6><span style={{color:"var(--main)"}}>Email: </span>     {place.mail}</h6>
+   <p><span style={{color:"var(--main)"}}>Email: </span>     {place.mail}</p>
 </div>
 
 </div>
@@ -154,7 +154,7 @@ export default function PlacePage() {
   </ul>
 }
 <h3>DESCRIERE</h3>
-<p style={{ whiteSpace: 'pre-line' }}>{place.description}</p>
+<p style={{ whiteSpace: 'pre-line', fontSize:"10.5px" }}>{place.description}</p>
 </div>
  <br></br>
   
