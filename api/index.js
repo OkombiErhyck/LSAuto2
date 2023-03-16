@@ -40,7 +40,7 @@ async function uploadToS3(buffer, originalFilename, mimetype) {
     },
   });
 
-  const parts =originalFilename.split('-');
+  const parts = originalFilename.split('-');
   const ext = parts[parts.length - 1];
   const newFilename = Date.now() + '-' + ext;
   await client.send(new PutObjectCommand({
@@ -53,7 +53,18 @@ async function uploadToS3(buffer, originalFilename, mimetype) {
   return `https://${bucket}.s3.amazonaws.com/${newFilename}`;
 }
 
+function splitFile(file, chunkSize) {
+  const fileSize = file.length;
+  const chunks = [];
 
+  for (let start = 0; start < fileSize; start += chunkSize) {
+    const end = Math.min(start + chunkSize, fileSize);
+    const chunk = file.slice(start, end);
+    chunks.push(chunk);
+  }
+
+  return chunks;
+}
 app.get("/test", (req,res) => {
   mongoose.connect(process.env.MONGO_URL);
     res.json("test ok");
