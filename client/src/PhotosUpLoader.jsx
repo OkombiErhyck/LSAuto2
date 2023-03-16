@@ -26,22 +26,7 @@ export default function PhotosUpLoader({addedPhotos,onChange}) {
       setIsLoading(false);
     });
   };
-  const zlib = require('zlib');
-  const fs = require('fs');
-  
-  // Read the file into a buffer
-  const fileContent = fs.readFileSync('file.jpg');
-  
-  // Compress the file using gzip
-  zlib.gzip(fileContent, (err, compressedContent) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-  
-    // Send the compressed content to the server
-    // ...
-  });
+
   function removePhoto(ev,filename) {
     ev.preventDefault();
     onChange([...addedPhotos.filter(photo => photo !== filename)]);
