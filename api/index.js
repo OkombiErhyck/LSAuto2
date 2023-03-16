@@ -28,23 +28,21 @@ app.use(cors({
 }));
 
 
-async function uploadToS3(path, originalFilename, mimetype) {
+async function uploadToS3(buffer, originalFilename, mimetype) {
   const client = new S3Client({
     region: 'eu-north-1',
     credentials: {
-
       accessKeyId: process.env.S3_ACCESS_KEY,
       secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
     },
-
   });
 
   const parts =originalFilename.split('-');
   const ext = parts[parts.length - 1];
   const newFilename = Date.now() + '-' + ext;
- await client.send(new PutObjectCommand({
+  await client.send(new PutObjectCommand({
     Bucket: bucket,
-    Body: fs.readFileSync(path),
+    Body: buffer,
     Key: newFilename,
     ContentType: mimetype,
     ACL: 'public-read',
@@ -129,7 +127,8 @@ app.post("/logout", (req,res) => {
 });
 
 
-const photosMiddleware = multer({dest:'/tmp',  limits: { fileSize: 80000000 }});
+const photosMiddleware = multer({ storage: multer.memoryStorage(), limits: { fileSize: 80000000 } });
+
 app.options("/upload", (req, res) => {
  res.header("Access-Control-Allow-Origin", "*");
  res.header("Access-Control-Allow-Methods", "POST");
@@ -137,16 +136,16 @@ app.options("/upload", (req, res) => {
  res.send();
 });
  
-app.post("/upload",photosMiddleware.array('photos',100), async (req,res) => {
+app.post("/upload", photosMiddleware.array('photos', 100), async (req, res) => {
   const uploadedFiles = [];
   for (let i = 0; i < req.files.length; i++) {
-    const {path,originalname ,mimetype} = req.files[i];
-   const url = await uploadToS3(path, originalname, mimetype);
-   uploadedFiles.push(url);
+    const { buffer, originalname, mimetype } = req.files[i];
+    const url = await uploadToS3(buffer, originalname, mimetype);
+    uploadedFiles.push(url);
   }
-    res.json(uploadedFiles);
-
+  res.json(uploadedFiles);
 });
+
 
 
 
