@@ -7,10 +7,9 @@ const User = require("./models/User.js");
 require("dotenv").config();
 const app = express();
  
-const CookieParser = require("cookie-parser");
-const {S3Client, PutObjectCommand} = require('@aws-sdk/client-s3');
-const fs =require("fs");
-const Place =require("./models/Place.js");
+const CookieParser = require('cookie-parser');
+const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3');
+const mime = require('mime-types');
 const multer = require('multer');
 
 const bodyParser = require('body-parser');
@@ -18,19 +17,20 @@ const jsonParser = bodyParser.json({ limit: '50mb' });
 app.use(jsonParser);
 
 const bcryptSalt = bcrypt.genSaltSync(10);
-const jwtSecret = "123456789";
+const jwtSecret = '123456789';
 const bucket = 'lsauto';
 
 app.use(express.json());
 app.use(CookieParser());
-app.use("/uploads", express.static(__dirname+"/uploads"));
-app.use(cors({
+app.use('/uploads', express.static(__dirname + '/uploads'));
+app.use(
+  cors({
     credentials: true,
-    origin: "https://ls-auto2-nd3l.vercel.app", 
-}));
+    origin: 'https://ls-auto2-nd3l.vercel.app',
+  })
+);
 
-
-async function uploadToS3(buffer, mimetype) {
+async function generateSignedUrl(fileName, mimeType) {
   const s3 = new S3Client({
     region: 'eu-north-1',
     credentials: {
@@ -41,15 +41,24 @@ async function uploadToS3(buffer, mimetype) {
 
   const params = {
     Bucket: bucket,
-    Key: `${Date.now().toString()}.${mime.getExtension(mimetype)}`,
-    Body: buffer,
-    ContentType: mimetype,
-    ACL: 'public-read'
+    Key: fileName,
+    ContentType: mimeType,
+    ACL: 'public-read',
+    Expires: 60 * 5 // signed URL expires in 5 minutes
   };
 
-  const { Location } = await s3.send(new PutObjectCommand(params));
-  return Location;
+  const command = new PutObjectCommand(params);
+  const signedUrl = await s3.getSignedUrlPromise(command);
+
+  return signedUrl;
 }
+
+app.get('/get-signed-url', async (req, res) => {
+  const { fileName, mimeType } = req.query;
+  const signedUrl = await generateSignedUrl(fileName, mimeType);
+  res.send({ url: signedUrl });
+});
+
 
 app.get("/test", (req,res) => {
   mongoose.connect(process.env.MONGO_URL);
@@ -132,7 +141,7 @@ app.post("/logout", (req,res) => {
 const upload = multer({
   storage: multer.memoryStorage(),
   limits: {
-    fileSize: 1024 * 1024 * 10 // 10MB
+    fileSize: 1024 * 1024 * 100 // 10MB
   },
   fileFilter: (req, file, cb) => {
     const allowedMimes = ['image/jpeg', 'image/png', 'image/gif'];

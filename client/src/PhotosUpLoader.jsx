@@ -8,37 +8,33 @@ export default function PhotosUpLoader({addedPhotos,onChange}) {
 
   function uploadPhoto(ev) {
     const files = ev.target.files;
-    const data = new FormData();
-    for (let i = 0; i < files.length; i++) {
-      data.append("photos", files[i]);
-    }
     setIsLoading(true);
-    axios.post("/upload", data, {
-      headers: {"Content-type": "multipart/form-data"}
-    }).then(response => {
-      const {data:filenames} = response;
-      onChange(prev => {
-        return[...prev, ...filenames];
-      });
-      setIsLoading(false);
-    }).catch(error => {
-      console.error(error);
-      setIsLoading(false);
+  
+    const uploadPromises = Array.from(files).map(async file => {
+      const { name, type } = file;
+      const response = await axios.get(`/get-signed-url?fileName=${name}&mimeType=${type}`);
+      const { url } = response.data;
+      const options = {
+        headers: {
+          'Content-Type': type,
+          'x-amz-acl': 'public-read'
+        }
+      };
+      await axios.put(url, file, options);
+      return name;
     });
-  };
-
-  function removePhoto(ev,filename) {
-    ev.preventDefault();
-    onChange([...addedPhotos.filter(photo => photo !== filename)]);
+  
+    Promise.all(uploadPromises)
+      .then(filenames => {
+        onChange(prev => [...prev, ...filenames]);
+        setIsLoading(false);
+      })
+      .catch(error => {
+        console.error(error);
+        setIsLoading(false);
+      });
   }
-
-  function selectAsMainPhoto(ev,filename) {
-    ev.preventDefault();
-    const addedPhotosWithoutSelected = addedPhotos
-    .filter(photo => photo !== filename);
-    const newAddedPhotos =[filename,...addedPhotosWithoutSelected];
-    onChange(newAddedPhotos);
-  }
+  
 
   return(
     <>
