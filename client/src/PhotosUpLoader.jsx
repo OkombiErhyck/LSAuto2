@@ -3,7 +3,7 @@ import { useState } from "react";
 import "./PhotosUploader.css";
 import Image from "./image";
 
-export default function PhotosUpLoader({addedPhotos,onChange}) {
+export default function PhotosUploader({ addedPhotos, onChange }) {
   const [isLoading, setIsLoading] = useState(false);
 
   function uploadPhoto(ev) {
@@ -13,14 +13,16 @@ export default function PhotosUpLoader({addedPhotos,onChange}) {
     const uploadPromises = Array.from(files).map(async file => {
       const { name, type } = file;
       const response = await axios.get(`/get-signed-url?fileName=${name}&mimeType=${type}`);
-      const { url } = response.data;
+      const { url, signedUrl } = response.data;
       const options = {
+        method: 'PUT',
         headers: {
           'Content-Type': type,
           'x-amz-acl': 'public-read'
-        }
+        },
+        body: file,
       };
-      await axios.put(url, file, options);
+      await fetch(signedUrl, options);
       return name;
     });
   
@@ -34,18 +36,17 @@ export default function PhotosUpLoader({addedPhotos,onChange}) {
         setIsLoading(false);
       });
   }
-  
-
-  return(
+  return (
     <>
       <label>
-        <input type="file"  multiple className="hidden" onChange={uploadPhoto}/>
+        <input type="file" multiple className="hidden" onChange={uploadPhoto} />
         {isLoading && <div className="loading">Loading...</div>}
-        {addedPhotos.length > 0 && addedPhotos.map(link => (
-          <div className="holder" key={link} style={{ position: "relative", width: "auto", height: "215px" }}>
-            <Image className="img1" src={link}  />
-            <button onClick={ev => removePhoto(ev,link)} class="my-button"> 
-              <svg  className="svgw"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-1 h-1">
+        {addedPhotos.length > 0 &&
+          addedPhotos.map((link) => (
+            <div className="holder" key={link} style={{ position: "relative", width: "auto", height: "215px" }}>
+              <Image className="img1" src={link} />
+              <button onClick={(ev) => removePhoto(ev, link)} class="my-button">
+                 <svg  className="svgw"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-1 h-1">
             <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
                   </svg>
                   </button>
