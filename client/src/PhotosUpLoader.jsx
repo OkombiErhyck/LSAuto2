@@ -2,15 +2,18 @@ import axios from "axios";
 import { useState } from "react";
 import "./PhotosUploader.css";
 import Image from "./image";
+import zlib from "zlib";
+import fs from "fs";
 
-export default function PhotosUpLoader({addedPhotos,onChange}) {
+export default function PhotosUploader({addedPhotos, onChange}) {
   const [isLoading, setIsLoading] = useState(false);
 
   function uploadPhoto(ev) {
     const files = ev.target.files;
     const data = new FormData();
     for (let i = 0; i < files.length; i++) {
-      data.append("photos", files[i]);
+      const compressedFile = compressFile(files[i]);
+      data.append("photos", compressedFile);
     }
     setIsLoading(true);
     axios.post("/upload", data, {
@@ -27,19 +30,25 @@ export default function PhotosUpLoader({addedPhotos,onChange}) {
     });
   };
 
-  function removePhoto(ev,filename) {
+  function compressFile(file) {
+    const fileContent = fs.readFileSync(file);
+    const compressedContent = zlib.gzipSync(fileContent);
+    const compressedFile = new File([compressedContent], file.name + ".gz", { type: "application/gzip" });
+    return compressedFile;
+  }
+
+  function removePhoto(ev, filename) {
     ev.preventDefault();
     onChange([...addedPhotos.filter(photo => photo !== filename)]);
   }
 
-  function selectAsMainPhoto(ev,filename) {
+  function selectAsMainPhoto(ev, filename) {
     ev.preventDefault();
     const addedPhotosWithoutSelected = addedPhotos
     .filter(photo => photo !== filename);
-    const newAddedPhotos =[filename,...addedPhotosWithoutSelected];
+    const newAddedPhotos =[filename, ...addedPhotosWithoutSelected];
     onChange(newAddedPhotos);
   }
-
   return(
     <>
       <label>
