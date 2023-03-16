@@ -30,30 +30,26 @@ app.use(cors({
 }));
 
 
-async function uploadToS3(path, originalFilename, mimetype) {
-  const client = new S3Client({
+async function uploadToS3(buffer, mimetype) {
+  const s3 = new S3Client({
     region: 'eu-north-1',
     credentials: {
-
       accessKeyId: process.env.S3_ACCESS_KEY,
       secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
     },
-
   });
 
-  const parts =originalFilename.split('-');
-  const ext = parts[parts.length - 1];
-  const newFilename = Date.now() + '-' + ext;
- await client.send(new PutObjectCommand({
+  const params = {
     Bucket: bucket,
-    Body: fs.readFileSync(path),
-    Key: newFilename,
+    Key: `${Date.now().toString()}.${mime.getExtension(mimetype)}`,
+    Body: buffer,
     ContentType: mimetype,
-    ACL: 'public-read',
-  }));
-  return `https://${bucket}.s3.amazonaws.com/${newFilename}`;
-}
+    ACL: 'public-read'
+  };
 
+  const { Location } = await s3.send(new PutObjectCommand(params));
+  return Location;
+}
 
 app.get("/test", (req,res) => {
   mongoose.connect(process.env.MONGO_URL);
@@ -133,29 +129,40 @@ app.post("/logout", (req,res) => {
 
  
 
-const photosMiddleware = multer({dest:'/tmp', limits: { fileSize: 80000000 }});
-
-app.options("/upload", (req, res) => {
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.set("Access-Control-Allow-Origin", "https://ls-auto2-nd3l.vercel.app");
-   
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: {
+    fileSize: 1024 * 1024 * 10 // 10MB
+  },
+  fileFilter: (req, file, cb) => {
+    const allowedMimes = ['image/jpeg', 'image/png', 'image/gif'];
+    if (allowedMimes.includes(file.mimetype)) {
+      cb(null, true);
+    } else {
+      cb(new Error('Invalid file type. Only JPEG, PNG, and GIF allowed.'));
+    }
+  }
 });
 
-app.post("/upload", photosMiddleware.array('photos', 100), async (req, res) => {
-  const uploadedFiles = [];
-  for (let i = 0; i < req.files.length; i++) {
-    const { path, originalname, mimetype } = req.files[i];
-    
-    // Resize the image using sharp
-    const resizedImage = await sharp(path)
-      .resize({ width: 800 })
-      .toBuffer();
-    
-    // Upload the resized image to S3
-    const url = await uploadToS3(resizedImage, originalname, mimetype);
-    uploadedFiles.push(url);
+app.post('/upload', upload.array('photos'), async (req, res) => {
+  try {
+    const urls = [];
+    const files = req.files;
+
+    for (const file of files) {
+      const { buffer, mimetype } = file;
+      const resized = await sharp(buffer)
+        .resize({ width: 800 })
+        .toBuffer();
+      const url = await uploadToS3(resized, mimetype);
+      urls.push(url);
+    }
+
+    res.json({ urls });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to upload file(s)' });
   }
-  res.json(uploadedFiles);
 });
 
 
