@@ -126,39 +126,35 @@ export default function PlacePage() {
 
  
    
-<div className="contContainer">
-<h3>CONTACT</h3>
-   
-   <p><span style={{color:"var(--main)"}}>Nume:</span>     {place.nume}</p> 
-   
-   <p><span style={{color:"var(--main)"}}>Telefon:</span>    {place.telefon}</p>
-    
-   <p><span style={{color:"var(--main)"}}>Email: </span>     {place.mail}</p>
-</div>
-
-</div>
-<div className="desContainer  "   >
-
-<h3>
-          
+<div className="desContainer">
+        <h3>
           <button onClick={() => setShowPerks(!showPerks)}>
-            {showPerks ? 'X' : '   Optiuni'}
+            {showPerks ? 'X' : 'Optiuni'}
           </button>
         </h3>
         <br />
-        {showPerks && 
-  <ul className="perksList">
-    {place.perks.map((perk, index) => (
-      <li key={index}>{perk}</li>
-    ))}
-  </ul>
-}
-<h3>DESCRIERE</h3>
-<p style={{ whiteSpace: 'pre-line', fontSize:"10.5px" }}>{place.description}</p>
-</div>
- <br></br>
-  
- </div>
+        {showPerks && (
+          <ul className="perksList noDotList">
+            {place.perks.map((perk, index) => (
+              <li key={index}>{perk}</li>
+            ))}
+          </ul>
+        )}
+        <h3>DESCRIERE</h3>
+        <div className="descriptionContainer">
+          <p style={{ whiteSpace: 'pre-line', fontSize: '10.5px' }}>
+            {place.description}
+          </p>
+          {place.description.length > 50 && (
+            <button onClick={() => setShowDescription(!showDescription)}>
+              {showDescription ? 'Mai putin' : 'Mai mult'}
+            </button>
+          )}
+        </div>
+      </div>
+      <br />
+    </div>
+    </div>
   </div>
     </>
   );
