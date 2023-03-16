@@ -6,15 +6,11 @@ const jwt = require("jsonwebtoken");
 const User = require("./models/User.js");
 require("dotenv").config();
 const app = express();
-const sharp = require("sharp");
-const mime = require('mime-types');
-
 const CookieParser = require("cookie-parser");
 const {S3Client, PutObjectCommand} = require('@aws-sdk/client-s3');
 const fs =require("fs");
 const Place =require("./models/Place.js");
 const multer = require('multer');
-
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json({ limit: '50mb' });
 app.use(jsonParser);
@@ -32,26 +28,30 @@ app.use(cors({
 }));
 
 
-async function uploadToS3(buffer, mimetype) {
-  const s3 = new S3Client({
+async function uploadToS3(path, originalFilename, mimetype) {
+  const client = new S3Client({
     region: 'eu-north-1',
     credentials: {
+
       accessKeyId: process.env.S3_ACCESS_KEY,
       secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
     },
+
   });
 
-  const params = {
+  const parts =originalFilename.split('-');
+  const ext = parts[parts.length - 1];
+  const newFilename = Date.now() + '-' + ext;
+ await client.send(new PutObjectCommand({
     Bucket: bucket,
-    Key: `${Date.now().toString()}.${mime.getExtension(mimetype)}`,
-    Body: buffer,
+    Body: fs.readFileSync(path),
+    Key: newFilename,
     ContentType: mimetype,
-    ACL: 'public-read'
-  };
-
-  const { Location } = await s3.send(new PutObjectCommand(params));
-  return Location;
+    ACL: 'public-read',
+  }));
+  return `https://${bucket}.s3.amazonaws.com/${newFilename}`;
 }
+
 
 app.get("/test", (req,res) => {
   mongoose.connect(process.env.MONGO_URL);
@@ -129,42 +129,23 @@ app.post("/logout", (req,res) => {
 });
 
 
+const photosMiddleware = multer({dest:'/tmp',  limits: { fileSize: 80000000 }});
+app.options("/upload", (req, res) => {
+ res.header("Access-Control-Allow-Origin", "*");
+ res.header("Access-Control-Allow-Methods", "POST");
+ res.header("Access-Control-Allow-Headers", "Content-Type");
+ res.send();
+});
  
-
-app.post('/upload', upload.array('photos'), async (req, res) => {
-  try {
-    const urls = [];
-    const files = req.files;
-
-    for (const file of files) {
-      const { buffer, mimetype } = file;
-      const resized = await sharp(buffer)
-        .resize({ width: 800 })
-        .toBuffer();
-      const signedUrl = await generateSignedUrl(file.originalname, mimetype);
-      
-      const s3 = new S3Client({
-        region: 'eu-north-1',
-        credentials: {
-          accessKeyId: process.env.S3_ACCESS_KEY,
-          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
-        },
-      });const uploadCommand = new PutObjectCommand({
-        Bucket: bucket,
-        Key: file.originalname,
-        Body: resized,
-        ContentType: mimetype,
-        ACL: 'public-read',
-      });
-      await s3.send(uploadCommand);
-      urls.push(signedUrl);
-    }
-
-    res.json({ urls });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Failed to upload file(s)' });
+app.post("/upload",photosMiddleware.array('photos',100), async (req,res) => {
+  const uploadedFiles = [];
+  for (let i = 0; i < req.files.length; i++) {
+    const {path,originalname ,mimetype} = req.files[i];
+   const url = await uploadToS3(path, originalname, mimetype);
+   uploadedFiles.push(url);
   }
+    res.json(uploadedFiles);
+
 });
 
 
