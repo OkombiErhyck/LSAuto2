@@ -143,7 +143,7 @@ app.post("/upload", photosMiddleware.array('photos', 100), async (req, res) => {
   const uploadedFiles = [];
   for (let i = 0; i < req.files.length; i++) {
     const { buffer, originalname, mimetype } = req.files[i];
-    if (buffer.length > 10000000) {
+    if (buffer.length > 1000000) {
       const url = await uploadToS3(buffer, originalname, mimetype);
       uploadedFiles.push(url);
     } else {
