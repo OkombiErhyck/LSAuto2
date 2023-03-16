@@ -11,6 +11,7 @@ const {S3Client, PutObjectCommand} = require('@aws-sdk/client-s3');
 const fs =require("fs");
 const Place =require("./models/Place.js");
 const multer = require('multer');
+const sharp = require('sharp');
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json({ limit: '50mb' });
 app.use(jsonParser);
@@ -129,15 +130,32 @@ app.post("/logout", (req,res) => {
 });
 
 
-const photosMiddleware = multer({dest:'/tmp',  limits: { fileSize: 80000000 }});
+ 
+
+const photosMiddleware = multer({
+  dest: '/tmp',
+  limits: { fileSize: 80000000 },
+  fileFilter: function (req, file, cb) {
+    // Check file type here if needed
+    cb(null, true);
+  },
+  // Add this image resize function
+  imageResize: {
+    width: 800,
+    height: 800,
+    fit: 'inside',
+    withoutEnlargement: true
+  }
+});
+
 app.options("/upload", (req, res) => {
- res.header("Access-Control-Allow-Origin", "*");
+ res.header("Access-Control-Allow-Origin", "https://ls-auto2-nd3l.vercel.app");
  res.header("Access-Control-Allow-Methods", "POST");
  res.header("Access-Control-Allow-Headers", "Content-Type");
  res.send();
 });
  
-app.post("/upload",photosMiddleware.array('photos',100), async (req,res) => {
+app.post("/upload", photosMiddleware.array('photos',100), async (req,res) => {
   const uploadedFiles = [];
   for (let i = 0; i < req.files.length; i++) {
     const {path,originalname ,mimetype} = req.files[i];
@@ -145,8 +163,8 @@ app.post("/upload",photosMiddleware.array('photos',100), async (req,res) => {
    uploadedFiles.push(url);
   }
     res.json(uploadedFiles);
-
 });
+
 
 
 
