@@ -9,33 +9,46 @@ export default function PhotosUploader({ addedPhotos, onChange }) {
   function uploadPhoto(ev) {
     const files = ev.target.files;
     setIsLoading(true);
-  
-    const uploadPromises = Array.from(files).map(async file => {
+
+    const uploadPromises = Array.from(files).map(async (file) => {
       const { name, type } = file;
       const response = await axios.get(`/get-signed-url?fileName=${name}&mimeType=${type}`);
       const { url, signedUrl } = response.data;
       const options = {
-        method: 'PUT',
+        method: "PUT",
         headers: {
-          'Content-Type': type,
-          'x-amz-acl': 'public-read'
+          "Content-Type": type,
+          "x-amz-acl": "public-read",
         },
         body: file,
       };
       await fetch(signedUrl, options);
       return name;
     });
-  
+
     Promise.all(uploadPromises)
-      .then(filenames => {
-        onChange(prev => [...prev, ...filenames]);
+      .then((filenames) => {
+        onChange((prev) => [...prev, ...filenames]);
         setIsLoading(false);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
         setIsLoading(false);
       });
   }
+
+  function removePhoto(ev, filename) {
+    ev.preventDefault();
+    onChange([...addedPhotos.filter((photo) => photo !== filename)]);
+  }
+
+  function selectAsMainPhoto(ev, filename) {
+    ev.preventDefault();
+    const addedPhotosWithoutSelected = addedPhotos.filter((photo) => photo !== filename);
+    const newAddedPhotos = [filename, ...addedPhotosWithoutSelected];
+    onChange(newAddedPhotos);
+  }
+
   return (
     <>
       <label>
@@ -43,7 +56,11 @@ export default function PhotosUploader({ addedPhotos, onChange }) {
         {isLoading && <div className="loading">Loading...</div>}
         {addedPhotos.length > 0 &&
           addedPhotos.map((link) => (
-            <div className="holder" key={link} style={{ position: "relative", width: "auto", height: "215px" }}>
+            <div
+              className="holder"
+              key={link}
+              style={{ position: "relative", width: "auto", height: "215px" }}
+            >
               <Image className="img1" src={link} />
               <button onClick={(ev) => removePhoto(ev, link)} class="my-button">
                  <svg  className="svgw"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-1 h-1">
