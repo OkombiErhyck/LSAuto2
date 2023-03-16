@@ -14,7 +14,6 @@ const Place =require("./models/Place.js");
 const multer = require('multer');
 
 const bodyParser = require('body-parser');
-const sharp = require('sharp');
 const jsonParser = bodyParser.json({ limit: '50mb' });
 app.use(jsonParser);
 
@@ -138,7 +137,7 @@ const photosMiddleware = multer({dest:'/tmp', limits: { fileSize: 80000000 }});
 
 app.options("/upload", (req, res) => {
   res.header("Access-Control-Allow-Credentials", "true");
-    res.set("Access-Control-Allow-Origin", "https://ls-auto2-nd3l.vercel.app");
+  res.set("Access-Control-Allow-Origin", "https://ls-auto2-nd3l.vercel.app");
   res.header("Access-Control-Allow-Methods", "POST");
   res.header("Access-Control-Allow-Headers", "Content-Type");
   res.send();
