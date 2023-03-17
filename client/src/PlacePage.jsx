@@ -37,10 +37,10 @@ export default function PlacePage() {
       return description;
     };
      
-
-    const handleScrollTop = () => {
+    const myDetails = document.getElementById('my-details');
+    myDetails.addEventListener('click', () => {
       window.scrollTo(0, 0);
-    };
+    });
     
   return (
     <> 
@@ -178,7 +178,7 @@ export default function PlacePage() {
     </div>
 
   <br />
-   <Details onClick={handleScrollTop} /> 
+   <Details id="my-details" /> 
 </div>
   </div>
     </>
