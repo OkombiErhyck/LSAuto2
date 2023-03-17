@@ -157,10 +157,11 @@ export default function PlacePage() {
         {place.description}
       </p>
     </div>
+    <Details/> 
   </div>
 
   <br />
-   <Details/> 
+    
 </div>
   </div>
     </>
