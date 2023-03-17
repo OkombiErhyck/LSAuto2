@@ -157,7 +157,7 @@ export default function PlacePage() {
       )}
       <h3>DESCRIERE</h3>
       <div className="descriptionContainer">
-        <p style={{ whiteSpace: 'pre-line', fontSize: '11px' }}>
+        <p style={{ whiteSpace: 'pre-line', fontSize: '10.5px' }}>
           {place.description}
         </p>
       </div>
