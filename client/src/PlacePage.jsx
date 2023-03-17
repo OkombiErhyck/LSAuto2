@@ -10,8 +10,6 @@ export default function PlacePage() {
   const { id } = useParams();
   const [place, setPlace] = useState(null);
   const [showPerks, setShowPerks] = useState(false);
-  const [showMore, setShowMore] = useState(false); 
-  
   useEffect(() => {
     if (!id) {
       return;
@@ -23,14 +21,21 @@ export default function PlacePage() {
 
   if (!place) return "";
    
-  function goBack() {
-    window.history.go(-1);
-  }
+    function goBack() {
+      window.history.go(-1);
+    }
 
-  const handleShowMore = () => {
-    setShowMore(!showMore);
-  };
-
+    const handleShowMore = () => {
+      setShowMore(true);
+    };
+  
+    const trimDescription = (description) => {
+      if (description.length > 400) {
+        return description.substring(0, 400) + '...';
+      }
+      return description;
+    };
+     
   return (
     <> 
    <div className="main3"> 
@@ -141,7 +146,7 @@ export default function PlacePage() {
 </div>
 
 </div>
-<div className="desContainer" style={{ maxHeight: showMore ? 'none' : '400px', overflow: 'hidden' }}>
+<div className="desContainer">
       <h3>
         <button onClick={() => setShowPerks(!showPerks)}>
           {showPerks ? 'X' : 'Optiuni'}
@@ -158,12 +163,12 @@ export default function PlacePage() {
       <h3>DESCRIERE</h3>
       <div className="descriptionContainer">
         <p style={{ whiteSpace: 'pre-line', fontSize: '10.5px' }}>
-          {place.description}
+          {showMore ? place.description : trimDescription(place.description)}
         </p>
+        {place.description.length > 400 && !showMore && (
+          <button onClick={handleShowMore}>Show more</button>
+        )}
       </div>
-      {showMore || place.description.length <= 110 ? null : (
-        <button onClick={handleShowMore}>Show more</button>
-      )}
     </div>
 
   <br />
