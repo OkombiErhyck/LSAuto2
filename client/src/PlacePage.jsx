@@ -158,7 +158,9 @@ export default function PlacePage() {
       </p>
     </div>
   </div>
+
   <br />
+  <Details/>
 </div>
   </div>
     </>
