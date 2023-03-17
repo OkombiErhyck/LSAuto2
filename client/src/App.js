@@ -18,6 +18,8 @@ import PlacePage from "./PlacePage";
 import ResetPassword from './reset-password';
 import Despre from './despre';
 import CookiePolicyPopup from './CookiePolicyPopup';
+import Details from "./details";
+
 
 axios.defaults.baseURL = "https://ls-auto2.vercel.app";  
 axios.defaults.withCredentials = true;
@@ -33,6 +35,7 @@ function App() {
     <Navbar/>
      
     <Routes>
+      <Route path="/details" element={<Details/>}/>
       <Route path="/Write" element={<Write/>} />
       <Route path="/Write/:id" element={<Write/>} />
       <Route path="/" element={<Home/>} />

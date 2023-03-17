@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import "./PlacePlage.css";
 import Carousel from "react-bootstrap/Carousel";
 import Image from "./image";
-import Details from './Details';
+import Details from './details';
 
 export default function PlacePage() {
   const { id } = useParams();
@@ -160,7 +160,7 @@ export default function PlacePage() {
   </div>
 
   <br />
-  <Details/>
+  <div><Details/></div>
 </div>
   </div>
     </>
