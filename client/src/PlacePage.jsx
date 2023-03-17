@@ -161,7 +161,7 @@ export default function PlacePage() {
           {place.description}
         </p>
       </div>
-      {showMore || place.description.length <= 100 ? null : (
+      {showMore || place.description.length <= 110 ? null : (
         <button onClick={handleShowMore}>Show more</button>
       )}
     </div>
