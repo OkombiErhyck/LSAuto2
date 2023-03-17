@@ -137,27 +137,30 @@ export default function PlacePage() {
 </div>
 
 </div>
-<div className="desContainer " >
-    <h3>
-      <button onClick={() => setShowPerks(!showPerks)}>
-        {showPerks ? 'X' : 'Optiuni'}
-      </button>
-    </h3>
-    <br />
-    {showPerks && (
-      <ul className="perksList noDotList">
-        {place.perks.map((perk, index) => (
-          <li key={index}>{perk}</li>
-        ))}
-      </ul>
-    )}
-    <h3>DESCRIERE</h3>
-    <div className="descriptionContainer">
-      <p style={{ whiteSpace: 'pre-line', fontSize: '10.5px' }}>
-        {place.description}
-      </p>
+ <div className="desContainer" style={{ maxHeight: showMore ? 'none' : '400px', overflow: 'hidden' }}>
+      <h3>
+        <button onClick={() => setShowPerks(!showPerks)}>
+          {showPerks ? 'X' : 'Optiuni'}
+        </button>
+      </h3>
+      <br />
+      {showPerks && (
+        <ul className="perksList noDotList">
+          {place.perks.map((perk, index) => (
+            <li key={index}>{perk}</li>
+          ))}
+        </ul>
+      )}
+      <h3>DESCRIERE</h3>
+      <div className="descriptionContainer">
+        <p style={{ whiteSpace: 'pre-line', fontSize: '10.5px' }}>
+          {place.description}
+        </p>
+      </div>
+      {showMore || place.description.length <= 400 ? null : (
+        <button onClick={handleShowMore}>Show more</button>
+      )}
     </div>
-  </div>
 
   <br />
    <Details/> 
