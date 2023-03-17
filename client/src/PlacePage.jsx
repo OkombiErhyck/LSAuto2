@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import "./PlacePlage.css";
 import Carousel from "react-bootstrap/Carousel";
 import Image from "./image";
-
+import Details from './Details';
 
 export default function PlacePage() {
   const { id } = useParams();
@@ -167,5 +167,5 @@ export default function PlacePage() {
   );
 }
 
-// Add a media query to set the image width to 50% on mobile devices
+
  
