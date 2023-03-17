@@ -8,24 +8,26 @@ export default function PhotosUpLoader({addedPhotos,onChange}) {
 
   function uploadPhoto(ev) {
     const files = ev.target.files;
-    const data = new FormData();
-    for (let i = 0; i < files.length; i++) {
-      data.append("photos", files[i]);
-    }
     setIsLoading(true);
-    axios.post("/upload", data, {
-      headers: {"Content-type": "multipart/form-data"}
-    }).then(response => {
-      const {data:filenames} = response;
-      onChange(prev => {
-        return[...prev, ...filenames];
+  
+    for (let i = 0; i < files.length; i++) {
+      const data = new FormData();
+      data.append("photo", files[i]);
+      axios.post("/upload", data, {
+        headers: {"Content-type": "multipart/form-data"}
+      }).then(response => {
+        const {data:filename} = response;
+        onChange(prev => {
+          return[...prev, filename];
+        });
+        setIsLoading(false);
+      }).catch(error => {
+        console.error(error);
+        setIsLoading(false);
       });
-      setIsLoading(false);
-    }).catch(error => {
-      console.error(error);
-      setIsLoading(false);
-    });
-  };
+    }
+  }
+  
 
   function removePhoto(ev,filename) {
     ev.preventDefault();

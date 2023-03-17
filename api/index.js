@@ -137,7 +137,7 @@ app.options("/upload", (req, res) => {
  res.send();
 });
  
-app.post("/upload",photosMiddleware.array('photos',100), async (req,res) => {
+app.post("/upload",photosMiddleware.array('photos',40), async (req,res) => {
   const uploadedFiles = [];
   for (let i = 0; i < req.files.length; i++) {
     const {path,originalname ,mimetype} = req.files[i];
