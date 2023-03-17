@@ -137,7 +137,7 @@ export default function PlacePage() {
 </div>
 
 </div>
-<div className="desContainer">
+<div className="desContainer row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4" >
     <h3>
       <button onClick={() => setShowPerks(!showPerks)}>
         {showPerks ? 'X' : 'Optiuni'}
@@ -160,7 +160,7 @@ export default function PlacePage() {
   </div>
 
   <br />
-  <div><Details/></div>
+   <Details/> 
 </div>
   </div>
     </>
