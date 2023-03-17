@@ -10,6 +10,8 @@ export default function PlacePage() {
   const { id } = useParams();
   const [place, setPlace] = useState(null);
   const [showPerks, setShowPerks] = useState(false);
+  const [showMore, setShowMore] = useState(false); 
+  
   useEffect(() => {
     if (!id) {
       return;
@@ -21,17 +23,14 @@ export default function PlacePage() {
 
   if (!place) return "";
    
-    function goBack() {
-      window.history.go(-1);
-    }
+  function goBack() {
+    window.history.go(-1);
+  }
 
-    const handleShowMore = () => {
-      setShowMore(!showMore);
-    };
-    
+  const handleShowMore = () => {
+    setShowMore(!showMore);
+  };
 
-
-     
   return (
     <> 
    <div className="main3"> 
