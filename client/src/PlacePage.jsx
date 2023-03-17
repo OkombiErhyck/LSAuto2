@@ -25,6 +25,11 @@ export default function PlacePage() {
       window.history.go(-1);
     }
 
+    const handleShowMore = () => {
+      setShowMore(!showMore);
+    };
+    
+
 
      
   return (
@@ -137,7 +142,7 @@ export default function PlacePage() {
 </div>
 
 </div>
- <div className="desContainer" style={{ maxHeight: showMore ? 'none' : '400px', overflow: 'hidden' }}>
+<div className="desContainer" style={{ maxHeight: showMore ? 'none' : '400px', overflow: 'hidden' }}>
       <h3>
         <button onClick={() => setShowPerks(!showPerks)}>
           {showPerks ? 'X' : 'Optiuni'}
