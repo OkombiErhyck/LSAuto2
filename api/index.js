@@ -137,15 +137,10 @@ app.options("/upload", (req, res) => {
  res.send();
 });
  
-app.post("/upload",photosMiddleware.array('photos',40), async (req,res) => {
-  const uploadedFiles = [];
-  for (let i = 0; i < req.files.length; i++) {
-    const {path,originalname ,mimetype} = req.files[i];
-   const url = await uploadToS3(path, originalname, mimetype);
-   uploadedFiles.push(url);
-  }
-    res.json(uploadedFiles);
-
+app.post("/upload", photosMiddleware.single('photo'), async (req, res) => {
+  const { path, originalname, mimetype } = req.file;
+  const url = await uploadToS3(path, originalname, mimetype);
+  res.json(url);
 });
 
 
