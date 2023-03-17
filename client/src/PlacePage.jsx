@@ -38,6 +38,9 @@ export default function PlacePage() {
     };
      
 
+    const handleScrollTop = () => {
+      window.scrollTo(0, 0);
+    };
     
   return (
     <> 
@@ -122,7 +125,7 @@ export default function PlacePage() {
     </div>
     <div className="infoRow">
       <p style={{color:"var(--main)"}}>Serie Sasiu</p>
-      <p st>{place.seriesasiu}</p>
+      <p >{place.seriesasiu}</p>
     </div>
     <div className="infoRow">
       <p style={{color:"var(--main)"}}>Caroserie</p>
@@ -175,7 +178,7 @@ export default function PlacePage() {
     </div>
 
   <br />
-   <Details/> 
+   <Details onClick={handleScrollTop} /> 
 </div>
   </div>
     </>
