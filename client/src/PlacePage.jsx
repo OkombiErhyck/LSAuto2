@@ -36,11 +36,13 @@ export default function PlacePage() {
       }
       return description;
     };
-     
-    const myDetails = document.getElementById('my-details');
-    myDetails.addEventListener('click', () => {
-      window.scrollTo(0, 0);
-    });
+    const handleScrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    };
+    
     
   return (
     <> 
@@ -178,7 +180,7 @@ export default function PlacePage() {
     </div>
 
   <br />
-   <Details id="my-details" /> 
+   <Details  onOpen={handleScrollToTop}  /> 
 </div>
   </div>
     </>
