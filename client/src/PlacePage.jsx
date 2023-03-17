@@ -37,6 +37,8 @@ export default function PlacePage() {
       return description;
     };
      
+
+    
   return (
     <> 
    <div className="main3"> 
