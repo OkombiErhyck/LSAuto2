@@ -13,6 +13,9 @@ const Place =require("./models/Place.js");
 const multer = require('multer');
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json({ limit: '50mb' });
+const tus = require("tus-node-server");
+const tusS3Store = require("tus-s3-store");
+
 app.use(jsonParser);
 
 const bcryptSalt = bcrypt.genSaltSync(10);
@@ -27,31 +30,46 @@ app.use(cors({
     origin: "https://ls-auto2-nd3l.vercel.app", 
 }));
 
-
-async function uploadToS3(path, originalFilename, mimetype) {
-  const client = new S3Client({
+// Setup tus server
+const tusServer = new tus.Server();
+const tusS3StoreOptions = {
+  bucket: bucket,
+  client: new S3Client({
     region: 'eu-north-1',
     credentials: {
-
       accessKeyId: process.env.S3_ACCESS_KEY,
       secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
     },
+  }),
+};
+const tusS3StoreInstance = new tusS3Store(tusS3StoreOptions);
+tusServer.datastore = tusS3StoreInstance;
 
-  });
+app.all("/upload", tusServer.handle.bind(tusServer));
 
+async function uploadToS3(path, originalFilename, mimetype) {
   const parts =originalFilename.split('-');
   const ext = parts[parts.length - 1];
   const newFilename = Date.now() + '-' + ext;
- await client.send(new PutObjectCommand({
+
+  const client = new S3Client({
+    region: 'eu-north-1',
+    credentials: {
+      accessKeyId: process.env.S3_ACCESS_KEY,
+      secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+    },
+  });
+
+  await client.send(new PutObjectCommand({
     Bucket: bucket,
     Body: fs.readFileSync(path),
     Key: newFilename,
     ContentType: mimetype,
     ACL: 'public-read',
   }));
+
   return `https://${bucket}.s3.amazonaws.com/${newFilename}`;
 }
-
 
 app.get("/test", (req,res) => {
   mongoose.connect(process.env.MONGO_URL);
@@ -130,22 +148,10 @@ app.post("/logout", (req,res) => {
 
 
 const photosMiddleware = multer({dest:'/tmp',  limits: { fileSize: 80000000 }});
-app.options("/upload", (req, res) => {
- res.header("Access-Control-Allow-Origin", "*");
- res.header("Access-Control-Allow-Methods", "POST");
- res.header("Access-Control-Allow-Headers", "Content-Type");
- res.send();
-});
- 
-app.post("/upload",photosMiddleware.array('photos',100), async (req,res) => {
-  const uploadedFiles = [];
-  for (let i = 0; i < req.files.length; i++) {
-    const {path,originalname ,mimetype} = req.files[i];
-   const url = await uploadToS3(path, originalname, mimetype);
-   uploadedFiles.push(url);
-  }
-    res.json(uploadedFiles);
-
+app.post("/upload", photosMiddleware.single('file'), async (req, res) => {
+  const { path, originalname, mimetype } = req.file;
+  const url = await uploadToS3(path, originalname, mimetype);
+  res.json({ url });
 });
 
 

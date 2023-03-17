@@ -2,41 +2,54 @@ import axios from "axios";
 import { useState } from "react";
 import "./PhotosUploader.css";
 import Image from "./image";
+import tus from "tus-js-client";
 
-export default function PhotosUpLoader({addedPhotos,onChange}) {
+export default function PhotosUploader({ addedPhotos, onChange }) {
   const [isLoading, setIsLoading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
 
   function uploadPhoto(ev) {
     const files = ev.target.files;
-    const data = new FormData();
-    for (let i = 0; i < files.length; i++) {
-      data.append("photos", files[i]);
-    }
     setIsLoading(true);
-    axios.post("/upload", data, {
-      headers: {"Content-type": "multipart/form-data"}
-    }).then(response => {
-      const {data:filenames} = response;
-      onChange(prev => {
-        return[...prev, ...filenames];
-      });
-      setIsLoading(false);
-    }).catch(error => {
-      console.error(error);
-      setIsLoading(false);
-    });
-  };
 
-  function removePhoto(ev,filename) {
-    ev.preventDefault();
-    onChange([...addedPhotos.filter(photo => photo !== filename)]);
+    const upload = new tus.Upload(files, {
+      endpoint: "/upload",
+      retryDelays: [0, 3000, 5000, 10000, 20000],
+      metadata: {
+        filename: files[0].name,
+        filetype: files[0].type,
+      },
+      onError: (error) => {
+        console.error(error);
+        setIsLoading(false);
+      },
+      onProgress: (bytesUploaded, bytesTotal) => {
+        const progress = (bytesUploaded / bytesTotal) * 100;
+        setUploadProgress(progress);
+      },
+      onSuccess: (response) => {
+        setIsLoading(false);
+        const { data: filenames } = response;
+        onChange((prev) => {
+          return [...prev, ...filenames];
+        });
+      },
+    });
+
+    upload.start();
   }
 
-  function selectAsMainPhoto(ev,filename) {
+  function removePhoto(ev, filename) {
     ev.preventDefault();
-    const addedPhotosWithoutSelected = addedPhotos
-    .filter(photo => photo !== filename);
-    const newAddedPhotos =[filename,...addedPhotosWithoutSelected];
+    onChange([...addedPhotos.filter((photo) => photo !== filename)]);
+  }
+
+  function selectAsMainPhoto(ev, filename) {
+    ev.preventDefault();
+    const addedPhotosWithoutSelected = addedPhotos.filter(
+      (photo) => photo !== filename
+    );
+    const newAddedPhotos = [filename, ...addedPhotosWithoutSelected];
     onChange(newAddedPhotos);
   }
 

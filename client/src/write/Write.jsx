@@ -51,7 +51,7 @@ export default function Write() {
     },
     {
       brand: 'Dacia',
-      models: ['Dokker', 'Duster', 'Logan', 'Sandero', 'Spring']
+      models: ['Dokker', 'Duster', 'Logan', 'Sandero', 'Spring', 'MCV']
     },
     {
       brand: 'Dodge',
@@ -120,6 +120,10 @@ export default function Write() {
     {
       brand: 'Mitsubishi',
       models: ['Eclipse Cross', 'Mirage', 'Outlander', 'Outlander PHEV', 'Galant', 'Lancer', 'Lancer Evolution', 'Raider']
+    },
+    {
+      brand: "Renault",
+      models: ["Talisman", "Clio", "Megane", "Espace", "Twingo", "Wind", "Megane RS", "Clio RS", "Koleos"]
     },
     {
       brand: 'Nissan',
@@ -293,8 +297,8 @@ const generateModelOptions = () => {
   <option value="Monovolum">Monovolum</option>
   <option value="Suv">Suv</option>
   <option value="Crossover">Crossover</option>
-
-
+  <option value="Break">Break</option>
+  <option value="Pickup">Pickup</option>
 
 
 </select>

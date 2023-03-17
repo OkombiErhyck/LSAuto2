@@ -170,7 +170,7 @@ export default function PlacePage() {
       )}
       <h3>DESCRIERE</h3>
       <div className="descriptionContainer">
-        <p style={{ whiteSpace: 'pre-line', fontSize: '10.5px' }}>
+        <p style={{ whiteSpace: 'pre-line'  }}>
           {showMore ? place.description : trimDescription(place.description)}
         </p>
         {place.description.length > 400 && !showMore && (
