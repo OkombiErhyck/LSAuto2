@@ -157,9 +157,9 @@ export default function PlacePage() {
         {place.description}
       </p>
     </div>
-    <Details/> 
+     
   </div>
-
+  <Details/> 
   <br />
     
 </div>
