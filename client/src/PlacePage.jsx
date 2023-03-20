@@ -106,13 +106,13 @@ export default function PlacePage() {
             }}
           >
            <span style={{
-              color: "#ffff",
+              color: "white",
               fontWeight: "bold",
               textAlign: "left",
               marginBottom: 0,
             }}>  {place.marca} {place.model} </span> €{place.title}
           </h2>
-          <div style={{color:"white"}}> 
+          <div style={{color:"wheat"}}> 
       {place.putere} cp | {place.anul} | {place.km} km
   </div>
         </div>
