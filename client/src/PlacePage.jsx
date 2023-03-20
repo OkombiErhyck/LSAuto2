@@ -73,7 +73,7 @@ export default function PlacePage() {
     <>
       <div className="main3">
         <div className="carousel-container">
-          <Carousel className="carousel">
+          <Carousel className="carousel" style={{borderBottom: "solid 1px var(--main)"}}>
             {place.photos?.map((photo, index) => (
               <Carousel.Item key={index}>
                 <Image
