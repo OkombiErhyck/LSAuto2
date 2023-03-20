@@ -218,16 +218,18 @@
 
 @media (max-width: 733px) {
   .carousel-container {
-    min-height: 10vh;
+  min-height: 100vh;  
   }
   .carousel-inner {
-    height: 100%;
+  height: 100%;  
+  }
+  .carousel-item {
+  height: 100vh;  
   }
   .d-block {
-    height: auto;
-    
-    max-height: 31vh;
-    margin-top: 0vh;
+  width: 100%;  
+  height: 100%;  
+  object-fit: cover;  
   }
   .main3 {
     margin-top: 80px;
