@@ -11,6 +11,7 @@ export default function PlacePage() {
   const [place, setPlace] = useState(null);
   const [showPerks, setShowPerks] = useState(false);
   const [showMore, setShowMore] = useState(false);
+
   useEffect(() => {
     if (!id) {
       return;
@@ -20,48 +21,71 @@ export default function PlacePage() {
     });
   }, [id]);
 
-  if (!place) return "";
-   
-    function goBack() {
-      window.history.go(-1);
-    };
-
-    const handleShowMore = () => {
-      setShowMore(true);
-    };
-  
-    const trimDescription = (description) => {
-      if (description.length > 400) {
-        return description.substring(0, 400) + '...';
+  useEffect(() => {
+    function adjustCarouselImageSize() {
+      const images = document.querySelectorAll('.carousel .d-block');
+      const windowHeight = window.innerHeight;
+      for (let i = 0; i < images.length; i++) {
+        const image = images[i];
+        const imageHeight = image.naturalHeight;
+        const maxImageHeight = Math.min(windowHeight, imageHeight);
+        image.style.maxHeight = `${maxImageHeight}px`;
       }
-      return description;
-    };
-    const handleScrollToTop = () => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    };
-    
-    
+    }
+
+    // Adjust the carousel image size on mount
+    adjustCarouselImageSize();
+
+    // Add a resize event listener to adjust the max-height on window resize
+    window.addEventListener('resize', adjustCarouselImageSize);
+
+    // Remove the resize event listener when the component unmounts
+    return () => {
+      window.removeEventListener('resize', adjustCarouselImageSize);
+    }
+  }, []);
+
+  if (!place) return "";
+
+  function goBack() {
+    window.history.go(-1);
+  };
+
+  const handleShowMore = () => {
+    setShowMore(true);
+  };
+
+  const trimDescription = (description) => {
+    if (description.length > 400) {
+      return description.substring(0, 400) + '...';
+    }
+    return description;
+  };
+
+  const handleScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
+
   return (
-    <> 
-   <div className="main3"> 
-      <div className="carousel-container">
-        <Carousel className="carousel">
-          {place.photos?.map((photo, index) => (
-            <Carousel.Item key={index}>
-              <Image
-                className="d-block w-100"
-                src={photo}
-                alt={"Slide " + (index + 1)}
-                style={{ objectFit: "contain", height: "100vh" }}
-              />
-            </Carousel.Item>
-          ))}
-        </Carousel>
-      </div>
-        
+    <>
+      <div className="main3">
+        <div className="carousel-container">
+          <Carousel className="carousel">
+            {place.photos?.map((photo, index) => (
+              <Carousel.Item key={index}>
+                <Image
+                  className="d-block w-100"
+                  src={photo}
+                  alt={"Slide " + (index + 1)}
+                  style={{ objectFit: "contain" }}
+                />
+              </Carousel.Item>
+            ))}
+          </Carousel>
+        </div>
         
       
       
