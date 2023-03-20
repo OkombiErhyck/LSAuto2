@@ -80,7 +80,7 @@ export default function PlacePage() {
                   className="d-block w-100"
                   src={photo}
                   alt={"Slide " + (index + 1)}
-                  style={{ objectFit: "contain" }}
+                  style={{ objectFit: "contain",maxHeight: "546px" }}
                 />
               </Carousel.Item>
             ))}
