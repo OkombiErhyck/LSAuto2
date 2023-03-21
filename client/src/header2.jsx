@@ -26,8 +26,8 @@ const Header2 = () => {
           <h2>Pentu sugesti, oferte, sau suport ne puteti contacta prin:</h2>
           <br />
           <br />
-          <h4>Mail</h4>
-          <p>contact@lsauto.com</p>
+          <h4>email</h4>
+          <p>lenes.automobile@gmail.com</p>
           <br />
           
         </div>

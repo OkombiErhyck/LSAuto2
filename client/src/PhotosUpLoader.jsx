@@ -48,7 +48,7 @@ export default function PhotosUpLoader({addedPhotos,onChange}) {
         <input type="file"  multiple className="hidden" onChange={uploadPhoto}/>
         {isLoading && <div className="loading">Loading...</div>}
         {addedPhotos.length > 0 && addedPhotos.map(link => (
-          <div className="holder" key={link} style={{ position: "relative", width: "auto", height: "215px" }}>
+          <div className="holder" key={link} style={{ position: "relative", width: "200px", height: "auto" }}>
             <Image className="img1" src={link}  />
             <button onClick={ev => removePhoto(ev,link)} class="my-button"> 
               <svg  className="svg"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-1 h-1">
