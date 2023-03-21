@@ -1201,6 +1201,7 @@ const generateModelOptions = () => {
   <option value="Crossover">Crossover</option>
   <option value="Break">Break</option>
   <option value="Pickup">Pickup</option>
+  <option value="Hatchback">Hatchback</option>
 
 
 </select>
@@ -1216,10 +1217,10 @@ const generateModelOptions = () => {
             <select className="writeInput" value={combustibil} onChange={ev => setCombustibil(ev.target.value)}>
   <option style={{color:"#000"}} value="">Selecteaza combustibil-ul</option>
   <option value="Benzina">Benzina</option>
+  <option value="Benzina-Gaz">Benzina-Gaz</option>
   <option value="Diesel">Diesel</option>
   <option value="Electric">Electric</option>
   <option value="Hibrid">Hibrid</option>
-  <option value="Hibrid-Benzina">Hibrid-Benzina</option>
   <option value="Hibrid-Diesel">Hibrid-Diesel</option>
   <option value="Etanol">Etanol</option>
   <option value="Gaz">Gaz</option>
@@ -1239,8 +1240,7 @@ const generateModelOptions = () => {
   <option value="Fata">Fata</option>
   <option value="Spate">Spate</option>
   <option value="4x4">4x4</option>
-  <option value="4WD">4WD</option>
-  <option value="AWD">AWD</option>
+  
    
 
 </select>
@@ -1280,7 +1280,7 @@ const generateModelOptions = () => {
   <option style={{color:"#000"}} value="">Selecteaza Transmisia</option>
   <option value="CVT">CVT</option>
   <option value="Automata"> Automata</option>
-  <option value="Semi-Automata">Semi-Automata</option>
+ 
   <option value="Manuala">Manuala</option>
    
 </select>

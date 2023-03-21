@@ -273,9 +273,10 @@ export default function IndexPage() {
               <option value="">Toate</option>
               <option value="motorina">motorina</option>
               <option value="benzina">benzina</option>
+              <option value="benzina-gaz">benzina-gaz</option>
               <option value="gaz">gaz</option>
-              <option value="hibrid-benzina">hibrid-benzina</option>
-              <option value="hibrid-motorina">hibrid-motorina</option>
+              <option value="hibrid">hibrid</option>
+              
          </select>
           </div>
           <div className="filter-item">
