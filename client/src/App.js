@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import About from "./about";
 import Login from "./login";
 import Signup from "./signup";
@@ -19,21 +19,35 @@ import ResetPassword from './reset-password';
 import Despre from './despre';
 import CookiePolicyPopup from './CookiePolicyPopup';
 import Details from "./details";
-
+import SplashScreen from "./SplashScreen";
 
 axios.defaults.baseURL = "https://ls-auto2.vercel.app";  
 axios.defaults.withCredentials = true;
 
 
+
+
 function App() {
   
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+      document.getElementById("splash-screen").style.display = "none";
+    }, 4000);
+  }, []);
+
+
   return (
     <div className="App">
-     
+     <SplashScreen />
+      // Your other components go here
      
      <UserContextProvider> 
     <Navbar/>
-     
+    
     <Routes>
       <Route path="/details" element={<Details/>}/>
       <Route path="/Write" element={<Write/>} />

@@ -9,6 +9,7 @@ import Header2 from "./header2";
 import IndexPage from "./IndexPage";
 
 
+
 function Home(){
    return(
        <div>
