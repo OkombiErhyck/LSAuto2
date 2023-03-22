@@ -24,51 +24,48 @@ import SplashScreen from "./SplashScreen";
 axios.defaults.baseURL = "https://ls-auto2.vercel.app";  
 axios.defaults.withCredentials = true;
 
-
-
-
 function App() {
-  
-
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-      document.getElementById("splash-screen").style.display = "none";
-    }, 4000);
-  }, []);
-
-
   return (
     <div className="App">
-     <SplashScreen />
-      // Your other components go here
-     
-     <UserContextProvider> 
-    <Navbar/>
-    
-    <Routes>
-      <Route path="/details" element={<Details/>}/>
-      <Route path="/Write" element={<Write/>} />
-      <Route path="/Write/:id" element={<Write/>} />
-      <Route path="/" element={<Home/>} />
-      <Route path="/userpage" element={<Userpage/>} />
-      <Route path="/login" element={<Login/>} />
-      <Route path="/signup" element={<Signup/>} />
-      <Route path="/PlacesPage" element={<PlacesPage/>} />
-      <Route path="/IndexPage" element={<IndexPage/>}/>
-      <Route path="/place/:id" element={<PlacePage/>}/>
-      <Route path="/reset-password" element={<ResetPassword/>}/>
-      <Route path="/despre" element={<Despre/>}/>
-     
-    </Routes> 
-    <Footer/>
-    </UserContextProvider>
-       
- 
+      <UserContextProvider> 
+        <Navbar/>
+        <Routes>
+          <Route path="/details" element={<Details/>}/>
+          <Route path="/Write" element={<Write/>} />
+          <Route path="/Write/:id" element={<Write/>} />
+          <Route path="/" element={<Home/>} />
+          <Route path="/userpage" element={<Userpage/>} />
+          <Route path="/login" element={<Login/>} />
+          <Route path="/signup" element={<Signup/>} />
+          <Route path="/PlacesPage" element={<PlacesPage/>} />
+          <Route path="/IndexPage" element={<IndexPage/>}/>
+          <Route path="/place/:id" element={<PlacePage/>}/>
+          <Route path="/reset-password" element={<ResetPassword/>}/>
+          <Route path="/despre" element={<Despre/>}/>
+        </Routes> 
+        <Footer/>
+      </UserContextProvider>
     </div>
   );
 }
 
-export default App;
+function Main() {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 1970);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <div>
+      {!isLoaded && <SplashScreen />}
+      {isLoaded && <App />}
+    </div>
+  );
+}
+
+export default Main;

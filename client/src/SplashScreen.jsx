@@ -9,6 +9,7 @@ const SplashScreen = () => {
         <div className="center-line"></div>
       </div>
       <div className="car">
+      <div className='smoke'></div>
         <div className="car-top"></div>
         <div className="car-body">
           <div className="wheel wheel1"></div>
