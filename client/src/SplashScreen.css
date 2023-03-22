@@ -106,7 +106,7 @@
   
   .car {
     position: absolute;
-    top:44vh;
+    top:50vh;
     left: -50px;
     animation: car-drive 1s linear infinite;
   }
