@@ -1,49 +1,50 @@
 import logo from './logo.svg';
 import './App.css';
-import React, { useState, useEffect } from 'react';
-import About from "./about";
-import Login from "./login";
-import Signup from "./signup";
-import Navbar from "./navbar";
-import Footer from "./footer/footer";
-import Home from "./home";
-import Userpage from "./userpage";
-import Write from "./write/Write"
+import React, { useState, useEffect, lazy, Suspense } from 'react';
+import Navbar from './navbar';
+import Footer from './footer/footer';
+import Home from './home';
 import { Routes, Route } from 'react-router-dom';
-import axios from "axios";
+import axios from 'axios';
 import { UserContextProvider } from './UserContext';
-import PlacesPage from "./PlacesPage";
-import IndexPage from "./IndexPage";
-import PlacePage from "./PlacePage";
-import ResetPassword from './reset-password';
-import Despre from './despre';
-import CookiePolicyPopup from './CookiePolicyPopup';
-import Details from "./details";
-import SplashScreen from "./SplashScreen";
+import SplashScreen from './SplashScreen';
 
-axios.defaults.baseURL = "https://ls-auto2.vercel.app";  
+const About = lazy(() => import('./about'));
+const Login = lazy(() => import('./login'));
+const Signup = lazy(() => import('./signup'));
+const Userpage = lazy(() => import('./userpage'));
+const Write = lazy(() => import('./write/Write'));
+const PlacesPage = lazy(() => import('./PlacesPage'));
+const IndexPage = lazy(() => import('./IndexPage'));
+const PlacePage = lazy(() => import('./PlacePage'));
+const ResetPassword = lazy(() => import('./reset-password'));
+const Despre = lazy(() => import('./despre'));
+const CookiePolicyPopup = lazy(() => import('./CookiePolicyPopup'));
+const Details = lazy(() => import('./details'));
+
+axios.defaults.baseURL = 'https://ls-auto2.vercel.app';
 axios.defaults.withCredentials = true;
 
 function App() {
   return (
-    <div className="App">
-      <UserContextProvider> 
-        <Navbar/>
+    <div className='App'>
+      <UserContextProvider>
+        <Navbar />
         <Routes>
-          <Route path="/details" element={<Details/>}/>
-          <Route path="/Write" element={<Write/>} />
-          <Route path="/Write/:id" element={<Write/>} />
-          <Route path="/" element={<Home/>} />
-          <Route path="/userpage" element={<Userpage/>} />
-          <Route path="/login" element={<Login/>} />
-          <Route path="/signup" element={<Signup/>} />
-          <Route path="/PlacesPage" element={<PlacesPage/>} />
-          <Route path="/IndexPage" element={<IndexPage/>}/>
-          <Route path="/place/:id" element={<PlacePage/>}/>
-          <Route path="/reset-password" element={<ResetPassword/>}/>
-          <Route path="/despre" element={<Despre/>}/>
-        </Routes> 
-        <Footer/>
+          <Route path='/details' element={<Details />} />
+          <Route path='/Write' element={<Write />} />
+          <Route path='/Write/:id' element={<Write />} />
+          <Route path='/' element={<Home />} />
+          <Route path='/userpage' element={<Userpage />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/signup' element={<Signup />} />
+          <Route path='/PlacesPage' element={<PlacesPage />} />
+          <Route path='/IndexPage' element={<IndexPage />} />
+          <Route path='/place/:id' element={<PlacePage />} />
+          <Route path='/reset-password' element={<ResetPassword />} />
+          <Route path='/despre' element={<Despre />} />
+        </Routes>
+        <Footer />
       </UserContextProvider>
     </div>
   );
@@ -62,7 +63,14 @@ function Main() {
 
   return (
     <div>
-      {isLoaded ? <App /> : <SplashScreen />}
+      {isLoaded ? (
+        <Suspense fallback={<SplashScreen />}>
+          <App />
+          
+        </Suspense>
+      ) : (
+        <SplashScreen />
+      )}
     </div>
   );
 }
