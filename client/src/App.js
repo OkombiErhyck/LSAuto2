@@ -53,16 +53,15 @@ function Main() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    window.addEventListener('load', () => {
       setIsLoaded(true);
-    }, 1000);
-
-    return () => clearTimeout(timer);
+    });
   }, []);
 
   return (
     <div>
-      {isLoaded ? <App /> : <SplashScreen />}
+      {!isLoaded && <SplashScreen />}
+      {isLoaded && <App />}
     </div>
   );
 }
