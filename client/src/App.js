@@ -62,8 +62,7 @@ function Main() {
 
   return (
     <div>
-      {!isLoaded && <SplashScreen />}
-      {isLoaded && <App />}
+      {isLoaded ? <App /> : <SplashScreen />}
     </div>
   );
 }
