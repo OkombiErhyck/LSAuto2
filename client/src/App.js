@@ -9,7 +9,7 @@ import Footer from "./footer/footer";
 import Home from "./home";
 import Userpage from "./userpage";
 import Write from "./write/Write"
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import axios from "axios";
 import { UserContextProvider } from './UserContext';
 import PlacesPage from "./PlacesPage";
@@ -25,45 +25,41 @@ axios.defaults.baseURL = "https://ls-auto2.vercel.app";
 axios.defaults.withCredentials = true;
 
 function App() {
-  return (
-    <div className="App">
-      <UserContextProvider> 
-        <Navbar/>
-        <Routes>
-          <Route path="/details" element={<Details/>}/>
-          <Route path="/Write" element={<Write/>} />
-          <Route path="/Write/:id" element={<Write/>} />
-          <Route path="/" element={<Home/>} />
-          <Route path="/userpage" element={<Userpage/>} />
-          <Route path="/login" element={<Login/>} />
-          <Route path="/signup" element={<Signup/>} />
-          <Route path="/PlacesPage" element={<PlacesPage/>} />
-          <Route path="/IndexPage" element={<IndexPage/>}/>
-          <Route path="/place/:id" element={<PlacePage/>}/>
-          <Route path="/reset-password" element={<ResetPassword/>}/>
-          <Route path="/despre" element={<Despre/>}/>
-        </Routes> 
-        <Footer/>
-      </UserContextProvider>
-    </div>
-  );
-}
-
-function Main() {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const location = useLocation();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    window.addEventListener('load', () => {
-      setIsLoaded(true);
-    });
-  }, []);
+    setIsLoading(true);
+    const handleLoad = () => setIsLoading(false);
+    window.addEventListener('load', handleLoad);
+    return () => window.removeEventListener('load', handleLoad);
+  }, [location]);
 
   return (
-    <div>
-      {!isLoaded && <SplashScreen />}
-      {isLoaded && <App />}
+    <div className="App">
+      {isLoading && <SplashScreen />}
+      {!isLoading && (
+        <UserContextProvider> 
+          <Navbar/>
+          <Routes>
+            <Route path="/details" element={<Details/>}/>
+            <Route path="/Write" element={<Write/>} />
+            <Route path="/Write/:id" element={<Write/>} />
+            <Route path="/" element={<Home/>} />
+            <Route path="/userpage" element={<Userpage/>} />
+            <Route path="/login" element={<Login/>} />
+            <Route path="/signup" element={<Signup/>} />
+            <Route path="/PlacesPage" element={<PlacesPage/>} />
+            <Route path="/IndexPage" element={<IndexPage/>}/>
+            <Route path="/place/:id" element={<PlacePage/>}/>
+            <Route path="/reset-password" element={<ResetPassword/>}/>
+            <Route path="/despre" element={<Despre/>}/>
+          </Routes> 
+          <Footer/>
+        </UserContextProvider>
+      )}
     </div>
   );
 }
 
-export default Main;
+export default App;
