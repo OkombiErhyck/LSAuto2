@@ -30,20 +30,22 @@ function App() {
     <div className='App'>
       <UserContextProvider>
         <Navbar />
-        <Routes>
-          <Route path='/details' element={<Details />} />
-          <Route path='/Write' element={<Write />} />
-          <Route path='/Write/:id' element={<Write />} />
-          <Route path='/' element={<Home />} />
-          <Route path='/userpage' element={<Userpage />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/signup' element={<Signup />} />
-          <Route path='/PlacesPage' element={<PlacesPage />} />
-          <Route path='/IndexPage' element={<IndexPage />} />
-          <Route path='/place/:id' element={<PlacePage />} />
-          <Route path='/reset-password' element={<ResetPassword />} />
-          <Route path='/despre' element={<Despre />} />
-        </Routes>
+        <Suspense fallback={<SplashScreen />}>
+          <Routes>
+            <Route path='/details' element={<Details />} />
+            <Route path='/Write' element={<Write />} />
+            <Route path='/Write/:id' element={<Write />} />
+            <Route path='/' element={<Home />} />
+            <Route path='/userpage' element={<Userpage />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/signup' element={<Signup />} />
+            <Route path='/PlacesPage' element={<PlacesPage />} />
+            <Route path='/IndexPage' element={<IndexPage />} />
+            <Route path='/place/:id' element={<PlacePage />} />
+            <Route path='/reset-password' element={<ResetPassword />} />
+            <Route path='/despre' element={<Despre />} />
+          </Routes>
+        </Suspense>
         <Footer />
       </UserContextProvider>
     </div>
@@ -63,14 +65,7 @@ function Main() {
 
   return (
     <div>
-      {isLoaded ? (
-        <Suspense fallback={<SplashScreen />}>
-          <App />
-          
-        </Suspense>
-      ) : (
-        <SplashScreen />
-      )}
+      {isLoaded ? <App /> : <SplashScreen />}
     </div>
   );
 }
