@@ -11,7 +11,7 @@ const Header2 = () => {
                  
      <div className="row no-gutters" id="contact-info-bg-1">
         <div className="col-sm-5 offset-sm-1 p-5 text-light">
-          <h2>Ne puteti contacta in urmatoarele intervale </h2>
+          <h2>Program</h2>
           
           <br />
           <h4>In timpul saptamanii</h4>
@@ -23,7 +23,7 @@ const Header2 = () => {
         </div>
        
         <div className="col-sm-6 p-5 text-light"  id="contact-info-bg-2">
-          <h2>Pentu sugesti, oferte, sau suport ne puteti contacta prin:</h2>
+          <h2>Contact</h2>
           <br />
           <br />
           <h4>email</h4>
