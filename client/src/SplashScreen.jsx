@@ -5,6 +5,7 @@ const SplashScreen = () => {
 
   return (
     <div className="splash-screen">
+     <h1>LS<span style={{color:"white"}}>Auto</span> </h1>
       <div className="road">
         <div className="center-line"></div>
       </div>
@@ -16,7 +17,8 @@ const SplashScreen = () => {
           <div className="wheel wheel2"></div>
         </div>
       </div>
-      <h1>LSAuto</h1>
+      
+      Lenes Automobile
     </div>
   );
 };
