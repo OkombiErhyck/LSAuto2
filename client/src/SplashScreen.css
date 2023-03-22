@@ -29,7 +29,7 @@
   
   .splash-screen h1 {
     font-size: 2rem;
-    color: #333333;
+    color: var(--main);
   }
   
   .splash-screen {
@@ -63,7 +63,7 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    animation: center-line 2s linear infinite;
+    animation: center-line 1s linear infinite;
   }
   
   @keyframes center-line {
@@ -103,9 +103,9 @@
   
   .car {
     position: absolute;
-    top: 300px;
+    top:44vh;
     left: -50px;
-    animation: car-drive 2s linear infinite;
+    animation: car-drive 1s linear infinite;
   }
   
   .car-top {
@@ -157,6 +157,19 @@
     }
     to {
       transform: rotate(360deg);
+    }
+  }
+  @media (max-width: 968px) {
+    .splash-screen h1 {
+      font-size: 1.5rem;
+    }
+    
+    .road {
+      margin-top: 20px;
+    }
+    
+    .car {
+      top: 44vh;
     }
   }
   
