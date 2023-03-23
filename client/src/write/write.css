@@ -9,13 +9,13 @@
 .top{
 
   background: #3b3b3b00;
-  height: 92px;
+  height: 13px;
 }
 @media (max-width: 768px){
   .top{
 
       background: #000000;
-      height: 82px;
+      height:3px;
 
    }
    

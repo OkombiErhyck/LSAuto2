@@ -45,7 +45,7 @@ export default function PhotosUpLoader({addedPhotos,onChange}) {
   return(
     <>
       <label>
-        <input type="file"  multiple className="hidden" onChange={uploadPhoto}/>
+        <input type="file"  multiple className="pt" onChange={uploadPhoto}/>
         {isLoading && <div className="loading">se incarca...</div>}
         {addedPhotos.length > 0 && addedPhotos.map(link => (
           <div className="holder" key={link} style={{ position: "relative", width: "275px", height: "auto" }}>
