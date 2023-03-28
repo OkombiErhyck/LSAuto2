@@ -69,6 +69,16 @@ export default function PlacePage() {
     });
   };
 
+
+  const handleShare = async () => {
+    try {
+      await navigator.clipboard.writeText('URL of the content to be shared');
+      alert('Content copied to clipboard. Please share manually.');
+    } catch (error) {
+      console.error('Error copying content:', error.message);
+    }
+  };
+
   return (
     <>
       <div className="main3">
@@ -113,7 +123,15 @@ export default function PlacePage() {
             }}>  {place.marca} {place.model} </span> €{place.title}
           </h2>
           <div style={{color:"wheat"}}> 
-      {place.putere} cp | {place.anul} | {place.km} km
+      {place.putere} cp | {place.anul} | {place.km} km  <button onClick={handleShare}  style={{
+    padding: '10px',
+    backgroundColor: 'blue',
+    color: 'white',
+    border: 'none',
+    borderRadius: '5px',
+    cursor: 'pointer',
+  }}>Share</button>
+
   </div>
         </div>
     <br></br>
