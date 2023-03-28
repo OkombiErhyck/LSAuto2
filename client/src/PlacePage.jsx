@@ -69,19 +69,18 @@ export default function PlacePage() {
     });
   };
 
-
   const handleShare = async () => {
     try {
       await navigator.share({
-        title: 'Title of the content to be shared',
-        text: 'Description of the content to be shared',
-        url: 'URL of the content to be shared',
+        title: place.title,
+        text: place.description,
+        url: window.location.href,
       });
-      console.log('Content shared successfully');
     } catch (error) {
-      console.error('Error sharing content:', error.message);
+      console.error(error.message);
     }
   };
+   
   return (
     <>
       <div className="main3">
@@ -126,7 +125,7 @@ export default function PlacePage() {
             }}>  {place.marca} {place.model} </span> €{place.title}
           </h2>
           <div style={{color:"wheat"}}> 
-      {place.putere} cp | {place.anul} | {place.km} km  <button onClick={handleShare}  style={{
+      {place.putere} cp | {place.anul} | {place.km} km  <button onClick={handleShare} style={{
     padding: '10px',
     backgroundColor: 'blue',
     color: 'white',
@@ -134,6 +133,7 @@ export default function PlacePage() {
     borderRadius: '5px',
     cursor: 'pointer',
   }}>Share</button>
+
 
   </div>
         </div>
