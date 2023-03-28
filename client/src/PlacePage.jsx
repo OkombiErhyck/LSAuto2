@@ -72,13 +72,16 @@ export default function PlacePage() {
 
   const handleShare = async () => {
     try {
-      await navigator.clipboard.writeText('URL of the content to be shared');
-      alert('Content copied to clipboard. Please share manually.');
+      await navigator.share({
+        title: 'Title of the content to be shared',
+        text: 'Description of the content to be shared',
+        url: 'URL of the content to be shared',
+      });
+      console.log('Content shared successfully');
     } catch (error) {
-      console.error('Error copying content:', error.message);
+      console.error('Error sharing content:', error.message);
     }
   };
-
   return (
     <>
       <div className="main3">
