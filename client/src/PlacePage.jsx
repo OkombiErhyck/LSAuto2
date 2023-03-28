@@ -126,9 +126,9 @@ export default function PlacePage() {
           </h2>
           <div style={{color:"wheat"}}> 
       {place.putere} cp | {place.anul} | {place.km} km  <button onClick={handleShare} style={{
-    padding: '5px',
+    padding: '-1px',
     backgroundColor: 'wheat',
-    color: 'white',
+    color: 'black',
     border: 'none',
     borderRadius: '5px',
     cursor: 'pointer',
