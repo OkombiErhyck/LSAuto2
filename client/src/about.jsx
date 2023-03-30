@@ -1,7 +1,7 @@
 
 import React from 'react';
 import background from "./images/07how-to-buy-anew-car-9.jpg";
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 import "./about.css";
@@ -21,8 +21,9 @@ const About = () => {
           <p className="text-muted lead">Platforma noastra ofera solutia perfecta pentru cei care doresc sa isi vanda masina singuri.
           </p>
           <p className="text-muted lead">Listeaza-ti masina astazi si pregateste-te sa gasesti cumparatorul perfect.</p>
-          
+          <Link to="/signup"> 
           <button id="bx" className="text-decoration-none text-uppercase h4 pulsate" onClick={handleClick}>adauga un anunt</button>
+          </Link>
         </div>
         <div className="d-none d-md-block col-md-5 offset-md-1" id="about-bg-1" style={{ backgroundImage: `url(${background})` }}>
         </div>
