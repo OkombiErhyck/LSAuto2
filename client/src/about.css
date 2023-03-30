@@ -23,13 +23,13 @@
     background-repeat: no-repeat;
   }
   #bx{
-    color: var(--main);
-    font-weight: 700;
+    background: var(--main);
     border: #0000ff00;
-    background: #030303;
     border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,.5);
+    color: #ffffff;
+    font-weight: 700;
     padding: 7px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   }
   .col-12 p {
 

@@ -1,11 +1,17 @@
 
 import React from 'react';
 import background from "./images/07how-to-buy-anew-car-9.jpg";
-
+import { useHistory } from 'react-router-dom';
 
 
 import "./about.css";
 const About = () => {
+
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push('/signup');
+  };
     return (
         <>
            <div className="container-fluid p-0">
@@ -16,7 +22,7 @@ const About = () => {
           </p>
           <p className="text-muted lead">Listeaza-ti masina astazi si pregateste-te sa gasesti cumparatorul perfect.</p>
           
-          <button id="bx" className="text-decoration-none text-uppercase h4 pulsate"  href="/signup">adauga un anunt</button>
+          <button id="bx" className="text-decoration-none text-uppercase h4 pulsate" onClick={handleClick}>adauga un anunt</button>
         </div>
         <div className="d-none d-md-block col-md-5 offset-md-1" id="about-bg-1" style={{ backgroundImage: `url(${background})` }}>
         </div>
