@@ -1,4 +1,9 @@
+
+import React from 'react';
 import background from "./images/07how-to-buy-anew-car-9.jpg";
+
+
+
 import "./about.css";
 const About = () => {
     return (
@@ -11,7 +16,7 @@ const About = () => {
           </p>
           <p className="text-muted lead">Listeaza-ti masina astazi si pregateste-te sa gasesti cumparatorul perfect.</p>
           
-          <a id="bx" className="text-decoration-none text-uppercase h4 pulsate" href="/signup">adauga un anunt</a>
+          <a id="bx" className="text-decoration-none text-uppercase h4 " style={{animation: 'pulsate 1s ease-out infinite'}} href="/signup">adauga un anunt</a>
         </div>
         <div className="d-none d-md-block col-md-5 offset-md-1" id="about-bg-1" style={{ backgroundImage: `url(${background})` }}>
         </div>
