@@ -16,7 +16,7 @@ const About = () => {
           </p>
           <p className="text-muted lead">Listeaza-ti masina astazi si pregateste-te sa gasesti cumparatorul perfect.</p>
           
-          <a id="bx" className="text-decoration-none text-uppercase h4 bounce"  href="/signup">adauga un anunt</a>
+          <button id="bx" className="text-decoration-none text-uppercase h4 pulsate"  href="/signup">adauga un anunt</button>
         </div>
         <div className="d-none d-md-block col-md-5 offset-md-1" id="about-bg-1" style={{ backgroundImage: `url(${background})` }}>
         </div>
