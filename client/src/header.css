@@ -21,7 +21,9 @@
     left: 50%;
     transform: translate(-50%,-50%);
     color: aliceblue !important;
-    background: #000;
+    background: #000000d5;
+    backdrop-filter: blur(10px);
+    border-radius: 5px;
     padding: 20px;
     text-align: center;
 }

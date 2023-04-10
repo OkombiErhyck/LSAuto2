@@ -19,7 +19,8 @@
   
 
 .navbar.active{
-    background: #000000;
+    background: #00000094;
+    backdrop-filter: blur(10px);
     padding: 0px;
     border-bottom: 2px solid #757575;
 
