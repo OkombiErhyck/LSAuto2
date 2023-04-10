@@ -12,6 +12,7 @@
     display: flex;
   flex-direction: column;
   align-items: center;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, visibility 0.3s ease-in-out;
   }
   
   .popup__title {
@@ -36,8 +37,7 @@
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    transition: background-color 0.2s ease-in-out;
   }
   
   .popup.show {
