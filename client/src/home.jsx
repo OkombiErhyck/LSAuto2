@@ -8,12 +8,25 @@ import Header2 from "./header2";
  import CookiePolicyPopup from "./CookiePolicyPopup";
 import IndexPage from "./IndexPage";
 import SplashScreen from "./SplashScreen";
-
+import Popup from "./Popup";
 
 function Home(){
-   return(
-       <div>
 
+  const [showPopup, setShowPopup] = useState(false);
+  const handleScroll = () => {
+    if (window.pageYOffset > 1600) {
+      setShowPopup(true);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+   return(
+    
+       <div>
+{showPopup && <Popup />} {/* Add this line */}
           <Header/>
          
           <About2/>

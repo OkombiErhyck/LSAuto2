@@ -9,6 +9,7 @@ import axios from 'axios';
 import { UserContextProvider } from './UserContext';
 import SplashScreen from './SplashScreen';
 
+
 const About = lazy(() => import('./about'));
 const Login = lazy(() => import('./login'));
 const Signup = lazy(() => import('./signup'));
@@ -22,14 +23,22 @@ const Despre = lazy(() => import('./despre'));
 const CookiePolicyPopup = lazy(() => import('./CookiePolicyPopup'));
 const Details = lazy(() => import('./details'));
 
+
+
+
+
 axios.defaults.baseURL = 'https://ls-auto2.vercel.app';
 axios.defaults.withCredentials = true;
 
 function App() {
+  
+ 
+
   return (
     <div className='App'>
       <UserContextProvider>
         <Navbar />
+     
         <Suspense fallback={<SplashScreen />}>
           <Routes>
             <Route path='/details' element={<Details />} />
