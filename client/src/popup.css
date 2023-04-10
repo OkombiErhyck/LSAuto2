@@ -29,7 +29,7 @@
     margin-top: 15px;
     display: block;
     padding: 0px 5px;
-    background-color: #b30d0d;
+    background-color: #0000005c;
     color: #ffffff;
     border-radius: 5px;
     text-align: center;
@@ -40,6 +40,6 @@
   }
   
   .popup__button:hover {
-    background-color: #881616;
+    background-color: #00000019;
   }
   
