@@ -15,7 +15,7 @@ function Signup(){
     
     // Check if password meets requirements
     if (!isStrongPassword(password)) {
-      setPasswordError("Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character");
+      setPasswordError("Parola trebuie sa aiba minim 8 caractere si sa contina minim majuscula, minim o cifra, minim un caracter special(ex: !#$?)");
       return;
     } else {
       setPasswordError(null);
