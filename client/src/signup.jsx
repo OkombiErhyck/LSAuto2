@@ -15,7 +15,7 @@ function Signup(){
     
     // Check if password meets requirements
     if (!isStrongPassword(password)) {
-      setPasswordError("Parola trebuie sa aiba minim 8 caractere si sa contina minim majuscula, minim o cifra, minim un caracter special(ex: !#$?)");
+      setPasswordError("Utilizati minim 8 caractere, o majuscula, o cifra, un caracter special(ex: !#$?)");
       return;
     } else {
       setPasswordError(null);
