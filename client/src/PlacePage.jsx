@@ -226,15 +226,7 @@ export default function PlacePage() {
    <p><span style={{color:"var(--main)"}}>Telefon:</span>    {place.telefon}</p>
     
    <p><span style={{color:"var(--main)"}}>Email: </span>     {place.mail}</p>
-   <a href="https://www.carvertical.com/ro/landing/v3?utm_source=affiliate&amp;a=LSAuto&amp;b=69387b99" target="_top">
-      <img
-        src="//carvertical.postaffiliatepro.com/accounts/default1/3wboofl3y7q/69387b99.jpg"
-        alt="carvertical VIN"
-        title="carvertical VIN"
-        width="120"
-        height="120"
-      />
-    </a>
+   
 </div>
  
 </div>

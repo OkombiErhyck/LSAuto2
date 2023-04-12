@@ -245,7 +245,7 @@
     }
 
     .car-vertical-input {
-      width: 100px;
+      width: 300px;
       height: 10px;
       border: none;
       padding: 8px;
@@ -279,7 +279,7 @@
 }
 
 .car-vertical-input {
-  width: 300px;
+  width: 100px;
   height: 20px;
   border: none;
   padding: 8px;
