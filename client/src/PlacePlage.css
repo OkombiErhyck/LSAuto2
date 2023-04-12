@@ -252,7 +252,7 @@
 }
 
 .car-vertical-label {
-  font-size: 20px;
+  font-size:  10px;
   margin-bottom: 8px;
 }
 
@@ -263,26 +263,26 @@
 }
 
 .car-vertical-input {
-  width: 300px;
-  height: 40px;
+  width: 100px;
+  height: 10px;
   border: none;
   padding: 8px;
   margin-right: 8px;
-  font-size: 16px;
+  font-size:  10px;
   border-radius: 4px;
 }
 
 .car-vertical-button {
-  background-color: #008000;
+  background-color: var(--main);
   color: #fff;
   border: none;
-  padding: 8px 16px;
-  font-size: 16px;
+  padding: 2px 5px;
+  font-size:  10px;
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .car-vertical-button:hover {
-  background-color: #005000;
+  background-color: #71330e;
 }
