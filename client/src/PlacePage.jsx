@@ -195,16 +195,23 @@ export default function PlacePage() {
       <p>{place.cilindre}cc</p>
     </div>
   </div>
-  <form onSubmit={handleSubmit}>
-      <label htmlFor="vinInput">Enter your VIN:</label>
-      <input
-        id="vinInput"
-        type="text"
-        value={vin}
-        onChange={handleVinChange}
-        required
-      />
-      <button type="submit">Decode VIN</button>
+  <form onSubmit={handleSubmit} className="car-vertical-form">
+      <label htmlFor="vinInput" className="car-vertical-label">
+        Enter your VIN:
+      </label>
+      <div className="car-vertical-input-container">
+        <input
+          id="vinInput"
+          type="text"
+          value={vin}
+          onChange={handleVinChange}
+          required
+          className="car-vertical-input"
+        />
+        <button type="submit" className="car-vertical-button">
+          Decode VIN
+        </button>
+      </div>
     </form>
 </div>
 
