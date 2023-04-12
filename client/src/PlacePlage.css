@@ -237,6 +237,22 @@
   }
   .infoRow{font-size:  10px;
     font-weight: 700;}
+
+
+    .car-vertical-label {
+      font-size:  10px;
+      margin-bottom: 8px;
+    }
+
+    .car-vertical-input {
+      width: 150px;
+      height: 10px;
+      border: none;
+      padding: 8px;
+      margin-right: 8px;
+      font-size:  10px;
+      border-radius: 4px;
+    }
 }
 
   
@@ -246,13 +262,13 @@
   flex-direction: column;
   align-items: center;
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+  background-color: #393939;
   padding: 16px;
   border-radius: 8px;
 }
 
 .car-vertical-label {
-  font-size:  10px;
+  font-size:  11px;
   margin-bottom: 8px;
 }
 
@@ -263,8 +279,8 @@
 }
 
 .car-vertical-input {
-  width: 100px;
-  height: 10px;
+  width: 300px;
+  height: 20px;
   border: none;
   padding: 8px;
   margin-right: 8px;
