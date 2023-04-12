@@ -214,11 +214,12 @@ export default function PlacePage() {
         </button>
       </div>
     </form>
-    <a href="https://www.carvertical.com/ro/landing/v3?utm_source=affiliate&amp;a=LSAuto&amp;b=0d7bf530" target="_top">
+    <div className="car-vertical-banner-container">
+      <a href="https://www.carvertical.com/ro/landing/v3?utm_source=affiliate&amp;a=LSAuto&amp;b=0d7bf530" target="_top">
         <img src="//carvertical.postaffiliatepro.com/accounts/default1/3wboofl3y7q/0d7bf530.jpg" alt="carvertical VIN" title="carvertical VIN" width="468" height="60" />
       </a>
-      <img style={{ border: '0' }} src="https://carvertical.postaffiliatepro.com/scripts/3wioofl3y7q?a=LSAuto&amp;b=0d7bf530" width="1" height="1" alt="" />
-   
+      <img className="tracking-image" src="https://carvertical.postaffiliatepro.com/scripts/3wioofl3y7q?a=LSAuto&amp;b=0d7bf530" alt="" />
+    </div>
 </div>
 
  

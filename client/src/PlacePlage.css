@@ -297,3 +297,25 @@
 .car-vertical-button:hover {
   background-color: #71330e;
 }
+
+
+
+
+.car-vertical-banner-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.car-vertical-banner-container img {
+  display: inline-block;
+  animation: marquee 30s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
