@@ -248,7 +248,9 @@
       margin-bottom: 8px;
     }
 
-    
+    .car-vertical-input {
+      width: 190px;
+    }
 }
 
   
@@ -274,14 +276,10 @@
   align-items: center;
 }
 
-@media (min-width: 700px) {
-  .car-vertical-form {
-    max-width: 400px;
-  }
-}
+
 
 .car-vertical-input {
-  width: 190px;
+  width: 450px;
   height: 20px;
   border: none;
   padding: 8px;
