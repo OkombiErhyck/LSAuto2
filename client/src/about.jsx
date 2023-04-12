@@ -1,15 +1,17 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import background from "./images/07how-to-buy-anew-car-9.jpg";
 import { Link } from 'react-router-dom';
 
 
 import "./about.css";
 const About = () => {
-
   
     return (
         <>
+        
+
+
            <div className="container-fluid p-0">
       <div className="row no-gutters">
         <div className="col-12 col-md-5 offset-md-1 p-5 align-self-center">

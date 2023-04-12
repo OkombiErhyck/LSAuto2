@@ -12,6 +12,18 @@ export default function PlacePage() {
   const [showPerks, setShowPerks] = useState(false);
   const [showMore, setShowMore] = useState(false);
 
+  const [vin, setVin] = useState('');
+
+  const handleVinChange = (event) => {
+    setVin(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    window.location.href = `https://www.carvertical.com/ro/landing/v3?utm_source=aff&a=LSAuto&b=0eb206ae`;
+  };
+  
+
   useEffect(() => {
     if (!id) {
       return;
@@ -183,7 +195,17 @@ export default function PlacePage() {
       <p>{place.cilindre}cc</p>
     </div>
   </div>
-  <a href="https://www.carvertical.com/ro/landing/v3?utm_source=affiliate&amp;a=LSAuto&amp;b=51d5cac6" target="_top"><img src="//carvertical.postaffiliatepro.com/accounts/default1/3wboofl3y7q/51d5cac6.jpg" alt="carvertical VIN" title="carvertical VIN" width="728" height="90" /></a><img style="border:0" src="https://carvertical.postaffiliatepro.com/scripts/3wioofl3y7q?a=LSAuto&amp;b=51d5cac6" width="1" height="1" alt="" />
+  <form onSubmit={handleSubmit}>
+      <label htmlFor="vinInput">Enter your VIN:</label>
+      <input
+        id="vinInput"
+        type="text"
+        value={vin}
+        onChange={handleVinChange}
+        required
+      />
+      <button type="submit">Decode VIN</button>
+    </form>
 </div>
 
  
