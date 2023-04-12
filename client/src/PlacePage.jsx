@@ -216,9 +216,14 @@ export default function PlacePage() {
       </div>
     </form>
     <div>
-    <p>Partener</p>
-      <img src={Carvertical} alt="carvertical" />
-    </div>
+  <p style={{ fontSize: '7px' }}>Partener</p>
+  
+  <a href="https://www.carvertical.com/ro/landing/v3?utm_source=affiliate&amp;a=LSAuto&amp;b=0d7bf530" target="_top">
+    <img style={{ width: '50px', top: '-40px' }} src={Carvertical} alt="carvertical" />
+  </a>
+  
+</div>
+
     
 </div>
 
