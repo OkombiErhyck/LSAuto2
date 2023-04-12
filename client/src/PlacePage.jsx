@@ -214,6 +214,7 @@ export default function PlacePage() {
         </button>
       </div>
     </form>
+    <h4>Partener carVertical</h4>
     <div className="car-vertical-banner-container">
       <a href="https://www.carvertical.com/ro/landing/v3?utm_source=affiliate&amp;a=LSAuto&amp;b=0d7bf530" target="_top">
         <img src="//carvertical.postaffiliatepro.com/accounts/default1/3wboofl3y7q/0d7bf530.jpg" alt="carvertical VIN" title="carvertical VIN" width="468" height="60" />
