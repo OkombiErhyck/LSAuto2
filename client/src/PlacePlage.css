@@ -245,7 +245,7 @@
     }
 
     .car-vertical-input {
-      width: 150px;
+      width: 100px;
       height: 10px;
       border: none;
       padding: 8px;
@@ -268,7 +268,7 @@
 }
 
 .car-vertical-label {
-  font-size:  11px;
+  font-size:  12px;
   margin-bottom: 8px;
 }
 

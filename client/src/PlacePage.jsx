@@ -197,19 +197,20 @@ export default function PlacePage() {
   </div>
   <form onSubmit={handleSubmit} className="car-vertical-form">
       <label htmlFor="vinInput" className="car-vertical-label">
-        Enter your VIN:
+        Verificati istoricul masinii
       </label>
       <div className="car-vertical-input-container">
         <input
           id="vinInput"
           type="text"
+          placeholder="Introdu seria de sasiu"
           value={vin}
           onChange={handleVinChange}
           required
           className="car-vertical-input"
         />
         <button type="submit" className="car-vertical-button">
-          Decode VIN
+          Verifica
         </button>
       </div>
     </form>
@@ -225,8 +226,7 @@ export default function PlacePage() {
    <p><span style={{color:"var(--main)"}}>Telefon:</span>    {place.telefon}</p>
     
    <p><span style={{color:"var(--main)"}}>Email: </span>     {place.mail}</p>
-</div>
-<a href="https://www.carvertical.com/ro/landing/v3?utm_source=affiliate&amp;a=LSAuto&amp;b=69387b99" target="_top">
+   <a href="https://www.carvertical.com/ro/landing/v3?utm_source=affiliate&amp;a=LSAuto&amp;b=69387b99" target="_top">
       <img
         src="//carvertical.postaffiliatepro.com/accounts/default1/3wboofl3y7q/69387b99.jpg"
         alt="carvertical VIN"
@@ -235,6 +235,8 @@ export default function PlacePage() {
         height="120"
       />
     </a>
+</div>
+ 
 </div>
 <div className="desContainer">
       <h3>
