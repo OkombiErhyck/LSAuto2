@@ -84,11 +84,11 @@ export default function PlacePage() {
 
   const handleShare = async () => {
     try {
-      const photo = place.photos && place.photos.length > 0 ? place.photos[0] : null;
+      const placeUrl = `${window.location.origin}/places/${place._id}`;
       const shareData = {
         title: place.title,
-        text: place.description + (photo ? ` ${photo}` : ''),
-        url: window.location.href,
+        text: place.description,
+        url: placeUrl,
       };
       await navigator.share(shareData);
     } catch (error) {
