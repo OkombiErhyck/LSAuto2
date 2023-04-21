@@ -52,12 +52,7 @@ async function uploadToS3(path, originalFilename, mimetype) {
   return `https://${bucket}.s3.amazonaws.com/${newFilename}`;
 }
 
-app.use(async (req, res, next) => {
-  const { path, originalname, mimetype } = req.file;
-  const imageUrl = await uploadToS3(path, originalname, mimetype);
-  res.setHeader('og:image', imageUrl);
-  next();
-});
+
 
 
 app.get("/test", (req,res) => {
