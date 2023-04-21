@@ -87,7 +87,8 @@ export default function PlacePage() {
       await navigator.share({
         title: place.title,
         text: place.description,
-        url: `${window.location.origin}/post/${postId}`, // replace with the URL of the post page
+        url: window.location.href,
+        
       });
     } catch (error) {
       console.error(error.message);
@@ -96,6 +97,13 @@ export default function PlacePage() {
    
   return (
     <>
+    <Helmet>
+        <title>My Page Title</title>
+        <meta property="og:title" content="My Post Title" />
+        <meta property="og:description" content="A brief summary of my post" />
+        <meta property="og:image" content={photo} />
+        <meta property="og:url" content="URL of the page where my post is located" />
+      </Helmet>
       <div className="main3">
         <div className="carousel-container">
           <Carousel className="carousel" style={{borderBottom: "solid 1px var(--main)"}}>
