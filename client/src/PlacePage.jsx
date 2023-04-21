@@ -88,22 +88,17 @@ export default function PlacePage() {
         title: place.title,
         text: place.description,
         url: window.location.href,
-        
+        files: [photo],
       });
     } catch (error) {
       console.error(error.message);
     }
   };
+  
    
   return (
     <>
-    <Helmet>
-        <title>My Page Title</title>
-        <meta property="og:title" content="My Post Title" />
-        <meta property="og:description" content="A brief summary of my post" />
-        <meta property="og:image" content={photo} />
-        <meta property="og:url" content="URL of the page where my post is located" />
-      </Helmet>
+    
       <div className="main3">
         <div className="carousel-container">
           <Carousel className="carousel" style={{borderBottom: "solid 1px var(--main)"}}>
