@@ -85,9 +85,11 @@ export default function PlacePage() {
   const handleShare = async () => {
     try {
       await navigator.share({
-        title: place.title,
+        photo: place.addedPhotos,
+        title: place.title ,
         text: place.description,
         url: window.location.href,
+         
       });
     } catch (error) {
       console.error(error.message);
