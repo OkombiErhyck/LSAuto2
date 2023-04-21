@@ -88,13 +88,13 @@ export default function PlacePage() {
         title: place.title,
         text: place.description,
         url: window.location.href,
-        
+        image: place.photos[0] // add the image URL here
       });
     } catch (error) {
       console.error(error.message);
     }
   };
-   
+  
   return (
     <>
     
