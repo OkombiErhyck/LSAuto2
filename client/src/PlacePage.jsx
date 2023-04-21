@@ -82,18 +82,19 @@ export default function PlacePage() {
     });
   };
 
-  const handleShare = async () => {
+  const handleShare = async (imageURL) => {
     try {
       await navigator.share({
         title: place.title,
         text: place.description,
         url: window.location.href,
-        image: place.photos[0] // add the image URL here
+        image: imageURL
       });
     } catch (error) {
       console.error(error.message);
     }
   };
+  
   
   return (
     <>
@@ -140,7 +141,7 @@ export default function PlacePage() {
             }}>  {place.marca} {place.model} </span> €{place.title}
           </h2>
           <div style={{color:"wheat"}}> 
-      {place.putere} cp | {place.anul} | {place.km} km  <button onClick={handleShare} style={{
+      {place.putere} cp | {place.anul} | {place.km} km  <button onClick={handleShare(place.photos[0])} style={{
     padding: '-1px',
     backgroundColor: 'wheat',
     color: 'black',
