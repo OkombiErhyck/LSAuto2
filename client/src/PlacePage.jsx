@@ -82,13 +82,13 @@ export default function PlacePage() {
     });
   };
 
-  const handleShare = async (imageURL) => {
+  const handleShare = async () => {
     try {
       await navigator.share({
         title: place.title,
         text: place.description,
         url: window.location.href,
-        image: imageURL
+        
       });
     } catch (error) {
       console.error(error.message);
