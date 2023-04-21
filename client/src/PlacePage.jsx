@@ -85,20 +85,18 @@ export default function PlacePage() {
   const handleShare = async () => {
     try {
       await navigator.share({
-        title: place.title,
+        title: place.title ,
         text: place.description,
         url: window.location.href,
-        
+         
       });
     } catch (error) {
       console.error(error.message);
     }
   };
-  
-  
+   
   return (
     <>
-    
       <div className="main3">
         <div className="carousel-container">
           <Carousel className="carousel" style={{borderBottom: "solid 1px var(--main)"}}>
@@ -141,7 +139,7 @@ export default function PlacePage() {
             }}>  {place.marca} {place.model} </span> €{place.title}
           </h2>
           <div style={{color:"wheat"}}> 
-      {place.putere} cp | {place.anul} | {place.km} km  <button onClick={handleShare(place.photos[0])} style={{
+      {place.putere} cp | {place.anul} | {place.km} km  <button onClick={handleShare} style={{
     padding: '-1px',
     backgroundColor: 'wheat',
     color: 'black',
