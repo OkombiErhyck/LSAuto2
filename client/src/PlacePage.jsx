@@ -84,13 +84,11 @@ export default function PlacePage() {
 
   const handleShare = async () => {
     try {
-      const placeUrl = `${window.location.origin}/places/${place._id}`;
-      const shareData = {
+      await navigator.share({
         title: place.title,
         text: place.description,
-        url: placeUrl,
-      };
-      await navigator.share(shareData);
+        url: `${window.location.origin}/post/${postId}`, // replace with the URL of the post page
+      });
     } catch (error) {
       console.error(error.message);
     }
