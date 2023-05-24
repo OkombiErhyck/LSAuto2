@@ -161,7 +161,7 @@ export default function IndexPage() {
     setFiltersApplied(true);
     setShowFilter(false);
   };
-  
+
   return (<> 
   <div className="top"></div>
     <div className="main2"> 
@@ -345,9 +345,9 @@ export default function IndexPage() {
 
     </div>)}
     
-    {filtersApplied && resultCount === 0 && (
-        <div className="no-results-message">No results found for the applied filters.</div>
-      )}
+    {filteredPlaces.length === 0 && filtersApplied && (
+  <div className="no-results">No results found.</div>
+)}
 
         </div>
         <div className="details container">
