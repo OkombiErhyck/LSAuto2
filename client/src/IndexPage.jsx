@@ -153,6 +153,16 @@ export default function IndexPage() {
       if (selectedAnul && item.anul !== selectedAnul) {
         return false;
       }
+      if (selectedAnul && item.km !== selectedAnul) {
+        return false;
+      }
+      if (selectedAnul && item.putere !== selectedAnul) {
+        return false;
+      }
+      if (selectedAnul && item.combustibil !== selectedAnul) {
+        return false;
+      }
+      
   
       return true;
     });
