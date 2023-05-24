@@ -133,6 +133,7 @@ export default function IndexPage() {
   }
   const [showFilter, setShowFilter] = useState(false);
   const [resultCount, setResultCount] = useState(0);
+  const [filtersApplied, setFiltersApplied] = useState(false);
 
   const handleFilterToggle = () => {
     setShowFilter(!showFilter);
@@ -143,14 +144,18 @@ export default function IndexPage() {
     // Perform the filtering logic and update the result count
     const count = /* Your filtering logic here to get the count of results */
     setResultCount(count);
+    setFiltersApplied(true);
   };
 
   return (<> 
   <div className="top"></div>
     <div className="main2"> 
       <div className="container" style={{marginTop:"20px"}}>
-      <button  className={`filter-button ${showFilter ? 'active' : ''}`} onClick={handleFilterToggle}>Filtreaza</button>
-
+      <button
+        className={`filter-button ${showFilter ? 'active' : ''}`}
+        onClick={handleFilterToggle}
+      >Filtreaza</button>
+  
 {showFilter && (
   <div className="filter-container">
           <div className="filter-item">
@@ -313,10 +318,26 @@ export default function IndexPage() {
           <div className="filter-item">
         <button onClick={resetFilters}>Reset</button>
       </div>
-      <button onClick={handleFiltersChange}>Apply Filters</button>
+      <button
+  onClick={handleFiltersChange}
+  style={{
+    padding: '10px 20px',
+    background: '#f0f0f0',
+    color: '#333',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    fontSize: '16px',
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+  }}
+>
+  Cauta
+</button>
+
     </div>)}
     
-    {resultCount === 0 && (
+    {filtersApplied && resultCount === 0 && (
         <div className="no-results-message">No results found for the applied filters.</div>
       )}
 
