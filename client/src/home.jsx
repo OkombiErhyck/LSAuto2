@@ -13,7 +13,7 @@ import { gsap } from 'gsap';
 
 function Home(){
 
-  /*const [showPopup, setShowPopup] = useState(false);
+   const [showPopup, setShowPopup] = useState(false);
   const handleScroll = () => {
     if (window.pageYOffset > 1600) {
       setShowPopup(true);
@@ -22,13 +22,13 @@ function Home(){
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);*/
+  }, []); 
 
 
   const about2Ref = useRef(null);
   const aboutRef = useRef(null);
   const detailsRef = useRef(null);
-  const header2Ref = useRef(null);
+   
   const cookiePopupRef = useRef(null);
   const details2Ref = useRef(null);
 
@@ -52,7 +52,7 @@ function Home(){
     observer.observe(about2Ref.current);
     observer.observe(aboutRef.current);
     observer.observe(detailsRef.current);
-    observer.observe(header2Ref.current);
+   
     observer.observe(cookiePopupRef.current);
     observer.observe(details2Ref.current);
     return () => {
@@ -63,16 +63,29 @@ function Home(){
    return(
     
        <div>
-
-          <Header/>
-         
-          <About2/>
-          <Details/>
-          <About/> 
-          <Details2/>
-          <Header2/>
-           <CookiePolicyPopup/> 
-         
+{showPopup && <Popup />} {/* Add this line */}
+<Header/>
+      
+      <div ref={about2Ref} style={{ opacity: 0, transform: 'translateY(20px)' }}>
+        <About2/>
+      </div>
+      <div ref={detailsRef} style={{ opacity: 0, transform: 'translateY(20px)' }}>
+        <Details/> 
+      </div>
+      <div ref={aboutRef} style={{ opacity: 0, transform: 'translateY(20px)' }}>
+        <About/> 
+      </div>
+       
+      
+      
+      <div ref={details2Ref} style={{ opacity: 0, transform: 'translateY(20px)' }}>
+        <Details2/>
+      </div>
+      
+      <div ref={cookiePopupRef} style={{ opacity: 0, transform: 'translateY(20px)' }}>
+        <CookiePolicyPopup/> 
+      </div>
+       
        </div>
      );
 };
