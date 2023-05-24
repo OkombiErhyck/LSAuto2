@@ -23,6 +23,8 @@ export default function IndexPage() {
   const [selectedKmMax, setSelectedKmMax] = useState("");
   const [selectedTitleMin, setSelectedTitleMin] = useState("");
   const [selectedTitleMax, setSelectedTitleMax] = useState("");
+  const [selectedAnulMin, setSelectedAnulMin] = useState("");
+  const [selectedAnulMax, setSelectedAnulMax] = useState("");
 
 
   const data = [
@@ -79,6 +81,8 @@ export default function IndexPage() {
     (selectedKmMin === "" || place.km >= Number(selectedKmMin)) && (selectedKmMax === "" || place.km <= Number(selectedKmMax))&&
     (selectedTitleMin === "" || place.title >= Number(selectedTitleMin)) &&
     (selectedTitleMax === "" || place.title <= Number(selectedTitleMax))
+    (selectedAnulMin === "" || place.anul >= Number(selectedAnulMin)) &&
+    (selectedAnulMax === "" || place.anul <= Number(selectedAnulMax))
     ));
 
   // Get the current page's places
@@ -101,7 +105,9 @@ export default function IndexPage() {
   const handleModelSelect = (event) => setSelectedModel(event.target.value);
   // Handle anul selection
   const handleAnulSelect = (event) => setSelectedAnul(event.target.value);
-
+  const handleAnulMinSelect = (event) => setSelectedAnulMin(event.target.value);
+  
+  const handleAnulMaxSelect = (event) => setSelectedAnulMax(event.target.value);
 
   const handleCombustibilSelect = (event) => setSelectedCombustibil(event.target.value);
 
@@ -173,20 +179,6 @@ export default function IndexPage() {
   };
   
 
-  const [isCollapsed, setIsCollapsed] = useState(true);
-  const [selectedSort, setSelectedSort] = useState("");
-  const [selectedSortByPrice, setSelectedSortByPrice] = useState("");
-
-  const handleSortOption = (option) => {
-    setSelectedSort(option);
-    setIsCollapsed(true);
-  };
-
-  const handleSortByPriceOption = (option) => {
-    setSelectedSortByPrice(option);
-    setIsCollapsed(true);
-  };
-
 
 
   
@@ -194,25 +186,7 @@ export default function IndexPage() {
   <div className="top"></div>
     <div className="main2"> 
       <div className="container" style={{marginTop:"20px"}}>
-      <div className="sort-buttons">
-      <button
-        className="toggle-button"
-        onClick={() => setIsCollapsed(!isCollapsed)}
-      >
-        {isCollapsed ? 'Show Sort Options' : 'Hide Sort Options'}
-      </button>
-
-      {!isCollapsed && (
-        <div className="sort-options">
-          <button onClick={() => handleSortOption("asc")}>Sort A to Z</button>
-          <button onClick={() => handleSortOption("desc")}>Sort Z to A</button>
-          <button onClick={() => handleSortByPriceOption("asc")}>Sort Price Low to High</button>
-          <button onClick={() => handleSortByPriceOption("desc")}>Sort Price High to Low</button>
-        </div>
-      )}
-
-      
-    </div>
+     
 
      <button
         className={`filter-button ${showFilter ? 'active' : ''}`}
@@ -296,46 +270,27 @@ export default function IndexPage() {
         ))}
       </select>
     </div>
-          <div className="filter-item">
-            <label htmlFor="anul-select">Anul </label>
-            <select id="anul-select" value={selectedAnul} onChange={handleAnulSelect}>
-              <option value="">Toate</option>
-              <option value="2023">2023</option>
-              <option value="2022">2022</option>
-              <option value="2021">2021</option>
-              <option value="2020">2020</option>
-              <option value="2019">2019</option>
-              <option value="2018">2018</option>
-              <option value="2017">2017</option>
-              <option value="2015">2015</option>
-              <option value="2014">2014</option>
-              <option value="2013">2013</option>
-              <option value="2012">2012</option>
-              <option value="2011">2011</option>
-              <option value="2010">2010</option>
-              <option value="2009">2009</option>
-              <option value="2008">2008</option>
-              <option value="2007">2007</option>
-              <option value="2006">2006</option>
-              <option value="2005">2005</option>
-              <option value="2004">2004</option>
-              <option value="2003">2003</option>
-              <option value="2002">2002</option>
-              <option value="2001">2001</option>
-              <option value="2000">2000</option>
+    <div className="filter-item">
+  <label htmlFor="anul-min-select">Anul de la</label>
+  <input   placeholder="2000" id="anul-min-select" type="number" value={selectedAnulMin} onChange={(event) => setSelectedAnulMin(event.target.value)} />
+  
+</div>
 
-         </select>
-          </div>
+<div className="filter-item">
+  <label htmlFor="anul-max-select">pana la</label>
+  <input   placeholder="2050" id="anul-max-select" type="number" value={selectedAnulMax} onChange={(event) => setSelectedAnulMax(event.target.value)} />
+
+</div>
 
 
           <div className="filter-item">
   <label htmlFor="title-min-select">Pret de la</label>
-  <input id="title-min-select" type="number" value={selectedTitleMin} onChange={(event) => setSelectedTitleMin(event.target.value)} />
+  <input   placeholder="50000" id="title-min-select" type="number" value={selectedTitleMin} onChange={(event) => setSelectedTitleMin(event.target.value)} />
   <span>&euro;</span>
 </div>
 <div className="filter-item">
   <label htmlFor="title-max-select">pana la</label>
-  <input id="title-max-select" type="number" value={selectedTitleMax} onChange={(event) => setSelectedTitleMax(event.target.value)} />
+  <input   placeholder="100000" id="title-max-select" type="number" value={selectedTitleMax} onChange={(event) => setSelectedTitleMax(event.target.value)} />
   <span>&euro;</span>
 </div>
           
@@ -344,12 +299,12 @@ export default function IndexPage() {
 
           <div className="filter-item">
           <label htmlFor="anul-max-input">Km de la</label>
-<input id="km-min-input" type="text" value={selectedKmMin} onChange={(e) => setSelectedKmMin(e.target.value)} />
+<input   placeholder="10" id="km-min-input" type="text" value={selectedKmMin} onChange={(e) => setSelectedKmMin(e.target.value)} />
   
     </div>
     <div className="filter-item">
     <label htmlFor="anul-max-input">pana la</label>
-<input id="km-max-input" type="text" value={selectedKmMax} onChange={(e) => setSelectedKmMax(e.target.value)} />
+<input   placeholder="44000" id="km-max-input" type="text" value={selectedKmMax} onChange={(e) => setSelectedKmMax(e.target.value)} />
   </div>
   <div className="filter-item">
             <label htmlFor="putere-select">Putere </label>
