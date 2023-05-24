@@ -2,12 +2,35 @@
    background-color:  rgba(0, 0, 0, 0.808);
    padding: 1px;
     overflow: hidden;
+    
 }
 .top{
-
+   
 
   margin-top:80px
 }
+
+.filter-button {
+  background-color: var(--main);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.filter-button:hover {
+  background-color: #555;
+}
+
+.filter-button.active {
+  background-color: var(--main);
+  color: #333;
+}
+
+
 .details {
     margin-top: 50px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);

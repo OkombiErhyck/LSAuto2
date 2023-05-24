@@ -131,13 +131,20 @@ export default function IndexPage() {
   for (let km = new Date().getFullYear(); km >= 0; km--) {
  kmArray.push(km);
   }
+  const [showFilter, setShowFilter] = useState(false);
 
+  const handleFilterToggle = () => {
+    setShowFilter(!showFilter);
+  };
 
   return (<> 
   <div className="top"></div>
     <div className="main2"> 
-      <div className="container">
-        <div className="filter-container">
+      <div className="container" style={{marginTop:"20px"}}>
+      <button  className={`filter-button ${showFilter ? 'active' : ''}`} onClick={handleFilterToggle}>Filtreaza</button>
+
+{showFilter && (
+  <div className="filter-container">
           <div className="filter-item">
             <label htmlFor="marca-select">Marca </label>
             <select id="marca-select" value={selectedMarca} onChange={handleMarcaSelect}>
@@ -224,7 +231,23 @@ export default function IndexPage() {
               <option value="2019">2019</option>
               <option value="2018">2018</option>
               <option value="2017">2017</option>
-              <option value="2016">2016</option>
+              <option value="2015">2015</option>
+              <option value="2014">2014</option>
+              <option value="2013">2013</option>
+              <option value="2012">2012</option>
+              <option value="2011">2011</option>
+              <option value="2010">2010</option>
+              <option value="2009">2009</option>
+              <option value="2008">2008</option>
+              <option value="2007">2007</option>
+              <option value="2006">2006</option>
+              <option value="2005">2005</option>
+              <option value="2004">2004</option>
+              <option value="2003">2003</option>
+              <option value="2002">2002</option>
+              <option value="2001">2001</option>
+              <option value="2000">2000</option>
+
          </select>
           </div>
 
@@ -282,7 +305,7 @@ export default function IndexPage() {
           <div className="filter-item">
         <button onClick={resetFilters}>Reset</button>
       </div>
-    </div>
+    </div>)}
     
         </div>
         <div className="details container">
