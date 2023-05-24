@@ -171,12 +171,50 @@ export default function IndexPage() {
     setFiltersApplied(true);
     setShowFilter(false);
   };
+  
 
+  const [isCollapsed, setIsCollapsed] = useState(true);
+  const [selectedSort, setSelectedSort] = useState("");
+  const [selectedSortByPrice, setSelectedSortByPrice] = useState("");
+
+  const handleSortOption = (option) => {
+    setSelectedSort(option);
+    setIsCollapsed(true);
+  };
+
+  const handleSortByPriceOption = (option) => {
+    setSelectedSortByPrice(option);
+    setIsCollapsed(true);
+  };
+
+
+
+  
   return (<> 
   <div className="top"></div>
     <div className="main2"> 
       <div className="container" style={{marginTop:"20px"}}>
+      <div className="sort-buttons">
       <button
+        className="toggle-button"
+        onClick={() => setIsCollapsed(!isCollapsed)}
+      >
+        {isCollapsed ? 'Show Sort Options' : 'Hide Sort Options'}
+      </button>
+
+      {!isCollapsed && (
+        <div className="sort-options">
+          <button onClick={() => handleSortOption("asc")}>Sort A to Z</button>
+          <button onClick={() => handleSortOption("desc")}>Sort Z to A</button>
+          <button onClick={() => handleSortByPriceOption("asc")}>Sort Price Low to High</button>
+          <button onClick={() => handleSortByPriceOption("desc")}>Sort Price High to Low</button>
+        </div>
+      )}
+
+      
+    </div>
+
+     <button
         className={`filter-button ${showFilter ? 'active' : ''}`}
         onClick={handleFilterToggle}
       >Filtreaza</button>
