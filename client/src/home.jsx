@@ -13,16 +13,8 @@ import { gsap } from 'gsap';
 
 function Home(){
 
-   const [showPopup, setShowPopup] = useState(false);
-  const handleScroll = () => {
-    if (window.pageYOffset > 1600) {
-      setShowPopup(true);
-    }
-  };
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []); 
+  
+  
 
 
   const about2Ref = useRef(null);
@@ -63,7 +55,7 @@ function Home(){
    return(
     
        <div>
-{showPopup && <Popup />} {/* Add this line */}
+
 <Header/>
       
       <div ref={about2Ref} style={{ opacity: 0, transform: 'translateY(20px)' }}>
