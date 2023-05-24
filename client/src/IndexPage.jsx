@@ -508,7 +508,7 @@ export default function IndexPage() {
 
 
 
-    </div>)}
+    </div>
     {filteredPlaces.length === 0 && filtersApplied && (
   <div className="no-results">
   <img style={{height:"45vh", width:"auto"}} src={sad} alt=""/>
