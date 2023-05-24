@@ -332,11 +332,15 @@ export default function IndexPage() {
             <label htmlFor="combustibil-select">Combustibil </label>
             <select id="combustibil-select" value={selectedCombustibil} onChange={handleCombustibilSelect}>
               <option value="">Toate</option>
-              <option value="motorina">motorina</option>
-              <option value="benzina">benzina</option>
-              <option value="benzina-gaz">benzina-gaz</option>
-              <option value="gaz">gaz</option>
-              <option value="hibrid">hibrid</option>
+              <option value="Benzina">Benzina</option>
+  <option value="Benzina-Gaz">Benzina-Gaz</option>
+  <option value="Diesel">Diesel</option>
+  <option value="Electric">Electric</option>
+  <option value="Hibrid">Hibrid</option>
+  <option value="Hibrid-Diesel">Hibrid-Diesel</option>
+  <option value="Etanol">Etanol</option>
+  <option value="Gaz">Gaz</option>
+
               
          </select>
           </div>
