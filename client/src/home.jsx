@@ -12,7 +12,11 @@ import Popup from "./Popup";
 
 function Home(){
 
+<<<<<<< HEAD
  /* const [showPopup, setShowPopup] = useState(false);
+=======
+  const [showPopup, setShowPopup] = useState(false);
+>>>>>>> e0b2be7bc8307d71af950dd42d848e75af97f506
   const handleScroll = () => {
     if (window.pageYOffset > 1600) {
       setShowPopup(true);
@@ -22,11 +26,19 @@ function Home(){
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+<<<<<<< HEAD
 */
    return(
     
        <div>
 
+=======
+
+   return(
+    
+       <div>
+{showPopup && <Popup />} {/* Add this line */}
+>>>>>>> e0b2be7bc8307d71af950dd42d848e75af97f506
           <Header/>
          
           <About2/>
