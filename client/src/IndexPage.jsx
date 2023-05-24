@@ -132,9 +132,17 @@ export default function IndexPage() {
  kmArray.push(km);
   }
   const [showFilter, setShowFilter] = useState(false);
+  const [resultCount, setResultCount] = useState(0);
 
   const handleFilterToggle = () => {
     setShowFilter(!showFilter);
+  };
+
+  // Function to handle filter changes and update the result count
+  const handleFiltersChange = () => {
+    // Perform the filtering logic and update the result count
+    const count = /* Your filtering logic here to get the count of results */
+    setResultCount(count);
   };
 
   return (<> 
@@ -305,8 +313,13 @@ export default function IndexPage() {
           <div className="filter-item">
         <button onClick={resetFilters}>Reset</button>
       </div>
+      <button onClick={handleFiltersChange}>Apply Filters</button>
     </div>)}
     
+    {resultCount === 0 && (
+        <div className="no-results-message">No results found for the applied filters.</div>
+      )}
+
         </div>
         <div className="details container">
           <div className="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4">
