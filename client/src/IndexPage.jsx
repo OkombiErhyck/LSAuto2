@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Image from "./image";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBox, faCalendarAlt,faRoad } from '@fortawesome/free-solid-svg-icons';
-
+import sad from "./images/review.png";
 
 
 
@@ -346,7 +346,11 @@ export default function IndexPage() {
     </div>)}
     
     {filteredPlaces.length === 0 && filtersApplied && (
-  <div className="no-results">No results found.</div>
+  <div className="no-results">
+  <img style={{height:"45vh", width:"auto"}} src={sad} alt=""/>
+  <p>No results found.</p>
+  
+  </div>
 )}
 
         </div>
