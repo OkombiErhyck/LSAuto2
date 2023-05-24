@@ -21,6 +21,14 @@
   transition: background-color 0.3s ease;
 }
 
+@media (min-width: 668px) {
+  .filter-button {
+     display:none;
+
+  }
+  
+}
+
 .filter-button:hover {
   background-color: #555;
 }
@@ -85,7 +93,28 @@
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   }
+
+  .filter-container2 {
+    display: flex;
+    margin-top: 10px ;
+    justify-content: center;
+    align-items: center;
+    background: #f8f8f8;
+    flex-wrap: wrap;
+      justify-content: space-evenly;
+      padding: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
   
+@media (max-width: 668px) {
+  .filter-container2 {
+display:none
+
+  }
+}
+
   .filter-item {
     margin: 0 20px;
     position: relative;
