@@ -153,13 +153,13 @@ export default function IndexPage() {
       if (selectedAnul && item.anul !== selectedAnul) {
         return false;
       }
-      if (selectedAnul && item.km !== selectedAnul) {
+      if (selectedKm && item.km !== selectedKm) {
         return false;
       }
-      if (selectedAnul && item.putere !== selectedAnul) {
+      if (selectedPutere && item.putere !== selectedPutere) {
         return false;
       }
-      if (selectedAnul && item.combustibil !== selectedAnul) {
+      if (selectedCombustibil && item.combustibil !== selectedCombustibil) {
         return false;
       }
       
