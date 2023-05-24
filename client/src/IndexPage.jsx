@@ -141,10 +141,7 @@ export default function IndexPage() {
 
   // Function to handle filter changes and update the result count
   const handleFiltersChange = () => {
-    // Perform the filtering logic and update the result count
     const filteredResults = data.filter((item) => {
-      // Apply your filter conditions based on the selected criteria
-      // For example, filter by marca, model, anul, etc.
       if (selectedMarca && item.marca !== selectedMarca) {
         return false;
       }
@@ -157,19 +154,14 @@ export default function IndexPage() {
         return false;
       }
   
-      // Apply additional filters if needed
-  
       return true;
-
-
     });
+  
     setResultCount(filteredResults.length);
     setFiltersApplied(true);
-
-    // Close the collapsible
     setShowFilter(false);
   };
-
+  
   return (<> 
   <div className="top"></div>
     <div className="main2"> 
