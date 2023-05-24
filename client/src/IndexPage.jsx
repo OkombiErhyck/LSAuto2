@@ -142,9 +142,32 @@ export default function IndexPage() {
   // Function to handle filter changes and update the result count
   const handleFiltersChange = () => {
     // Perform the filtering logic and update the result count
-    const count = /* Your filtering logic here to get the count of results */
-    setResultCount(count);
+    const filteredResults = data.filter((item) => {
+      // Apply your filter conditions based on the selected criteria
+      // For example, filter by marca, model, anul, etc.
+      if (selectedMarca && item.marca !== selectedMarca) {
+        return false;
+      }
+  
+      if (selectedModel && item.model !== selectedModel) {
+        return false;
+      }
+  
+      if (selectedAnul && item.anul !== selectedAnul) {
+        return false;
+      }
+  
+      // Apply additional filters if needed
+  
+      return true;
+
+
+    });
+    setResultCount(filteredResults.length);
     setFiltersApplied(true);
+
+    // Close the collapsible
+    setShowFilter(false);
   };
 
   return (<> 
@@ -320,20 +343,13 @@ export default function IndexPage() {
       </div>
       <button
   onClick={handleFiltersChange}
-  style={{
-    padding: '10px 20px',
-    background: '#f0f0f0',
-    color: '#333',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    fontSize: '16px',
-    fontWeight: 'bold',
-    textTransform: 'uppercase',
-  }}
+  
+  className="cauta-button"
 >
   Cauta
 </button>
+
+
 
     </div>)}
     
