@@ -17,6 +17,7 @@ export default function IndexPage() {
   const [selectedModel, setSelectedModel] = useState("");
   const [selectedAnul, setSelectedAnul] = useState("");
   const [selectedCombustibil, setSelectedCombustibil] = useState("");
+  const [selectedTransmisie, setSelectedTransmisie] = useState("");
   const [selectedPutere, setSelectedPutere] = useState("");
   const [selectedKm, setSelectedKm] = useState("");
   const [selectedKmMin, setSelectedKmMin] = useState("");
@@ -25,6 +26,8 @@ export default function IndexPage() {
   const [selectedTitleMax, setSelectedTitleMax] = useState("");
   const [selectedAnulMin, setSelectedAnulMin] = useState("");
   const [selectedAnulMax, setSelectedAnulMax] = useState("");
+  const [selectedPutereMin, setSelectedPutereMin] = useState("");
+  const [selectedPutereMax, setSelectedPutereMax] = useState("");
 
 
   const data = [
@@ -76,13 +79,16 @@ export default function IndexPage() {
     (selectedMarca === "" || place.marca === selectedMarca) &&
     (selectedModel === "" || place.model === selectedModel) &&
     (selectedCombustibil === "" || place.combustibil === selectedCombustibil) &&
+    (selectedTransmisie === "" || place.transmisie === selectedTransmisie) &&
     (selectedPutere === "" || (Number(place.putere) >= Number(selectedPutere) && Number(place.putere) < Number(selectedPutere) + 100)) &&
     (selectedKmMin === "" || place.km >= Number(selectedKmMin)) &&
     (selectedKmMax === "" || place.km <= Number(selectedKmMax)) &&
     (selectedTitleMin === "" || place.title >= Number(selectedTitleMin)) &&
     (selectedTitleMax === "" || place.title <= Number(selectedTitleMax)) &&
     (selectedAnulMin === "" || place.anul >= Number(selectedAnulMin)) &&
-    (selectedAnulMax === "" || place.anul <= Number(selectedAnulMax))
+    (selectedAnulMax === "" || place.anul <= Number(selectedAnulMax)) &&
+    (selectedPutereMin === "" || place.putere >= Number(selectedPutereMin)) &&
+    (selectedPutereMax === "" || place.putere <= Number(selectedPutereMax))
   ));
   // Get the current page's places
   const currentPlaces = filteredPlaces.slice(firstPlaceIndex, lastPlaceIndex);
@@ -110,6 +116,9 @@ export default function IndexPage() {
 
   const handleCombustibilSelect = (event) => setSelectedCombustibil(event.target.value);
 
+  const handleTransmisieSelect = (event) => setSelectedTransmisie(event.target.value);
+
+
   const handlePutereSelect = (event) => setSelectedPutere(event.target.value);
 
   const handleKmSelect = (event) => setSelectedKm(event.target.value);
@@ -118,12 +127,17 @@ export default function IndexPage() {
   
   const handleKmMaxSelect = (event) => setSelectedKmMax(event.target.value);
 
+  const handlePutereMinSelect = (event) => setSelectedPutereMin(event.target.value);
+  
+  const handlePutereMaxSelect = (event) => setSelectedPutereMax(event.target.value);
+
   
   const resetFilters = () => {
     setSelectedMarca("");
     setSelectedModel("");
     setSelectedAnul("");
     setSelectedCombustibil("");
+    setSelectedTransmisie("");
     setSelectedPutere("");
     setSelectedKm("");
     setSelectedKmMin("");
@@ -132,6 +146,8 @@ export default function IndexPage() {
     setSelectedTitleMax("");
     setSelectedAnulMin("");
     setSelectedAnulMax("");
+    setSelectedPutereMin("");
+    setSelectedPutereMax("");
   };
 
 
@@ -168,6 +184,9 @@ export default function IndexPage() {
         return false;
       }
       if (selectedCombustibil && item.combustibil !== selectedCombustibil) {
+        return false;
+      }
+      if (selectedTransmisie && item.transmisie !== selectedTransmisie) {
         return false;
       }
       
@@ -309,20 +328,18 @@ export default function IndexPage() {
     <label htmlFor="km-max-input"> </label>
 <input   placeholder="Km pana la" id="km-max-input" type="text" value={selectedKmMax} onChange={(e) => setSelectedKmMax(e.target.value)} />
   </div>
+  
   <div className="filter-item">
-            <label htmlFor="putere-select"> </label>
-            <select id="putere-select" value={selectedPutere} onChange={handlePutereSelect}>
-              <option value="">Putere </option>
-              <option value="10"> 10cp - 100cp</option>
-              <option value="100">100cp - 200cp</option>
-              <option value="200">200cp - 300cp</option>
-              <option value="300">300cp - 400cp</option>
-              <option value="400">400cp - 500cp</option>
-              <option value="500">500cp - 600cp</option>
-              <option value="600">600cp -700cp</option>
-              <option value="700">700cp -800cp</option>
-         </select>
-          </div>
+          <label htmlFor="putere-min-input"> </label>
+<input   placeholder="Putere de la" id="putere-min-input" type="text" value={selectedPutereMin} onChange={(e) => setSelectedPutereMin(e.target.value)} />
+  
+    </div>
+
+    <div className="filter-item">
+          <label htmlFor="putere-max-input"> </label>
+<input   placeholder="Putere pana la" id="putere-max-input" type="text" value={selectedPutereMax} onChange={(e) => setSelectedPutereMax(e.target.value)} />
+  
+    </div>
 
           <div className="filter-item">
             <label htmlFor="combustibil-select">  </label>
@@ -340,6 +357,20 @@ export default function IndexPage() {
               
          </select>
           </div>
+
+          <div className="filter-item">
+            <label htmlFor="transmisie-select">  </label>
+            <select id="transmisie-select" value={selectedTransmisie} onChange={handleTransmisieSelect}>
+              <option value="">Transmisie</option>
+              <option value="CVT">CVT</option>
+  <option value="Automata"> Automata</option>
+ 
+  <option value="Manuala">Manuala</option>
+
+              
+         </select>
+          </div>
+
           <div className="filter-item">
         <button onClick={resetFilters}>Reset</button>
       </div>
@@ -466,20 +497,20 @@ export default function IndexPage() {
     <label htmlFor="km-max-input">  </label>
 <input   placeholder="Km pana la" id="km-max-input" type="text" value={selectedKmMax} onChange={(e) => setSelectedKmMax(e.target.value)} />
   </div>
+
+
+
   <div className="filter-item">
-            <label htmlFor="putere-select">  </label>
-            <select id="putere-select" value={selectedPutere} onChange={handlePutereSelect}>
-              <option value="">Putere</option>
-              <option value="10"> 10cp - 99cp</option>
-              <option value="100">100cp - 199cp</option>
-              <option value="200">200cp - 299cp</option>
-              <option value="300">300cp - 399cp</option>
-              <option value="400">400cp - 499cp</option>
-              <option value="500">500cp - 599cp</option>
-              <option value="600">600cp -699cp</option>
-              <option value="700">700cp -799cp</option>
-         </select>
-          </div>
+          <label htmlFor="putere-min-input"> </label>
+<input   placeholder="Putere de la" id="putere-min-input" type="text" value={selectedPutereMin} onChange={(e) => setSelectedPutereMin(e.target.value)} />
+  
+    </div>
+
+    <div className="filter-item">
+          <label htmlFor="putere-max-input"> </label>
+<input   placeholder="Putere pana la" id="putere-max-input" type="text" value={selectedPutereMax} onChange={(e) => setSelectedPutereMax(e.target.value)} />
+  
+    </div>
 
           <div className="filter-item">
             <label htmlFor="combustibil-select">  </label>
@@ -497,6 +528,20 @@ export default function IndexPage() {
               
          </select>
           </div>
+
+          <div className="filter-item">
+            <label htmlFor="transmisie-select">  </label>
+            <select id="transmisie-select" value={selectedTransmisie} onChange={handleTransmisieSelect}>
+              <option value="">Transmisie</option>
+              <option value="CVT">CVT</option>
+  <option value="Automata"> Automata</option>
+ 
+  <option value="Manuala">Manuala</option>
+
+              
+         </select>
+          </div>
+
           <div className="filter-item">
         <button onClick={resetFilters}>Reset</button>
       </div>
