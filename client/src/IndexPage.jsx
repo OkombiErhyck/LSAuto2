@@ -17,6 +17,7 @@ export default function IndexPage() {
   const [selectedModel, setSelectedModel] = useState("");
   const [selectedAnul, setSelectedAnul] = useState("");
   const [selectedCombustibil, setSelectedCombustibil] = useState("");
+  const [selectedNormaeuro, setSelectedNormaeuro] = useState("");
   const [selectedTransmisie, setSelectedTransmisie] = useState("");
   const [selectedPutere, setSelectedPutere] = useState("");
   const [selectedKm, setSelectedKm] = useState("");
@@ -79,6 +80,7 @@ export default function IndexPage() {
     (selectedMarca === "" || place.marca === selectedMarca) &&
     (selectedModel === "" || place.model === selectedModel) &&
     (selectedCombustibil === "" || place.combustibil === selectedCombustibil) &&
+    (selectedNormaeuro === "" || place.normaeuro === selectedNormaeuro) &&
     (selectedTransmisie === "" || place.transmisie === selectedTransmisie) &&
     (selectedPutere === "" || (Number(place.putere) >= Number(selectedPutere) && Number(place.putere) < Number(selectedPutere) + 100)) &&
     (selectedKmMin === "" || place.km >= Number(selectedKmMin)) &&
@@ -116,6 +118,8 @@ export default function IndexPage() {
 
   const handleCombustibilSelect = (event) => setSelectedCombustibil(event.target.value);
 
+   const handleNormaeuroSelect = (event) => setSelectedNormaeuro(event.target.value);
+
   const handleTransmisieSelect = (event) => setSelectedTransmisie(event.target.value);
 
 
@@ -137,6 +141,7 @@ export default function IndexPage() {
     setSelectedModel("");
     setSelectedAnul("");
     setSelectedCombustibil("");
+    setSelectedNormaeuro("");
     setSelectedTransmisie("");
     setSelectedPutere("");
     setSelectedKm("");
@@ -156,7 +161,7 @@ export default function IndexPage() {
  kmArray.push(km);
   }
   const [showFilter, setShowFilter] = useState(false);
-  const [resultCount, setResultCount] = useState(0);
+  
   const [filtersApplied, setFiltersApplied] = useState(false);
 
   const handleFilterToggle = () => {
@@ -197,6 +202,54 @@ export default function IndexPage() {
     setResultCount(filteredResults.length);
     setFiltersApplied(true);
     setShowFilter(false);
+
+  };
+
+    const [showExtra, setShowExtra] = useState(false);
+    const [resultCount, setResultCount] = useState(0);
+    const [extraApplied, setExtraApplied] = useState(false);
+  
+    const handleExtraToggle = () => {
+      setShowExtra(!showExtra);
+    };
+  
+    // Function to handle filter changes and update the result count
+    const handleExtraChange = () => {
+      const filteredResults = data.extra((item) => {
+        if (selectedMarca && item.marca !== selectedMarca) {
+          return false;
+        }
+    
+        if (selectedModel && item.model !== selectedModel) {
+          return false;
+        }
+    
+        if (selectedAnul && item.anul !== selectedAnul) {
+          return false;
+        }
+        if (selectedKm && item.km !== selectedKm) {
+          return false;
+        }
+        if (selectedPutere && item.putere !== selectedPutere) {
+          return false;
+        }
+        if (selectedCombustibil && item.combustibil !== selectedCombustibil) {
+          return false;
+        }
+        if (selectedTransmisie && item.transmisie !== selectedTransmisie) {
+          return false;
+        }
+        if (selectedNormaeuro && item.normaeuro !== selectedNormaeuro) {
+          return false;
+        }
+        
+    
+        return true;
+      });
+    setResultCount(filteredResults.length);
+    setExtraApplied(true);
+    setShowExtra(false);
+ 
   };
   
 
@@ -382,7 +435,132 @@ export default function IndexPage() {
   Cauta
 </button>
 
+<button
+     
+        className={`filter-button ${showExtra ? 'active' : ''}`}
+        onClick={handleExtraToggle}
+      >Extra</button>
+  
+{showExtra && (
+  <div className="filter-container">
+          <div className="filter-item">
+            <label htmlFor="normaeuro-select"> </label>
+            <select id="normaeuro-select" value={selectedNormaeuro} onChange={handleNormaeuroSelect}>
+            <option value="">Norma euro</option>
+            <option value="euro0">Non euro</option>
+  <option value="euro1">Euro 1</option>
+  <option value="euro2">Euro 2</option>
+  <option value="euro3">Euro 3</option>
+  <option value="euro4">Euro 4</option>
+  <option value="euro5">Euro 5</option>
+  <option value="euro6">Euro 6</option>
+  <option value="euro7">Euro 7</option>
+ 
+            </select>
+          </div>
 
+          <div className="filter-item">
+          <label htmlFor="model-select"> </label>
+      <select id="model-select" value={selectedModel} onChange={handleModelSelect}>
+        <option value="">Model</option>
+        {filteredPlaces.map(place => (
+          <option key={place.id} value={place.model}>{place.model}</option>
+        ))}
+      </select>
+    </div>
+    <div className="filter-item">
+  <label htmlFor="anul-min-select"> </label>
+  <input   placeholder="Anul de la" id="anul-min-select" type="number" value={selectedAnulMin} onChange={(event) => setSelectedAnulMin(event.target.value)} />
+  
+</div>
+
+<div className="filter-item">
+  <label htmlFor="anul-max-select"> </label>
+  <input   placeholder="Anul pana la" id="anul-max-select" type="number" value={selectedAnulMax} onChange={(event) => setSelectedAnulMax(event.target.value)} />
+
+</div>
+
+
+          <div className="filter-item">
+  <label htmlFor="title-min-select"> </label>
+  <input   placeholder="Pret de la" id="title-min-select" type="number" value={selectedTitleMin} onChange={(event) => setSelectedTitleMin(event.target.value)} />
+  <span>&euro;</span>
+</div>
+<div className="filter-item">
+  <label htmlFor="title-max-select"> </label>
+  <input   placeholder="Pret pana la" id="title-max-select" type="number" value={selectedTitleMax} onChange={(event) => setSelectedTitleMax(event.target.value)} />
+  <span>&euro;</span>
+</div>
+          
+        
+          
+
+          <div className="filter-item">
+          <label htmlFor="km-min-input"> </label>
+<input   placeholder="Km de la" id="km-min-input" type="text" value={selectedKmMin} onChange={(e) => setSelectedKmMin(e.target.value)} />
+  
+    </div>
+    <div className="filter-item">
+    <label htmlFor="km-max-input"> </label>
+<input   placeholder="Km pana la" id="km-max-input" type="text" value={selectedKmMax} onChange={(e) => setSelectedKmMax(e.target.value)} />
+  </div>
+  
+  <div className="filter-item">
+          <label htmlFor="putere-min-input"> </label>
+<input   placeholder="Putere de la" id="putere-min-input" type="text" value={selectedPutereMin} onChange={(e) => setSelectedPutereMin(e.target.value)} />
+  
+    </div>
+
+    <div className="filter-item">
+          <label htmlFor="putere-max-input"> </label>
+<input   placeholder="Putere pana la" id="putere-max-input" type="text" value={selectedPutereMax} onChange={(e) => setSelectedPutereMax(e.target.value)} />
+  
+    </div>
+
+          <div className="filter-item">
+            <label htmlFor="combustibil-select">  </label>
+            <select id="combustibil-select" value={selectedCombustibil} onChange={handleCombustibilSelect}>
+              <option value="">Combustibil</option>
+              <option value="Benzina">Benzina</option>
+  <option value="Benzina-Gaz">Benzina-Gaz</option>
+  <option value="Diesel">Diesel</option>
+  <option value="Electric">Electric</option>
+  <option value="Hibrid">Hibrid</option>
+  <option value="Hibrid-Diesel">Hibrid-Diesel</option>
+  <option value="Etanol">Etanol</option>
+  <option value="Gaz">Gaz</option>
+
+              
+         </select>
+          </div>
+
+          <div className="filter-item">
+            <label htmlFor="transmisie-select">  </label>
+            <select id="transmisie-select" value={selectedTransmisie} onChange={handleTransmisieSelect}>
+              <option value="">Transmisie</option>
+              <option value="CVT">CVT</option>
+  <option value="Automata"> Automata</option>
+ 
+  <option value="Manuala">Manuala</option>
+
+              
+         </select>
+          </div>
+
+          <div className="filter-item">
+        <button onClick={resetFilters}>Reset</button>
+      </div>
+      <button
+  onClick={handleFiltersChange}
+  
+  className="cauta-button"
+>
+  Cauta
+</button>
+
+
+
+    </div>)}
 
     </div>)}
     <div className="filter-container2" >
