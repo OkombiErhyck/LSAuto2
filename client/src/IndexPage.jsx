@@ -311,14 +311,14 @@ export default function IndexPage() {
             <label htmlFor="putere-select">Putere </label>
             <select id="putere-select" value={selectedPutere} onChange={handlePutereSelect}>
               <option value="">Toate</option>
-              <option value="10"> 10cp - 99cp</option>
-              <option value="100">100cp - 199cp</option>
-              <option value="200">200cp - 299cp</option>
-              <option value="300">300cp - 399cp</option>
-              <option value="400">400cp - 499cp</option>
-              <option value="500">500cp - 599cp</option>
-              <option value="600">600cp -699cp</option>
-              <option value="700">700cp -799cp</option>
+              <option value="10"> 10cp - 100cp</option>
+              <option value="100">100cp - 200cp</option>
+              <option value="200">200cp - 300cp</option>
+              <option value="300">300cp - 400cp</option>
+              <option value="400">400cp - 500cp</option>
+              <option value="500">500cp - 600cp</option>
+              <option value="600">600cp -700cp</option>
+              <option value="700">700cp -800cp</option>
          </select>
           </div>
 
