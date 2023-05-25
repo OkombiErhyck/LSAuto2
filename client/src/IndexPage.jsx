@@ -199,9 +199,9 @@ export default function IndexPage() {
 {showFilter && (
   <div className="filter-container">
           <div className="filter-item">
-            <label htmlFor="marca-select">Marca </label>
+            <label htmlFor="marca-select"> </label>
             <select id="marca-select" value={selectedMarca} onChange={handleMarcaSelect}>
-            <option value="">Toate</option>
+            <option value="">Marca</option>
             <option value="Abarth">Abarth</option>
             <option value="Acura">Acura</option>
     <option value="Alfa Romeo">Alfa Romeo</option>
@@ -265,35 +265,35 @@ export default function IndexPage() {
           </div>
 
           <div className="filter-item">
-          <label htmlFor="model-select">Model</label>
+          <label htmlFor="model-select"> </label>
       <select id="model-select" value={selectedModel} onChange={handleModelSelect}>
-        <option value="">Toate</option>
+        <option value="">Model</option>
         {filteredPlaces.map(place => (
           <option key={place.id} value={place.model}>{place.model}</option>
         ))}
       </select>
     </div>
     <div className="filter-item">
-  <label htmlFor="anul-min-select">Anul de la</label>
-  <input   placeholder="2000" id="anul-min-select" type="number" value={selectedAnulMin} onChange={(event) => setSelectedAnulMin(event.target.value)} />
+  <label htmlFor="anul-min-select"> </label>
+  <input   placeholder="Anul de la" id="anul-min-select" type="number" value={selectedAnulMin} onChange={(event) => setSelectedAnulMin(event.target.value)} />
   
 </div>
 
 <div className="filter-item">
-  <label htmlFor="anul-max-select">pana la</label>
-  <input   placeholder="2050" id="anul-max-select" type="number" value={selectedAnulMax} onChange={(event) => setSelectedAnulMax(event.target.value)} />
+  <label htmlFor="anul-max-select"> </label>
+  <input   placeholder="Anul pana la" id="anul-max-select" type="number" value={selectedAnulMax} onChange={(event) => setSelectedAnulMax(event.target.value)} />
 
 </div>
 
 
           <div className="filter-item">
-  <label htmlFor="title-min-select">Pret de la</label>
-  <input   placeholder="50000" id="title-min-select" type="number" value={selectedTitleMin} onChange={(event) => setSelectedTitleMin(event.target.value)} />
+  <label htmlFor="title-min-select"> </label>
+  <input   placeholder="Pret de la" id="title-min-select" type="number" value={selectedTitleMin} onChange={(event) => setSelectedTitleMin(event.target.value)} />
   <span>&euro;</span>
 </div>
 <div className="filter-item">
-  <label htmlFor="title-max-select">pana la</label>
-  <input   placeholder="100000" id="title-max-select" type="number" value={selectedTitleMax} onChange={(event) => setSelectedTitleMax(event.target.value)} />
+  <label htmlFor="title-max-select"> </label>
+  <input   placeholder="Pret pana la" id="title-max-select" type="number" value={selectedTitleMax} onChange={(event) => setSelectedTitleMax(event.target.value)} />
   <span>&euro;</span>
 </div>
           
@@ -301,18 +301,18 @@ export default function IndexPage() {
           
 
           <div className="filter-item">
-          <label htmlFor="km-min-input">Km de la</label>
-<input   placeholder="10" id="km-min-input" type="text" value={selectedKmMin} onChange={(e) => setSelectedKmMin(e.target.value)} />
+          <label htmlFor="km-min-input"> </label>
+<input   placeholder="Km de la" id="km-min-input" type="text" value={selectedKmMin} onChange={(e) => setSelectedKmMin(e.target.value)} />
   
     </div>
     <div className="filter-item">
-    <label htmlFor="km-max-input">pana la</label>
-<input   placeholder="44000" id="km-max-input" type="text" value={selectedKmMax} onChange={(e) => setSelectedKmMax(e.target.value)} />
+    <label htmlFor="km-max-input"> </label>
+<input   placeholder="Km pana la" id="km-max-input" type="text" value={selectedKmMax} onChange={(e) => setSelectedKmMax(e.target.value)} />
   </div>
   <div className="filter-item">
-            <label htmlFor="putere-select">Putere </label>
+            <label htmlFor="putere-select"> </label>
             <select id="putere-select" value={selectedPutere} onChange={handlePutereSelect}>
-              <option value="">Toate</option>
+              <option value="">Putere </option>
               <option value="10"> 10cp - 100cp</option>
               <option value="100">100cp - 200cp</option>
               <option value="200">200cp - 300cp</option>
@@ -325,9 +325,9 @@ export default function IndexPage() {
           </div>
 
           <div className="filter-item">
-            <label htmlFor="combustibil-select">Combustibil </label>
+            <label htmlFor="combustibil-select">  </label>
             <select id="combustibil-select" value={selectedCombustibil} onChange={handleCombustibilSelect}>
-              <option value="">Toate</option>
+              <option value="">Combustibil</option>
               <option value="Benzina">Benzina</option>
   <option value="Benzina-Gaz">Benzina-Gaz</option>
   <option value="Diesel">Diesel</option>
@@ -356,9 +356,9 @@ export default function IndexPage() {
     </div>)}
     <div className="filter-container2" >
           <div className="filter-item">
-            <label htmlFor="marca-select">Marca </label>
+            <label htmlFor="marca-select">  </label>
             <select id="marca-select" value={selectedMarca} onChange={handleMarcaSelect}>
-            <option value="">Toate</option>
+            <option value="">Marca</option>
             <option value="Abarth">Abarth</option>
             <option value="Acura">Acura</option>
     <option value="Alfa Romeo">Alfa Romeo</option>
@@ -422,35 +422,35 @@ export default function IndexPage() {
           </div>
 
           <div className="filter-item">
-          <label htmlFor="model-select">Model</label>
+          <label htmlFor="model-select"> </label>
       <select id="model-select" value={selectedModel} onChange={handleModelSelect}>
-        <option value="">Toate</option>
+        <option value="">Model</option>
         {filteredPlaces.map(place => (
           <option key={place.id} value={place.model}>{place.model}</option>
         ))}
       </select>
     </div>
     <div className="filter-item">
-  <label htmlFor="anul-min-select">Anul de la</label>
-  <input   placeholder="2000" id="anul-min-select" type="number" value={selectedAnulMin} onChange={(event) => setSelectedAnulMin(event.target.value)} />
+  <label htmlFor="anul-min-select"> </label>
+  <input   placeholder="Anul de la" id="anul-min-select" type="number" value={selectedAnulMin} onChange={(event) => setSelectedAnulMin(event.target.value)} />
   
 </div>
 
 <div className="filter-item">
-  <label htmlFor="anul-max-select">pana la</label>
-  <input   placeholder="2050" id="anul-max-select" type="number" value={selectedAnulMax} onChange={(event) => setSelectedAnulMax(event.target.value)} />
+  <label htmlFor="anul-max-select"> </label>
+  <input   placeholder="Anul pana la" id="anul-max-select" type="number" value={selectedAnulMax} onChange={(event) => setSelectedAnulMax(event.target.value)} />
 
 </div>
 
 
           <div className="filter-item">
-  <label htmlFor="title-min-select">Pret de la</label>
-  <input   placeholder="50000" id="title-min-select" type="number" value={selectedTitleMin} onChange={(event) => setSelectedTitleMin(event.target.value)} />
+  <label htmlFor="title-min-select"> </label>
+  <input   placeholder="Pret de la" id="title-min-select" type="number" value={selectedTitleMin} onChange={(event) => setSelectedTitleMin(event.target.value)} />
   <span>&euro;</span>
 </div>
 <div className="filter-item">
-  <label htmlFor="title-max-select">pana la</label>
-  <input   placeholder="100000" id="title-max-select" type="number" value={selectedTitleMax} onChange={(event) => setSelectedTitleMax(event.target.value)} />
+  <label htmlFor="title-max-select"> </label>
+  <input   placeholder="Pret pana la" id="title-max-select" type="number" value={selectedTitleMax} onChange={(event) => setSelectedTitleMax(event.target.value)} />
   <span>&euro;</span>
 </div>
           
@@ -458,18 +458,18 @@ export default function IndexPage() {
           
 
           <div className="filter-item">
-          <label htmlFor="km-min-input">Km de la</label>
-<input   placeholder="10" id="km-min-input" type="text" value={selectedKmMin} onChange={(e) => setSelectedKmMin(e.target.value)} />
+          <label htmlFor="km-min-input"> </label>
+<input   placeholder="Km de la" id="km-min-input" type="text" value={selectedKmMin} onChange={(e) => setSelectedKmMin(e.target.value)} />
   
     </div>
     <div className="filter-item">
-    <label htmlFor="km-max-input">pana la</label>
-<input   placeholder="44000" id="km-max-input" type="text" value={selectedKmMax} onChange={(e) => setSelectedKmMax(e.target.value)} />
+    <label htmlFor="km-max-input">  </label>
+<input   placeholder="Km pana la" id="km-max-input" type="text" value={selectedKmMax} onChange={(e) => setSelectedKmMax(e.target.value)} />
   </div>
   <div className="filter-item">
-            <label htmlFor="putere-select">Putere </label>
+            <label htmlFor="putere-select">  </label>
             <select id="putere-select" value={selectedPutere} onChange={handlePutereSelect}>
-              <option value="">Toate</option>
+              <option value="">Putere</option>
               <option value="10"> 10cp - 99cp</option>
               <option value="100">100cp - 199cp</option>
               <option value="200">200cp - 299cp</option>
@@ -482,9 +482,9 @@ export default function IndexPage() {
           </div>
 
           <div className="filter-item">
-            <label htmlFor="combustibil-select">Combustibil </label>
+            <label htmlFor="combustibil-select">  </label>
             <select id="combustibil-select" value={selectedCombustibil} onChange={handleCombustibilSelect}>
-              <option value="">Toate</option>
+              <option value="">Combustibil</option>
               <option value="Benzina">Benzina</option>
   <option value="Benzina-Gaz">Benzina-Gaz</option>
   <option value="Diesel">Diesel</option>
