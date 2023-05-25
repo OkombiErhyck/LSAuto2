@@ -435,7 +435,7 @@ export default function IndexPage() {
           </div>
 
           {showExtra && (
-  <div className="filter-container">
+  <div className="filter-container" style={{background:"#d5d5d5"}}>
           <div className="filter-item">
             <label htmlFor="normaeuro-select"> </label>
             <select id="normaeuro-select" value={selectedNormaeuro} onChange={handleNormaeuroSelect}>
@@ -565,7 +565,7 @@ export default function IndexPage() {
      
         className={`filter-button ${showExtra ? 'active' : ''}`}
         onClick={handleExtraToggle}
-      >Extra</button>
+      >EXTRA</button>
   
 
 
@@ -726,7 +726,121 @@ export default function IndexPage() {
               
          </select>
           </div>
+          {showExtra && (
+  <div className="filter-container" style={{background:"#d5d5d5"}}>
+          <div className="filter-item">
+            <label htmlFor="normaeuro-select"> </label>
+            <select id="normaeuro-select" value={selectedNormaeuro} onChange={handleNormaeuroSelect}>
+            <option value="">Norma euro</option>
+            <option value="euro0">Non euro</option>
+  <option value="euro1">Euro 1</option>
+  <option value="euro2">Euro 2</option>
+  <option value="euro3">Euro 3</option>
+  <option value="euro4">Euro 4</option>
+  <option value="euro5">Euro 5</option>
+  <option value="euro6">Euro 6</option>
+  <option value="euro7">Euro 7</option>
+ 
+            </select>
+          </div>
 
+          <div className="filter-item">
+            <label htmlFor="culoare-select"> </label>
+            <select id="culoare-select" value={selectedCuloare} onChange={handleCuloareSelect}>
+            <option value="">Culoare</option>
+            <option value="Alb">Alb</option>
+  <option value="Negru">Negru</option>
+  <option value="Gri">Gri</option>
+  <option value="Argintiu">Argintiu</option>
+  <option value="Auriu">Auriu</option>
+  <option value="Maro">Maro</option>
+  <option value="Rosu">Roșu</option>
+  <option value="Portocaliu">Portocaliu</option>
+  <option value="Galben">Galben</option>
+  <option value="Verde">Verde</option>
+  <option value="Albastru">Albastru</option>
+  <option value="Violet">Violet</option>
+  <option value="Roz">Roz</option>
+ 
+            </select>
+          </div>
+
+<div className="filter-item">
+  <label htmlFor="anul-max-select"> </label>
+  <input   placeholder="Anul pana la" id="anul-max-select" type="number" value={selectedAnulMax} onChange={(event) => setSelectedAnulMax(event.target.value)} />
+
+</div>
+
+
+          <div className="filter-item">
+  <label htmlFor="title-min-select"> </label>
+  <input   placeholder="Pret de la" id="title-min-select" type="number" value={selectedTitleMin} onChange={(event) => setSelectedTitleMin(event.target.value)} />
+  <span>&euro;</span>
+</div>
+<div className="filter-item">
+  <label htmlFor="title-max-select"> </label>
+  <input   placeholder="Pret pana la" id="title-max-select" type="number" value={selectedTitleMax} onChange={(event) => setSelectedTitleMax(event.target.value)} />
+  <span>&euro;</span>
+</div>
+          
+        
+          
+
+          <div className="filter-item">
+          <label htmlFor="km-min-input"> </label>
+<input   placeholder="Km de la" id="km-min-input" type="text" value={selectedKmMin} onChange={(e) => setSelectedKmMin(e.target.value)} />
+  
+    </div>
+    <div className="filter-item">
+    <label htmlFor="km-max-input"> </label>
+<input   placeholder="Km pana la" id="km-max-input" type="text" value={selectedKmMax} onChange={(e) => setSelectedKmMax(e.target.value)} />
+  </div>
+  
+  <div className="filter-item">
+          <label htmlFor="putere-min-input"> </label>
+<input   placeholder="Putere de la" id="putere-min-input" type="text" value={selectedPutereMin} onChange={(e) => setSelectedPutereMin(e.target.value)} />
+  
+    </div>
+
+    <div className="filter-item">
+          <label htmlFor="putere-max-input"> </label>
+<input   placeholder="Putere pana la" id="putere-max-input" type="text" value={selectedPutereMax} onChange={(e) => setSelectedPutereMax(e.target.value)} />
+  
+    </div>
+
+          <div className="filter-item">
+            <label htmlFor="combustibil-select">  </label>
+            <select id="combustibil-select" value={selectedCombustibil} onChange={handleCombustibilSelect}>
+              <option value="">Combustibil</option>
+              <option value="Benzina">Benzina</option>
+  <option value="Benzina-Gaz">Benzina-Gaz</option>
+  <option value="Diesel">Diesel</option>
+  <option value="Electric">Electric</option>
+  <option value="Hibrid">Hibrid</option>
+  <option value="Hibrid-Diesel">Hibrid-Diesel</option>
+  <option value="Etanol">Etanol</option>
+  <option value="Gaz">Gaz</option>
+
+              
+         </select>
+          </div>
+
+          <div className="filter-item">
+            <label htmlFor="transmisie-select">  </label>
+            <select id="transmisie-select" value={selectedTransmisie} onChange={handleTransmisieSelect}>
+              <option value="">Transmisie</option>
+              <option value="CVT">CVT</option>
+  <option value="Automata"> Automata</option>
+ 
+  <option value="Manuala">Manuala</option>
+
+              
+         </select>
+          </div>
+
+          
+
+    </div>)}
           <div className="filter-item">
         <button onClick={resetFilters}>Reset</button>
       </div>
@@ -738,6 +852,12 @@ export default function IndexPage() {
   Cauta
 </button>
 
+<button
+     
+        className={`cauta-button ${showExtra ? 'active' : ''}`}
+        onClick={handleExtraToggle}
+      >EXTRA</button>
+  
 
 
     </div>
