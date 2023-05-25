@@ -17,9 +17,11 @@ export default function IndexPage() {
   const [selectedModel, setSelectedModel] = useState("");
   const [selectedAnul, setSelectedAnul] = useState("");
   const [selectedCombustibil, setSelectedCombustibil] = useState("");
+  const [selectedCaroserie, setSelectedCaroserie] = useState("");
   const [selectedCuloare, setSelectedCuloare] = useState("");
   const [selectedNormaeuro, setSelectedNormaeuro] = useState("");
   const [selectedTransmisie, setSelectedTransmisie] = useState("");
+  const [selectedTractiune, setSelectedTractiune] = useState("");
   const [selectedPutere, setSelectedPutere] = useState("");
   const [selectedKm, setSelectedKm] = useState("");
   const [selectedKmMin, setSelectedKmMin] = useState("");
@@ -84,6 +86,8 @@ export default function IndexPage() {
     (selectedCuloare === "" || place.culoare === selectedCuloare) &&
     (selectedNormaeuro === "" || place.normaeuro === selectedNormaeuro) &&
     (selectedTransmisie === "" || place.transmisie === selectedTransmisie) &&
+    (selectedCaroserie === "" || place.caroserie === selectedCaroserie) &&
+    (selectedTractiune === "" || place.tractiune === selectedTractiune) &&
     (selectedPutere === "" || (Number(place.putere) >= Number(selectedPutere) && Number(place.putere) < Number(selectedPutere) + 100)) &&
     (selectedKmMin === "" || place.km >= Number(selectedKmMin)) &&
     (selectedKmMax === "" || place.km <= Number(selectedKmMax)) &&
@@ -119,6 +123,7 @@ export default function IndexPage() {
   const handleAnulMaxSelect = (event) => setSelectedAnulMax(event.target.value);
 
   const handleCombustibilSelect = (event) => setSelectedCombustibil(event.target.value);
+  const handleCaroserieSelect = (event) => setSelectedCaroserie(event.target.value);
 
   const handleCuloareSelect = (event) => setSelectedCuloare(event.target.value);
 
@@ -127,6 +132,7 @@ export default function IndexPage() {
 
   const handleTransmisieSelect = (event) => setSelectedTransmisie(event.target.value);
 
+  const handleTractiuneSelect = (event) => setSelectedTractiune(event.target.value);
 
   const handlePutereSelect = (event) => setSelectedPutere(event.target.value);
 
@@ -149,6 +155,8 @@ export default function IndexPage() {
     setSelectedCuloare("");
     setSelectedNormaeuro("");
     setSelectedTransmisie("");
+    setSelectedTractiune("");
+    setSelectedCaroserie("");
     setSelectedPutere("");
     setSelectedKm("");
     setSelectedKmMin("");
@@ -300,6 +308,14 @@ export default function IndexPage() {
       }
       
       if (selectedCuloare && item.culoare !== selectedCuloare) {
+        return false;
+      }
+      
+      if (selectedCaroserie && item.caroserie !== selectedCaroserie) {
+        return false;
+      }
+      
+      if (selectedTractiune && item.tractiune !== selectedTractiune) {
         return false;
       }
       
@@ -483,6 +499,7 @@ export default function IndexPage() {
 
           {showExtra && (
   <div className="filter-container" style={{background:"#d5d5d5"}}>
+  
           <div className="filter-item">
             <label htmlFor="normaeuro-select"> </label>
             <select id="normaeuro-select" value={selectedNormaeuro} onChange={handleNormaeuroSelect}>
@@ -522,7 +539,33 @@ export default function IndexPage() {
 
          
           
+          <div className="filter-item">
+            <label htmlFor="tractiune-select"> </label>
+            <select id="tractiune-select" value={selectedTractiune} onChange={handleTractiuneSelect}>
+            <option value="">Tractiune</option>
+            <option value="Fata">Fata</option>
+  <option value="Spate">Spate</option>
+  <option value="4x4">4x4</option>
+ 
+            </select>
+          </div>
 
+          <div className="filter-item">
+            <label htmlFor="caroserie-select"> </label>
+            <select id="caroserie-select" value={selectedCaroserie} onChange={handleCaroserieSelect}>
+            <option value="">Caroserie</option>
+            <option value="Coupe">Coupe</option>
+  <option value="Compacta">Compacta</option>
+  <option value="Berlina">Berlina</option>
+  <option value="Monovolum">Monovolum</option>
+  <option value="Suv">Suv</option>
+  <option value="Crossover">Crossover</option>
+  <option value="Break">Break</option>
+  <option value="Pickup">Pickup</option>
+  <option value="Hatchback">Hatchback</option>
+ 
+            </select>
+          </div>
          
           <button
      
@@ -547,6 +590,10 @@ export default function IndexPage() {
  
             </select>
           </div>
+
+          
+ 
+
 
           <div className="filter-item">
             <label htmlFor="culoare-select"> </label>
@@ -788,6 +835,35 @@ export default function IndexPage() {
  
             </select>
           </div>
+
+          <div className="filter-item">
+            <label htmlFor="tractiune-select"> </label>
+            <select id="tractiune-select" value={selectedTractiune} onChange={handleTractiuneSelect}>
+            <option value="">Tractiune</option>
+            <option value="Fata">Fata</option>
+  <option value="Spate">Spate</option>
+  <option value="4x4">4x4</option>
+ 
+            </select>
+          </div>
+
+          <div className="filter-item">
+            <label htmlFor="caroserie-select"> </label>
+            <select id="caroserie-select" value={selectedCaroserie} onChange={handleCaroserieSelect}>
+            <option value="">Caroserie</option>
+            <option value="Coupe">Coupe</option>
+  <option value="Compacta">Compacta</option>
+  <option value="Berlina">Berlina</option>
+  <option value="Monovolum">Monovolum</option>
+  <option value="Suv">Suv</option>
+  <option value="Crossover">Crossover</option>
+  <option value="Break">Break</option>
+  <option value="Pickup">Pickup</option>
+  <option value="Hatchback">Hatchback</option>
+ 
+            </select>
+          </div>
+
           <button
      
      className={`cauta-button ${showOptiuni ? 'active' : ''}`}
