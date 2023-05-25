@@ -75,7 +75,7 @@ export default function IndexPage() {
   const filteredPlaces = places.filter(place => (
     (selectedMarca === "" || place.marca === selectedMarca) &&
     (selectedModel === "" || place.model === selectedModel) &&
-    (selectedAnul === "" || place.anul === selectedAnul)&&
+   
     (selectedCombustibil === "" || place.combustibil === selectedCombustibil)&&
     (selectedPutere === "" || (Number(place.putere) >= Number(selectedPutere) && Number(place.putere) < Number(selectedPutere) + 100))&&
     (selectedKmMin === "" || place.km >= Number(selectedKmMin)) && (selectedKmMax === "" || place.km <= Number(selectedKmMax))&&
@@ -118,6 +118,7 @@ export default function IndexPage() {
   const handleKmMinSelect = (event) => setSelectedKmMin(event.target.value);
   
   const handleKmMaxSelect = (event) => setSelectedKmMax(event.target.value);
+
   
   const resetFilters = () => {
     setSelectedMarca("");
@@ -130,6 +131,8 @@ export default function IndexPage() {
     setSelectedKmMax("");
     setSelectedTitleMin("");
     setSelectedTitleMax("");
+    setSelectedAnulMin("");
+    setSelectedAnulMax("");
   };
 
 
@@ -299,12 +302,12 @@ export default function IndexPage() {
           
 
           <div className="filter-item">
-          <label htmlFor="anul-max-input">Km de la</label>
+          <label htmlFor="km-min-input">Km de la</label>
 <input   placeholder="10" id="km-min-input" type="text" value={selectedKmMin} onChange={(e) => setSelectedKmMin(e.target.value)} />
   
     </div>
     <div className="filter-item">
-    <label htmlFor="anul-max-input">pana la</label>
+    <label htmlFor="km-max-input">pana la</label>
 <input   placeholder="44000" id="km-max-input" type="text" value={selectedKmMax} onChange={(e) => setSelectedKmMax(e.target.value)} />
   </div>
   <div className="filter-item">
@@ -456,12 +459,12 @@ export default function IndexPage() {
           
 
           <div className="filter-item">
-          <label htmlFor="anul-max-input">Km de la</label>
+          <label htmlFor="km-min-input">Km de la</label>
 <input   placeholder="10" id="km-min-input" type="text" value={selectedKmMin} onChange={(e) => setSelectedKmMin(e.target.value)} />
   
     </div>
     <div className="filter-item">
-    <label htmlFor="anul-max-input">pana la</label>
+    <label htmlFor="km-max-input">pana la</label>
 <input   placeholder="44000" id="km-max-input" type="text" value={selectedKmMax} onChange={(e) => setSelectedKmMax(e.target.value)} />
   </div>
   <div className="filter-item">
