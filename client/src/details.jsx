@@ -41,7 +41,7 @@ export default function Details() {
   const limitedPlaces = shuffleArray(places).slice(0, 11); // display 10 random places
 
   const startAutoScroll = () => {
-    scrollIntervalRef.current = setInterval(scrollContainer, 3000); // Scroll every 3 seconds
+    scrollIntervalRef.current = setInterval(scrollContainer, 1000); // Scroll every 3 seconds
   };
 
   const stopAutoScroll = () => {
@@ -67,11 +67,12 @@ export default function Details() {
       stopAutoScroll();
     }
   };
+
   return (
     <div className="main2"> 
       <div className="container">
         <div className="details container">
-          <div className="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4" style={{ overflowX: "scroll", scrollBehavior: "smooth", whiteSpace: "nowrap" , flexWrap: "nowrap"}}>
+          <div className="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4" style={{ overflowX: "scroll", scrollBehavior: "smooth", whiteSpace: "nowrap",flexWrap: "nowrap" }} ref={containerRef}>
             {limitedPlaces.length > 0 && limitedPlaces.map(place => ( 
               <Link to={"/place/" + place._id} key={place._id} className="link-no-underline">
                 <div className="col" style={{ display: "inline-block", minWidth: "300px" }}>
