@@ -87,7 +87,7 @@ export default function Details() {
                           {place.putere} cp | {place.anul} | {place.km} km
                           <h5>{place.title}€</h5>
                         </div>
-                        <button style={{ background : "#cccccc00", color : "var(--main)" }} className="btn1">Detalii</button>
+                        <button style={{ background : "#cccccc00", color : "orange" }} className="btn1">Detalii</button>
                       </div>
                     </div>
                   </div>
