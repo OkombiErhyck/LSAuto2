@@ -5,8 +5,6 @@ import { Link } from "react-router-dom";
 import Image from "./image";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBox, faCalendarAlt,faRoad } from '@fortawesome/free-solid-svg-icons';
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 export default function Details() {
   const [places, setPlaces] = useState([]);
@@ -39,26 +37,28 @@ export default function Details() {
     <div className="main2"> 
       <div className="container">
         <div className="details container">
-          <Carousel showThumbs={false} infiniteLoop={true} emulateTouch={true}>
+          <div className="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4" style={{ overflowX: "scroll", scrollBehavior: "smooth", whiteSpace: "nowrap" }}>
             {limitedPlaces.length > 0 && limitedPlaces.map(place => ( 
               <Link to={"/place/" + place._id} key={place._id} className="link-no-underline">
-                <div className="box card-body p-0  shadow-sm mb-5">
-                  {place.photos.length > 0 && (
-                    <Image src={place.photos[0]} className="img-fluid" style={{height: "270px", width: "100%", objectFit: "cover"}}/>
-                  )}
-                  <div className="box_content">
-                    <h4> {place.marca} {place.model}</h4>
-                    <div className="row pl-2 pr-2">
-                      <div> 
-                        {place.putere} cp | {place.anul} | {place.km} km     <h5> {place.title}€</h5>
+                <div className="col" style={{ display: "inline-block", minWidth: "300px" }}>
+                  <div className="box card-body p-0 shadow-sm mb-5">
+                    {place.photos.length > 0 && (
+                      <Image src={place.photos[0]} className="img-fluid" style={{ height: "270px", width: "100%", objectFit: "cover" }}/>
+                    )}
+                    <div className="box_content">
+                      <h4> {place.marca} {place.model}</h4>
+                      <div className="row pl-2 pr-2">
+                        <div> 
+                          {place.putere} cp | {place.anul} | {place.km} km     <h5> {place.title}€</h5>
+                        </div>
+                        <button style={{ background : "#cccccc00", color : "var(--main)" }} className="btn1">Detalii</button>
                       </div>
-                      <button style={{background : "#cccccc00", color : "var(--main)"}} className="btn1">Detalii</button>
                     </div>
                   </div>
                 </div>
               </Link>
             ))}
-          </Carousel>
+          </div>
         </div>
       </div>
     </div>
