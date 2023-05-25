@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import "./IndexPage.css";
 import { Link } from "react-router-dom";
 import Image from "./image";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBox, faCalendarAlt,faRoad } from '@fortawesome/free-solid-svg-icons';
+import { faBox, faCalendarAlt, faRoad } from '@fortawesome/free-solid-svg-icons';
 
 export default function Details() {
   const [places, setPlaces] = useState([]);
+  const containerRef = useRef(null);
+  const scrollIntervalRef = useRef(null);
 
   useEffect(() => {
     const fetchData = () => {
@@ -18,6 +20,11 @@ export default function Details() {
     fetchData(); // Fetch data initially
     const intervalId = setInterval(fetchData, 10 * 60 * 1000); // Fetch data every 10 minutes
     return () => clearInterval(intervalId); // Cleanup function to clear the interval
+  }, []);
+
+  useEffect(() => {
+    startAutoScroll();
+    return stopAutoScroll;
   }, []);
 
   const shuffleArray = (array) => {
@@ -31,8 +38,35 @@ export default function Details() {
     return array;
   };
 
-  const limitedPlaces = shuffleArray(places).slice(0, 10); // display 10 random places
+  const limitedPlaces = shuffleArray(places).slice(0, 11); // display 10 random places
 
+  const startAutoScroll = () => {
+    scrollIntervalRef.current = setInterval(scrollContainer, 3000); // Scroll every 3 seconds
+  };
+
+  const stopAutoScroll = () => {
+    clearInterval(scrollIntervalRef.current);
+  };
+
+  const scrollContainer = () => {
+    if (containerRef.current) {
+      containerRef.current.scrollLeft += containerRef.current.offsetWidth;
+    }
+  };
+
+  const handleScrollLeft = () => {
+    if (containerRef.current) {
+      containerRef.current.scrollLeft -= containerRef.current.offsetWidth;
+      stopAutoScroll();
+    }
+  };
+
+  const handleScrollRight = () => {
+    if (containerRef.current) {
+      containerRef.current.scrollLeft += containerRef.current.offsetWidth;
+      stopAutoScroll();
+    }
+  };
   return (
     <div className="main2"> 
       <div className="container">
