@@ -269,8 +269,7 @@ export default function IndexPage() {
   return (<> 
   <div className="top"></div>
     <div className="main2"> 
-    <div className="container" style={{ marginTop: "20px", display: "flex" , flexWrap: "wrap", justifyContent: "space-around" ,}}>
-  <div style={{ marginRight: "10px" }}>
+      <div className="container" style={{marginTop:"20px"}}>
      
 
      <button
@@ -445,11 +444,6 @@ export default function IndexPage() {
 >
   Cauta
 </button>
-</div>)}
-</div>
-
-
-<div>
 
 <button
      
@@ -582,13 +576,9 @@ export default function IndexPage() {
 
 
 
-     
-
     </div>)}
 
-    </div>
-
-
+    </div>)}
     <div className="filter-container2" >
           <div className="filter-item">
             <label htmlFor="marca-select">  </label>
