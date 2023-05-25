@@ -434,24 +434,7 @@ export default function IndexPage() {
          </select>
           </div>
 
-          <div className="filter-item">
-        <button onClick={resetFilters}>Reset</button>
-      </div>
-      <button
-  onClick={handleFiltersChange}
-  
-  className="cauta-button"
->
-  Cauta
-</button>
-
-<button
-     
-        className={`filter-button ${showExtra ? 'active' : ''}`}
-        onClick={handleExtraToggle}
-      >Extra</button>
-  
-{showExtra && (
+          {showExtra && (
   <div className="filter-container">
           <div className="filter-item">
             <label htmlFor="normaeuro-select"> </label>
@@ -563,6 +546,10 @@ export default function IndexPage() {
          </select>
           </div>
 
+          
+
+    </div>)}
+
           <div className="filter-item">
         <button onClick={resetFilters}>Reset</button>
       </div>
@@ -574,9 +561,13 @@ export default function IndexPage() {
   Cauta
 </button>
 
+<button
+     
+        className={`filter-button ${showExtra ? 'active' : ''}`}
+        onClick={handleExtraToggle}
+      >Extra</button>
+  
 
-
-    </div>)}
 
     </div>)}
     <div className="filter-container2" >
