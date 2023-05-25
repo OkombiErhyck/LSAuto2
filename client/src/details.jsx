@@ -94,6 +94,10 @@ export default function Details() {
             ))}
           </div>
         </div>
+        <div className="scroll-buttons">
+          <button onClick={handleScrollLeft}>&lt;</button>
+          <button onClick={handleScrollRight}>&gt;</button>
+        </div>
       </div>
     </div>
   );
