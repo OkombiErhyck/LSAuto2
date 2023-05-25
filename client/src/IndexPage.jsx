@@ -75,16 +75,15 @@ export default function IndexPage() {
   const filteredPlaces = places.filter(place => (
     (selectedMarca === "" || place.marca === selectedMarca) &&
     (selectedModel === "" || place.model === selectedModel) &&
-   
-    (selectedCombustibil === "" || place.combustibil === selectedCombustibil)&&
-    (selectedPutere === "" || (Number(place.putere) >= Number(selectedPutere) && Number(place.putere) < Number(selectedPutere) + 100))&&
-    (selectedKmMin === "" || place.km >= Number(selectedKmMin)) && (selectedKmMax === "" || place.km <= Number(selectedKmMax))&&
+    (selectedCombustibil === "" || place.combustibil === selectedCombustibil) &&
+    (selectedPutere === "" || (Number(place.putere) >= Number(selectedPutere) && Number(place.putere) < Number(selectedPutere) + 100)) &&
+    (selectedKmMin === "" || place.km >= Number(selectedKmMin)) &&
+    (selectedKmMax === "" || place.km <= Number(selectedKmMax)) &&
     (selectedTitleMin === "" || place.title >= Number(selectedTitleMin)) &&
-    (selectedTitleMax === "" || place.title <= Number(selectedTitleMax))
+    (selectedTitleMax === "" || place.title <= Number(selectedTitleMax)) &&
     (selectedAnulMin === "" || place.anul >= Number(selectedAnulMin)) &&
     (selectedAnulMax === "" || place.anul <= Number(selectedAnulMax))
-    ));
-
+  ));
   // Get the current page's places
   const currentPlaces = filteredPlaces.slice(firstPlaceIndex, lastPlaceIndex);
 
