@@ -72,7 +72,7 @@ export default function Details() {
     <div className="main2"> 
       <div className="container">
         <div className="details container">
-          <div className="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4" style={{ overflowX: "scroll", scrollBehavior: "smooth", whiteSpace: "nowrap",flexWrap: "nowrap" }} ref={containerRef}>
+          <div className="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4" style={{ overflowX: "scroll", scrollBehavior: "smooth", whiteSpace: "nowrap", flexWrap:"nowrap" }} ref={containerRef}>
             {limitedPlaces.length > 0 && limitedPlaces.map(place => ( 
               <Link to={"/place/" + place._id} key={place._id} className="link-no-underline">
                 <div className="col" style={{ display: "inline-block", minWidth: "300px" }}>
@@ -81,10 +81,11 @@ export default function Details() {
                       <Image src={place.photos[0]} className="img-fluid" style={{ height: "270px", width: "100%", objectFit: "cover" }}/>
                     )}
                     <div className="box_content">
-                      <h4> {place.marca} {place.model}</h4>
+                      <h4>{place.marca} {place.model}</h4>
                       <div className="row pl-2 pr-2">
-                        <div> 
-                          {place.putere} cp | {place.anul} | {place.km} km     <h5> {place.title}€</h5>
+                        <div>
+                          {place.putere} cp | {place.anul} | {place.km} km
+                          <h5>{place.title}€</h5>
                         </div>
                         <button style={{ background : "#cccccc00", color : "var(--main)" }} className="btn1">Detalii</button>
                       </div>
@@ -95,7 +96,7 @@ export default function Details() {
             ))}
           </div>
         </div>
-       
+      
       </div>
     </div>
   );
