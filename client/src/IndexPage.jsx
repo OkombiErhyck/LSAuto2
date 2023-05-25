@@ -17,6 +17,7 @@ export default function IndexPage() {
   const [selectedModel, setSelectedModel] = useState("");
   const [selectedAnul, setSelectedAnul] = useState("");
   const [selectedCombustibil, setSelectedCombustibil] = useState("");
+  const [selectedCuloare, setSelectedCuloare] = useState("");
   const [selectedNormaeuro, setSelectedNormaeuro] = useState("");
   const [selectedTransmisie, setSelectedTransmisie] = useState("");
   const [selectedPutere, setSelectedPutere] = useState("");
@@ -80,6 +81,7 @@ export default function IndexPage() {
     (selectedMarca === "" || place.marca === selectedMarca) &&
     (selectedModel === "" || place.model === selectedModel) &&
     (selectedCombustibil === "" || place.combustibil === selectedCombustibil) &&
+    (selectedCuloare === "" || place.culoare === selectedCuloare) &&
     (selectedNormaeuro === "" || place.normaeuro === selectedNormaeuro) &&
     (selectedTransmisie === "" || place.transmisie === selectedTransmisie) &&
     (selectedPutere === "" || (Number(place.putere) >= Number(selectedPutere) && Number(place.putere) < Number(selectedPutere) + 100)) &&
@@ -118,6 +120,9 @@ export default function IndexPage() {
 
   const handleCombustibilSelect = (event) => setSelectedCombustibil(event.target.value);
 
+  const handleCuloareSelect = (event) => setSelectedCuloare(event.target.value);
+
+
    const handleNormaeuroSelect = (event) => setSelectedNormaeuro(event.target.value);
 
   const handleTransmisieSelect = (event) => setSelectedTransmisie(event.target.value);
@@ -141,6 +146,7 @@ export default function IndexPage() {
     setSelectedModel("");
     setSelectedAnul("");
     setSelectedCombustibil("");
+    setSelectedCuloare("");
     setSelectedNormaeuro("");
     setSelectedTransmisie("");
     setSelectedPutere("");
@@ -243,6 +249,10 @@ export default function IndexPage() {
           return false;
         }
         
+        if (selectedCuloare && item.culoare !== selectedCuloare) {
+          return false;
+        }
+        
     
         return true;
       });
@@ -259,7 +269,8 @@ export default function IndexPage() {
   return (<> 
   <div className="top"></div>
     <div className="main2"> 
-      <div className="container" style={{marginTop:"20px"}}>
+    <div className="container" style={{ marginTop: "20px", display: "flex" , flexWrap: "wrap", justifyContent: "space-around" ,}}>
+  <div style={{ marginRight: "10px" }}>
      
 
      <button
@@ -434,6 +445,11 @@ export default function IndexPage() {
 >
   Cauta
 </button>
+</div>)}
+</div>
+
+
+<div>
 
 <button
      
@@ -460,19 +476,25 @@ export default function IndexPage() {
           </div>
 
           <div className="filter-item">
-          <label htmlFor="model-select"> </label>
-      <select id="model-select" value={selectedModel} onChange={handleModelSelect}>
-        <option value="">Model</option>
-        {filteredPlaces.map(place => (
-          <option key={place.id} value={place.model}>{place.model}</option>
-        ))}
-      </select>
-    </div>
-    <div className="filter-item">
-  <label htmlFor="anul-min-select"> </label>
-  <input   placeholder="Anul de la" id="anul-min-select" type="number" value={selectedAnulMin} onChange={(event) => setSelectedAnulMin(event.target.value)} />
-  
-</div>
+            <label htmlFor="culoare-select"> </label>
+            <select id="culoare-select" value={selectedCuloare} onChange={handleCuloareSelect}>
+            <option value="">Culoare</option>
+            <option value="Alb">Alb</option>
+  <option value="Negru">Negru</option>
+  <option value="Gri">Gri</option>
+  <option value="Argintiu">Argintiu</option>
+  <option value="Auriu">Auriu</option>
+  <option value="Maro">Maro</option>
+  <option value="Rosu">Roșu</option>
+  <option value="Portocaliu">Portocaliu</option>
+  <option value="Galben">Galben</option>
+  <option value="Verde">Verde</option>
+  <option value="Albastru">Albastru</option>
+  <option value="Violet">Violet</option>
+  <option value="Roz">Roz</option>
+ 
+            </select>
+          </div>
 
 <div className="filter-item">
   <label htmlFor="anul-max-select"> </label>
@@ -560,9 +582,13 @@ export default function IndexPage() {
 
 
 
-    </div>)}
+     
 
     </div>)}
+
+    </div>
+
+
     <div className="filter-container2" >
           <div className="filter-item">
             <label htmlFor="marca-select">  </label>
