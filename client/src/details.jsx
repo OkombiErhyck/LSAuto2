@@ -41,7 +41,7 @@ export default function Details() {
   const limitedPlaces = shuffleArray(places).slice(0, 11); // display 10 random places
 
   const startAutoScroll = () => {
-    scrollIntervalRef.current = setInterval(scrollContainer, 1000); // Scroll every 3 seconds
+    scrollIntervalRef.current = setInterval(scrollContainer, 4000); // Scroll every 3 seconds
   };
 
   const stopAutoScroll = () => {
@@ -95,10 +95,7 @@ export default function Details() {
             ))}
           </div>
         </div>
-        <div className="scroll-buttons">
-          <button onClick={handleScrollLeft}>&lt;</button>
-          <button onClick={handleScrollRight}>&gt;</button>
-        </div>
+       
       </div>
     </div>
   );
