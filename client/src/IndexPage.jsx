@@ -114,54 +114,56 @@ export default function IndexPage() {
     // If no perks are selected, show all places
     
     // Check if the place has at least one of the selected perks
-    // Filter the places by marca and anul
-const filteredPlaces = places.filter((place) => {
-  if (selectedPerks.length === 0) {
-    return true;
-  }
+    return selectedPerks.some((selectedPerk) => places.perks.includes(selectedPerk));
   
-  const hasSelectedPerks = selectedPerks.some((selectedPerk) => place.perks.includes(selectedPerk));
-
-  const marcaMatch = selectedMarca === "" || place.marca === selectedMarca;
-  const modelMatch = selectedModel === "" || place.model === selectedModel;
-  const combustibilMatch = selectedCombustibil === "" || place.combustibil === selectedCombustibil;
-  const culoareMatch = selectedCuloare === "" || place.culoare === selectedCuloare;
-  const normaeuroMatch = selectedNormaeuro === "" || place.normaeuro === selectedNormaeuro;
-  const transmisieMatch = selectedTransmisie === "" || place.transmisie === selectedTransmisie;
-  const caroserieMatch = selectedCaroserie === "" || place.caroserie === selectedCaroserie;
-  const tractiuneMatch = selectedTractiune === "" || place.tractiune === selectedTractiune;
-  const putereMatch = selectedPutere === "" || (Number(place.putere) >= Number(selectedPutere) && Number(place.putere) < Number(selectedPutere) + 100);
-  const kmMinMatch = selectedKmMin === "" || place.km >= Number(selectedKmMin);
-  const kmMaxMatch = selectedKmMax === "" || place.km <= Number(selectedKmMax);
-  const titleMinMatch = selectedTitleMin === "" || place.title >= Number(selectedTitleMin);
-  const titleMaxMatch = selectedTitleMax === "" || place.title <= Number(selectedTitleMax);
-  const anulMinMatch = selectedAnulMin === "" || place.anul >= Number(selectedAnulMin);
-  const anulMaxMatch = selectedAnulMax === "" || place.anul <= Number(selectedAnulMax);
-  const putereMinMatch = selectedPutereMin === "" || place.putere >= Number(selectedPutereMin);
-  const putereMaxMatch = selectedPutereMax === "" || place.putere <= Number(selectedPutereMax);
-
-  return (
-    hasSelectedPerks &&
-    marcaMatch &&
-    modelMatch &&
-    combustibilMatch &&
-    culoareMatch &&
-    normaeuroMatch &&
-    transmisieMatch &&
-    caroserieMatch &&
-    tractiuneMatch &&
-    putereMatch &&
-    kmMinMatch &&
-    kmMaxMatch &&
-    titleMinMatch &&
-    titleMaxMatch &&
-    anulMinMatch &&
-    anulMaxMatch &&
-    putereMinMatch &&
-    putereMaxMatch
-  );
-});
-
+  // Filter the places by marca and anul
+  const filteredPlaces = places.filter((place) => {
+    const hasSelectedPerks = selectedPerks.length === 0 || selectedPerks.some((selectedPerk) => place.perks.includes(selectedPerk));
+  
+    const marcaMatch = selectedMarca === "" || place.marca === selectedMarca;
+    const modelMatch = selectedModel === "" || place.model === selectedModel;
+    const combustibilMatch = selectedCombustibil === "" || place.combustibil === selectedCombustibil;
+    const culoareMatch = selectedCuloare === "" || place.culoare === selectedCuloare;
+    const normaeuroMatch = selectedNormaeuro === "" || place.normaeuro === selectedNormaeuro;
+    const transmisieMatch = selectedTransmisie === "" || place.transmisie === selectedTransmisie;
+    const caroserieMatch = selectedCaroserie === "" || place.caroserie === selectedCaroserie;
+    const tractiuneMatch = selectedTractiune === "" || place.tractiune === selectedTractiune;
+    const putereMatch = selectedPutere === "" || (Number(place.putere) >= Number(selectedPutere) && Number(place.putere) < Number(selectedPutere) + 100);
+    const kmMinMatch = selectedKmMin === "" || place.km >= Number(selectedKmMin);
+    const kmMaxMatch = selectedKmMax === "" || place.km <= Number(selectedKmMax);
+    const titleMinMatch = selectedTitleMin === "" || place.title >= Number(selectedTitleMin);
+    const titleMaxMatch = selectedTitleMax === "" || place.title <= Number(selectedTitleMax);
+    const anulMinMatch = selectedAnulMin === "" || place.anul >= Number(selectedAnulMin);
+    const anulMaxMatch = selectedAnulMax === "" || place.anul <= Number(selectedAnulMax);
+    const putereMinMatch = selectedPutereMin === "" || place.putere >= Number(selectedPutereMin);
+    const putereMaxMatch = selectedPutereMax === "" || place.putere <= Number(selectedPutereMax);
+  
+    return (
+      hasSelectedPerks &&
+      marcaMatch &&
+      modelMatch &&
+      combustibilMatch &&
+      culoareMatch &&
+      normaeuroMatch &&
+      transmisieMatch &&
+      caroserieMatch &&
+      tractiuneMatch &&
+      putereMatch &&
+      kmMinMatch &&
+      kmMaxMatch &&
+      titleMinMatch &&
+      titleMaxMatch &&
+      anulMinMatch &&
+      anulMaxMatch &&
+      putereMinMatch &&
+      putereMaxMatch
+    );
+  });
+  
+  
+  
+  
+  
   // Get the current page's places
   const currentPlaces = filteredPlaces.slice(firstPlaceIndex, lastPlaceIndex);
 
@@ -926,19 +928,21 @@ const filteredPlaces = places.filter((place) => {
 {showOptiuni && (
   <div className= "filter-container" >
   <div className="filter-item">
-    <label>Optiuni</label>
-    {perkOptions.map((perk) => (
-      <div key={perk}>
-        <input
-          type="checkbox"
-          id={perk}
-          value={perk}
-          onChange={(event) => handlePerkSelect(event.target.checked, event.target.value)}
-        />
-        <label htmlFor={perk}>{perk}</label>
+        <label htmlFor="perk-select">Optiuni</label>
+        <select
+          id="perk-select"
+          value=""
+          onChange={(event) => handlePerkSelect(event.target.value)}
+        >
+          <option value="">Selecteaza</option>
+          {perkOptions.map((perk) => (
+            <option key={perk} value={perk}>
+              {perk}
+            </option>
+          ))}
+        </select>
       </div>
-    ))}
-  </div>
+
           
 
 </div>)}
