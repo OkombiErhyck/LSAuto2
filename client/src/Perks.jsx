@@ -33,6 +33,7 @@ export default function Perks({selected,onChange}) {
           <div>
   <label>
     <input type="checkbox" checked={selected.includes("sistem de navigație")} name="sistem de navigație" onChange={handleCbClick}/>
+    <input type="checkbox" checked={selected.includes("sistem de navigație")} name="sistem de navigație" onChange={handleCbClick}/>
     <span>Navigație</span>
   </label>
 </div>

@@ -6,10 +6,14 @@ import Image from "./image";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBox, faCalendarAlt,faRoad } from '@fortawesome/free-solid-svg-icons';
 import sad from "./images/review.png";
-
+import Perks from "./Perks";
 
 
 export default function IndexPage() {
+
+
+
+  
   const [places, setPlaces] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [placesPerPage, setPlacesPerPage] = useState(9);
@@ -34,6 +38,7 @@ export default function IndexPage() {
   const [selectedPutereMax, setSelectedPutereMax] = useState("");
 
 
+  
   const data = [
     {
       id: 1,
@@ -72,41 +77,109 @@ export default function IndexPage() {
       setPlaces(response.data);
     });
   }, []);
-
+  const [selectedPerks, setSelectedPerks] = useState([]);
+  const [perkOptions] = useState([
+    "bluetooth",
+    "sistem de navigație",
+    "senzori de parcare",
+    "control automat al climatizării",
+    "faruri cu LED",
+    "faruri cu Laser",
+    "scaune încălzite",
+    "cameră video de marșarier",
+    "airbag-uri frontale",
+    "airbag-uri laterale",
+    "sistem de avertizare a şoferului",
+    "airbag-uri cortină",
+    "sistem de monitorizare a unghiului mort",
+    "sistem de frânare automată de urgenţă",
+    "sistem de control al tracţiunii",
+    "sistem de control al stabilităţii",
+    "sistem de recunoaştere a semnelor de circulaţie",
+    "sistem de asistenţă la menţinerea benzii de mers",
+    "sistem de asistență la plecarea din rampă",
+    "sistem de avertizare a pietonilor",
+    "sistem de monitorizare a presiunii în pneuri",
+    "cameră video pentru mersul înapoi",
+    "geamuri electrice",
+    "oglinzi electrice",
+    "oglinzi încălzite",
+    // ... other perk options
+  ]);
   // Calculate the index of the last place to display
   const lastPlaceIndex = currentPage * placesPerPage;
   // Calculate the index of the first place to display
   const firstPlaceIndex = lastPlaceIndex - placesPerPage;
+   
+    // If no perks are selected, show all places
+    
+    // Check if the place has at least one of the selected perks
+    // Filter the places by marca and anul
+const filteredPlaces = places.filter((place) => {
+  if (selectedPerks.length === 0) {
+    return true;
+  }
   
-  // Filter the places by marca and anul
-  const filteredPlaces = places.filter(place => (
-    (selectedMarca === "" || place.marca === selectedMarca) &&
-    (selectedModel === "" || place.model === selectedModel) &&
-    (selectedCombustibil === "" || place.combustibil === selectedCombustibil) &&
-    (selectedCuloare === "" || place.culoare === selectedCuloare) &&
-    (selectedNormaeuro === "" || place.normaeuro === selectedNormaeuro) &&
-    (selectedTransmisie === "" || place.transmisie === selectedTransmisie) &&
-    (selectedCaroserie === "" || place.caroserie === selectedCaroserie) &&
-    (selectedTractiune === "" || place.tractiune === selectedTractiune) &&
-    (selectedPutere === "" || (Number(place.putere) >= Number(selectedPutere) && Number(place.putere) < Number(selectedPutere) + 100)) &&
-    (selectedKmMin === "" || place.km >= Number(selectedKmMin)) &&
-    (selectedKmMax === "" || place.km <= Number(selectedKmMax)) &&
-    (selectedTitleMin === "" || place.title >= Number(selectedTitleMin)) &&
-    (selectedTitleMax === "" || place.title <= Number(selectedTitleMax)) &&
-    (selectedAnulMin === "" || place.anul >= Number(selectedAnulMin)) &&
-    (selectedAnulMax === "" || place.anul <= Number(selectedAnulMax)) &&
-    (selectedPutereMin === "" || place.putere >= Number(selectedPutereMin)) &&
-    (selectedPutereMax === "" || place.putere <= Number(selectedPutereMax))
-  ));
+  const hasSelectedPerks = selectedPerks.some((selectedPerk) => place.perks.includes(selectedPerk));
+
+  const marcaMatch = selectedMarca === "" || place.marca === selectedMarca;
+  const modelMatch = selectedModel === "" || place.model === selectedModel;
+  const combustibilMatch = selectedCombustibil === "" || place.combustibil === selectedCombustibil;
+  const culoareMatch = selectedCuloare === "" || place.culoare === selectedCuloare;
+  const normaeuroMatch = selectedNormaeuro === "" || place.normaeuro === selectedNormaeuro;
+  const transmisieMatch = selectedTransmisie === "" || place.transmisie === selectedTransmisie;
+  const caroserieMatch = selectedCaroserie === "" || place.caroserie === selectedCaroserie;
+  const tractiuneMatch = selectedTractiune === "" || place.tractiune === selectedTractiune;
+  const putereMatch = selectedPutere === "" || (Number(place.putere) >= Number(selectedPutere) && Number(place.putere) < Number(selectedPutere) + 100);
+  const kmMinMatch = selectedKmMin === "" || place.km >= Number(selectedKmMin);
+  const kmMaxMatch = selectedKmMax === "" || place.km <= Number(selectedKmMax);
+  const titleMinMatch = selectedTitleMin === "" || place.title >= Number(selectedTitleMin);
+  const titleMaxMatch = selectedTitleMax === "" || place.title <= Number(selectedTitleMax);
+  const anulMinMatch = selectedAnulMin === "" || place.anul >= Number(selectedAnulMin);
+  const anulMaxMatch = selectedAnulMax === "" || place.anul <= Number(selectedAnulMax);
+  const putereMinMatch = selectedPutereMin === "" || place.putere >= Number(selectedPutereMin);
+  const putereMaxMatch = selectedPutereMax === "" || place.putere <= Number(selectedPutereMax);
+
+  return (
+    hasSelectedPerks &&
+    marcaMatch &&
+    modelMatch &&
+    combustibilMatch &&
+    culoareMatch &&
+    normaeuroMatch &&
+    transmisieMatch &&
+    caroserieMatch &&
+    tractiuneMatch &&
+    putereMatch &&
+    kmMinMatch &&
+    kmMaxMatch &&
+    titleMinMatch &&
+    titleMaxMatch &&
+    anulMinMatch &&
+    anulMaxMatch &&
+    putereMinMatch &&
+    putereMaxMatch
+  );
+});
+
   // Get the current page's places
   const currentPlaces = filteredPlaces.slice(firstPlaceIndex, lastPlaceIndex);
 
   // Calculate the total number of pages
   const totalPages = Math.ceil(filteredPlaces.length / placesPerPage);
 
-  // Change the current page
+  // Change the current page  
   
+
+  const handlePerkSelect = (isChecked, perk) => {
+    if (isChecked) {
+      setSelectedPerks([...selectedPerks, perk]);
+    } else {
+      setSelectedPerks(selectedPerks.filter((selectedPerk) => selectedPerk !== perk));
+    }
+  };
   
+   
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
     if (window.pageYOffset > 0) {
@@ -148,6 +221,7 @@ export default function IndexPage() {
 
   
   const resetFilters = () => {
+    setSelectedPerks("");
     setSelectedMarca("");
     setSelectedModel("");
     setSelectedAnul("");
@@ -575,47 +649,26 @@ export default function IndexPage() {
 
 {showOptiuni && (
   <div className= "filter-container" >
-          <div className="filter-item">
-            <label htmlFor="normaeuro-select"> </label>
-            <select id="normaeuro-select" value={selectedNormaeuro} onChange={handleNormaeuroSelect}>
-            <option value="">Norma euro</option>
-            <option value="euro0">Non euro</option>
-  <option value="euro1">Euro 1</option>
-  <option value="euro2">Euro 2</option>
-  <option value="euro3">Euro 3</option>
-  <option value="euro4">Euro 4</option>
-  <option value="euro5">Euro 5</option>
-  <option value="euro6">Euro 6</option>
-  <option value="euro7">Euro 7</option>
- 
-            </select>
-          </div>
+  <div className="filter-item">
+    <label>Optiuni</label>
+    {perkOptions.map((perk) => (
+      <div key={perk}>
+        <input
+          type="checkbox"
+          id={perk}
+          value={perk}
+          onChange={(event) => handlePerkSelect(event.target.checked, event.target.value)}
+        />
+        <label htmlFor={perk}>{perk}</label>
+      </div>
+    ))}
+  </div>
 
           
  
 
 
-          <div className="filter-item">
-            <label htmlFor="culoare-select"> </label>
-            <select id="culoare-select" value={selectedCuloare} onChange={handleCuloareSelect}>
-            <option value="">Culoare</option>
-            <option value="Alb">Alb</option>
-  <option value="Negru">Negru</option>
-  <option value="Gri">Gri</option>
-  <option value="Argintiu">Argintiu</option>
-  <option value="Auriu">Auriu</option>
-  <option value="Maro">Maro</option>
-  <option value="Rosu">Roșu</option>
-  <option value="Portocaliu">Portocaliu</option>
-  <option value="Galben">Galben</option>
-  <option value="Verde">Verde</option>
-  <option value="Albastru">Albastru</option>
-  <option value="Violet">Violet</option>
-  <option value="Roz">Roz</option>
- 
-            </select>
-          </div>
-
+          
 </div>)}
           
 
@@ -872,42 +925,21 @@ export default function IndexPage() {
 
 {showOptiuni && (
   <div className= "filter-container" >
-          <div className="filter-item">
-            <label htmlFor="normaeuro-select"> </label>
-            <select id="normaeuro-select" value={selectedNormaeuro} onChange={handleNormaeuroSelect}>
-            <option value="">Norma euro</option>
-            <option value="euro0">Non euro</option>
-  <option value="euro1">Euro 1</option>
-  <option value="euro2">Euro 2</option>
-  <option value="euro3">Euro 3</option>
-  <option value="euro4">Euro 4</option>
-  <option value="euro5">Euro 5</option>
-  <option value="euro6">Euro 6</option>
-  <option value="euro7">Euro 7</option>
- 
-            </select>
-          </div>
-
-          <div className="filter-item">
-            <label htmlFor="culoare-select"> </label>
-            <select id="culoare-select" value={selectedCuloare} onChange={handleCuloareSelect}>
-            <option value="">Culoare</option>
-            <option value="Alb">Alb</option>
-  <option value="Negru">Negru</option>
-  <option value="Gri">Gri</option>
-  <option value="Argintiu">Argintiu</option>
-  <option value="Auriu">Auriu</option>
-  <option value="Maro">Maro</option>
-  <option value="Rosu">Roșu</option>
-  <option value="Portocaliu">Portocaliu</option>
-  <option value="Galben">Galben</option>
-  <option value="Verde">Verde</option>
-  <option value="Albastru">Albastru</option>
-  <option value="Violet">Violet</option>
-  <option value="Roz">Roz</option>
- 
-            </select>
-          </div>
+  <div className="filter-item">
+    <label>Optiuni</label>
+    {perkOptions.map((perk) => (
+      <div key={perk}>
+        <input
+          type="checkbox"
+          id={perk}
+          value={perk}
+          onChange={(event) => handlePerkSelect(event.target.checked, event.target.value)}
+        />
+        <label htmlFor={perk}>{perk}</label>
+      </div>
+    ))}
+  </div>
+          
 
 </div>)}
           
