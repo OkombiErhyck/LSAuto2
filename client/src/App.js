@@ -27,7 +27,7 @@ const Details = lazy(() => import('./details'));
 
 
 
-axios.defaults.baseURL = 'https://ls-auto2.vercel.app';
+axios.defaults.baseURL = 'http://localhost:4000';
 axios.defaults.withCredentials = true;
 
 function App() {
