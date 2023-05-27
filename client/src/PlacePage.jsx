@@ -198,10 +198,10 @@ export default function PlacePage() {
     </div>
   </div>
   <div>
-  <p style={{ fontSize: '10px', marginTop:"-20px" }}>Partener</p>
+  <p style={{ fontSize: '10px', marginTop:"-15px", marginBottom:"-10px" }}>Partener</p>
   
   <a href="https://www.carvertical.com/ro/landing/v3?utm_source=affiliate&amp;a=LSAuto&amp;b=0d7bf530" target="_top">
-    <img style={{ width: '90px', marginTop: '-40px' }} src={Carvertical} alt="carvertical" />
+    <img style={{ width: '90px'}} src={Carvertical} alt="carvertical" />
   </a>
   
 </div>
@@ -261,12 +261,7 @@ export default function PlacePage() {
 
   <br />
    <Details  onOpen={handleScrollToTop}  /> 
-   <div className="car-vertical-banner-container">
-      <a href="https://www.carvertical.com/ro/landing/v3?utm_source=affiliate&amp;a=LSAuto&amp;b=0d7bf530" target="_top">
-        <img src="//carvertical.postaffiliatepro.com/accounts/default1/3wboofl3y7q/0d7bf530.jpg" alt="carvertical VIN" title="carvertical VIN" width="468" height="60" />
-      </a>
-      <img className="tracking-image" src="https://carvertical.postaffiliatepro.com/scripts/3wioofl3y7q?a=LSAuto&amp;b=0d7bf530" alt="" />
-    </div>
+   
 </div>
   </div>
     </>

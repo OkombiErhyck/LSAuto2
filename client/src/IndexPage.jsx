@@ -898,20 +898,19 @@ export default function IndexPage() {
 {showOptiuni && (
   <div className= "filter-container" >
   <div className="filter-item">
-        <label htmlFor="perk-select">Optiuni</label>
-        <select
-          id="perk-select"
-          value=""
-          onChange={(event) => handlePerkSelect(event.target.value)}
-        >
-          <option value="">Selecteaza</option>
-          {perkOptions.map((perk) => (
-            <option key={perk} value={perk}>
-              {perk}
-            </option>
-          ))}
-        </select>
+    <label>Optiuni</label>
+    {perkOptions.map((perk) => (
+      <div key={perk}>
+        <input
+          type="checkbox"
+          id={perk}
+          value={perk}
+          onChange={(event) => handlePerkSelect(event.target.checked, event.target.value)}
+        />
+        <label htmlFor={perk}>{perk}</label>
       </div>
+    ))}
+  </div>
 
           
 
