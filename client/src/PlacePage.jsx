@@ -5,7 +5,7 @@ import "./PlacePlage.css";
 import Carousel from "react-bootstrap/Carousel";
 import Image from "./image";
 import Details from './details';
-import Carvertical from "./images/carv.png";
+import Carvertical from "./images/carve.png";
 
 export default function PlacePage() {
   const { id } = useParams();
@@ -21,7 +21,7 @@ export default function PlacePage() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    window.location.href = `https://www.carvertical.com/ro/landing/v3?utm_source=aff&a=LSAuto&b=0eb206ae`;
+    window.location.href = `https://www.carvertical.com/ro/verificare-prealabila?utm_source=aff&a=LSAuto&b=7b50bf5a&vin=${place.seriesasiu}`;
   };
   
 
@@ -197,33 +197,30 @@ export default function PlacePage() {
       <p>{place.cilindre}cc</p>
     </div>
   </div>
+  <div>
+  <p style={{ color: "black" ,fontSize: '10px', marginTop:"-20px" }}>Partener</p>
+  
+ 
+  
+</div>
   <form onSubmit={handleSubmit} className="car-vertical-form">
-      <label htmlFor="vinInput" className="car-vertical-label">
-        Verificati istoricul masinii
-      </label>
+     
       <div className="car-vertical-input-container">
-        <input
-          id="vinInput"
-          type="text"
-          placeholder="Introdu seria de sasiu"
-          value={vin}
-          onChange={handleVinChange}
-          required
-          className="car-vertical-input"
-        />
+      
         <button type="submit" className="car-vertical-button">
-          Verifica
+          Verifica istoricul
         </button>
-      </div>
-    </form>
-    <div>
-  <p style={{ fontSize: '7px' }}>Partener</p>
+        <div>
+  <p style={{ fontSize: '10px', marginTop:"-20px" }}>Partener</p>
   
   <a href="https://www.carvertical.com/ro/landing/v3?utm_source=affiliate&amp;a=LSAuto&amp;b=0d7bf530" target="_top">
-    <img style={{ width: '50px', marginTop: '-40px' }} src={Carvertical} alt="carvertical" />
+    <img style={{ width: '90px', marginTop: '-40px' }} src={Carvertical} alt="carvertical" />
   </a>
   
 </div>
+      </div>
+    </form>
+    
 
     
 </div>
