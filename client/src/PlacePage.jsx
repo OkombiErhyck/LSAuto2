@@ -198,9 +198,11 @@ export default function PlacePage() {
     </div>
   </div>
   <div>
-  <p style={{ color: "black" ,fontSize: '10px', marginTop:"-20px" }}>Partener</p>
+  <p style={{ fontSize: '10px', marginTop:"-20px" }}>Partener</p>
   
- 
+  <a href="https://www.carvertical.com/ro/landing/v3?utm_source=affiliate&amp;a=LSAuto&amp;b=0d7bf530" target="_top">
+    <img style={{ width: '90px', marginTop: '-40px' }} src={Carvertical} alt="carvertical" />
+  </a>
   
 </div>
   <form onSubmit={handleSubmit} className="car-vertical-form">
@@ -210,14 +212,7 @@ export default function PlacePage() {
         <button type="submit" className="car-vertical-button">
           Verifica istoricul
         </button>
-        <div>
-  <p style={{ fontSize: '10px', marginTop:"-20px" }}>Partener</p>
-  
-  <a href="https://www.carvertical.com/ro/landing/v3?utm_source=affiliate&amp;a=LSAuto&amp;b=0d7bf530" target="_top">
-    <img style={{ width: '90px', marginTop: '-40px' }} src={Carvertical} alt="carvertical" />
-  </a>
-  
-</div>
+        
       </div>
     </form>
     
