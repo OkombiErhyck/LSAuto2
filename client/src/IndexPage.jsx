@@ -946,9 +946,10 @@ export default function IndexPage() {
     </div>
     {filteredPlaces.length === 0 && filtersApplied && (
   <div className="no-results">
+  <p style={{color:"wheat"}}>Ne pare rau.</p>
+   <p style={{color:"wheat"}}> Nu sunt rezultate pentru cautarea ta.</p>
   <img style={{height:"45vh", width:"auto"}} src={sad} alt=""/>
-  <p>No results found.</p>
-  
+  <p style={{color:"wheat"}}>Pentru a primi mai multe rezultate incearca sa aplici mai putine filtre</p>
   </div>
 )}
 
