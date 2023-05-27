@@ -11,8 +11,9 @@ import Perks from "./Perks";
 
 export default function IndexPage() {
 
+  
 
-
+  
   
   const [places, setPlaces] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -953,7 +954,11 @@ export default function IndexPage() {
           <div className="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4">
           
             {currentPlaces.length > 0 && currentPlaces.map(place => ( 
-              <Link to={"/place/" + place._id} key={place._id} className="link-no-underline">
+              <Link
+              to={"/place/" + place._id}
+              key={place._id}
+              className="link-no-underline"
+              target="_blank">
                 <div className="col ">
                   <div className="box card-body p-0  shadow-sm mb-5">
                     {place.photos.length > 0 && (
