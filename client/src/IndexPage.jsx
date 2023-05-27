@@ -86,6 +86,8 @@ export default function IndexPage() {
     "control automat al climatizării",
     "faruri cu LED",
     "faruri cu Laser",
+    "Apple Carplay",
+    "Android Auto",
     "scaune încălzite",
     "cameră video de marșarier",
     "airbag-uri frontale",
@@ -194,7 +196,6 @@ export default function IndexPage() {
 
   
   const resetFilters = () => {
-    setSelectedPerks("");
     setSelectedMarca("");
     setSelectedModel("");
     setSelectedAnul("");
@@ -214,6 +215,10 @@ export default function IndexPage() {
     setSelectedAnulMax("");
     setSelectedPutereMin("");
     setSelectedPutereMax("");
+    
+    handleFiltersChange();     // Reapply filters and update result count
+    handleExtraChange();       // Reapply extra filters and update result count
+    handleOptiuniChange();     // Reapply optiuni filters and update result count
   };
 
 
