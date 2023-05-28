@@ -14,8 +14,7 @@ const multer = require('multer');
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json({ limit: '50mb' });
 app.use(jsonParser);
-const session = require("express-session");
-const MongoDBStore = require("connect-mongodb-session")(session);
+
 
 const bcryptSalt = bcrypt.genSaltSync(10);
 const jwtSecret = "123456789";
@@ -55,25 +54,7 @@ async function uploadToS3(path, originalFilename, mimetype) {
 }
 
 
-const store = new MongoDBStore({
-  uri: process.env.MONGO_URL,
-  collection: "sessions",
-});
 
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    store: store,
-    cookie: {
-      secure: true,
-      httpOnly: true,
-      sameSite: "lax",
-      maxAge: 24 * 60 * 60 * 1000, // Session expiration time (1 day)
-    },
-  })
-);
 
 app.get("/test", (req,res) => {
   mongoose.connect(process.env.MONGO_URL);
@@ -105,42 +86,55 @@ res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
 
 app.post("/login", async (req, res) => {
   mongoose.connect(process.env.MONGO_URL);
-   res.header("Access-Control-Allow-Credentials", "true");
-   res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
-  const { email, password } = req.body;
-  const userDoc = await User.findOne({ email });
-  if (userDoc) {
-    const passOk = bcrypt.compareSync(password, userDoc.password);
-    if (passOk) {
-      req.session.user = { // Storing user data in the session
-        email: userDoc.email,
-        id: userDoc._id,
-        name: userDoc.name,
-      };
-      res.json(userDoc);
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
+    const { email, password } = req.body;
+    const userDoc = await User.findOne({ email });
+    if (userDoc) {
+      const passOk = bcrypt.compareSync(password, userDoc.password);
+      if (passOk) {
+        jwt.sign({email:userDoc.email, id:userDoc._id, name:userDoc.name}, jwtSecret, {}, (err, token) => {
+             if (err) throw err;
+        
+             res.cookie("token", token, {
+              sameSite: 'lax',  // Adjust the sameSite value based on your requirements
+              secure: true,
+              domain: "lsauto.ro", // Set the domain to your website's domain
+            }).json(userDoc);
+       
+    });
+
+      } else {
+        res.status(422).json("pass not ok");
+      }
     } else {
-      res.status(422).json("pass not ok");
+      res.status(404).json("not found");
     }
-  } else {
-    res.status(404).json("not found");
-  }
+  });
+
+  
+  app.get("/profile", (req,res) => {
+    res.header("Access-Control-Allow-Credentials", "true");
+    res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
+    mongoose.connect(process.env.MONGO_URL);
+    const {token} = req.cookies;
+    if (token) {
+        jwt.verify(token, jwtSecret, {}, async (err, user) => {
+               if (err) throw err;
+               
+               res.json(user);
+         });
+    } else {
+        res.json(null);
+    }
+  });
+
+
+app.post("/logout", (req,res) => {
+  
+  res.cookie("token", "").json(true);
 });
 
-app.get("/profile", (req, res) => {
-   res.header("Access-Control-Allow-Credentials", "true");
-   res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
-  mongoose.connect(process.env.MONGO_URL);
-  if (req.session.user) {
-    res.json(req.session.user); // Retrieve user data from the session
-  } else {
-    res.json(null);
-  }
-});
-
-app.post("/logout", (req, res) => {
-  req.session.destroy(); // Destroy the session on logout
-  res.json(true);
-});
 
 const photosMiddleware = multer({dest:'/tmp',  limits: { fileSize: 80000000 }});
 app.options("/upload", (req, res) => {
