@@ -29,8 +29,15 @@ function Userpage() {
   }
 
   function vibrateButton() {
-    if ("vibrate" in navigator) {
-      navigator.vibrate(100); // Vibrate for 100 milliseconds
+    if (navigator.vibrate) {
+      // Check if the Vibration API is supported
+      navigator.vibrate([100]); // Vibrate for 100 milliseconds
+    } else if (window.Notification && window.Notification.permission === "granted") {
+      // Fallback to using Web Notifications API for vibration
+      const notification = new window.Notification("", {
+        silent: true,
+        vibrate: [100]
+      });
     }
   }
 
@@ -88,16 +95,12 @@ function Userpage() {
               </div>
 
               <div className="col-lg-4 col-xs-6">
-                <div
-                  onClick={() => {
-                    vibrateButton();
-                    logout();
-                  }}
-                  className="box card-body p-0 shadow-sm mb-5"
-                >
+                <div onClick={logout} className="box card-body p-0 shadow-sm mb-5">
                   <div className="box_content">
                     <img src={Logout} className="img-fluid" alt="" />
-                    <span className="btn1">Iesire din Cont</span>
+                    <span onClick={vibrateButton} className="btn1">
+                      Iesire din Cont
+                    </span>
                   </div>
                 </div>
               </div>
