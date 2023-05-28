@@ -14,11 +14,11 @@ function Login() {
     ev.preventDefault();
     try {
       const { data } = await axios.post("/login", { email, password });
-      setUser(data);
 
-      // Set the login status in the cookie
-      document.cookie = 'isLoggedIn=true; path=/; max-age=86400'; // Set the cookie to expire in 24 hours
-      
+      // Store the JWT token in browser's local storage or session storage
+      localStorage.setItem("token", data.token);
+
+      setUser(data.user);
       setRedirect(true);
     } catch (e) {
       alert("Login failed");
