@@ -89,7 +89,7 @@ if (redirect) {
                            
                            <div className="box_content">
                            <img src={Logout} className="img-fluid" alt=""/>
-                            <button onClick={logout} className="btn1">Iesire din Cont</button>
+                            <span onClick={logout} className="btn1">Iesire din Cont</span>
                            </div>
                        </div>
                     </div>

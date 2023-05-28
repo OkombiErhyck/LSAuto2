@@ -95,8 +95,7 @@ app.post("/login", async (req, res) => {
         jwt.sign({email:userDoc.email, id:userDoc._id, name:userDoc.name}, jwtSecret, {}, (err, token) => {
              if (err) throw err;
         
-             res.cookie("token", token, { sameSite: 'None', secure: true, httpOnly: true }).json(userDoc);
-
+        res.cookie("token", token, { sameSite: 'none', secure: true }).json(userDoc);
 
     });
 
@@ -109,28 +108,26 @@ app.post("/login", async (req, res) => {
   });
 
   
-  app.get("/profile", (req, res) => {
+  app.get("/profile", (req,res) => {
     res.header("Access-Control-Allow-Credentials", "true");
     res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
     mongoose.connect(process.env.MONGO_URL);
-    const { token } = req.cookies;
+    const {token} = req.cookies;
     if (token) {
-      jwt.verify(token, jwtSecret, {}, async (err, user) => {
-        if (err) throw err;
-  
-        res.cookie("token", token, { sameSite: 'None', secure: true, httpOnly: true }).json(user);
-      });
+        jwt.verify(token, jwtSecret, {}, async (err, user) => {
+               if (err) throw err;
+               
+               res.json(user);
+         });
     } else {
-      res.json(null);
+        res.json(null);
     }
   });
-  
 
 
 app.post("/logout", (req,res) => {
   
-  res.cookie("token", "", { sameSite: 'None', secure: true, httpOnly: true }).json(true);
-
+  res.cookie("token", "").json(true);
 });
 
 
