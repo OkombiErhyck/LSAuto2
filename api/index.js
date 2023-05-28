@@ -108,42 +108,22 @@ app.post("/login", async (req, res) => {
   });
 
   
-  app.get("/profile", async (req, res) => {
+  app.get("/profile", (req,res) => {
     res.header("Access-Control-Allow-Credentials", "true");
     res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
     mongoose.connect(process.env.MONGO_URL);
-    const { token } = req.cookies;
+    const {token} = req.cookies;
     if (token) {
-      try {
-        const decodedToken = jwt.verify(token, jwtSecret);
-        res.json(decodedToken);
-      } catch (err) {
-        if (err.name === "TokenExpiredError") {
-          // Token has expired, initiate silent authentication
-          try {
-            const { email } = jwt.decode(token); // Extract email from the token
-            const userDoc = await User.findOne({ email });
-            if (userDoc) {
-              const newToken = jwt.sign(
-                { email: userDoc.email, id: userDoc._id, name: userDoc.name },
-                jwtSecret,
-                {}
-              );
-              res.cookie("token", newToken, { sameSite: "none", secure: true }).json(userDoc);
-            } else {
-              res.status(404).json("not found");
-            }
-          } catch (err) {
-            res.status(500).json("internal server error");
-          }
-        } else {
-          res.status(401).json("unauthorized");
-        }
-      }
+        jwt.verify(token, jwtSecret, {}, async (err, user) => {
+               if (err) throw err;
+               
+               res.json(user);
+         });
     } else {
-      res.json(null);
+        res.json(null);
     }
   });
+
 
 app.post("/logout", (req,res) => {
   
