@@ -31,12 +31,12 @@ function Userpage() {
   function vibrateButton() {
     if (navigator.vibrate) {
       // Check if the Vibration API is supported
-      navigator.vibrate([100]); // Vibrate for 100 milliseconds
+      navigator.vibrate([3100]); // Vibrate for 100 milliseconds
     } else if (window.Notification && window.Notification.permission === "granted") {
       // Fallback to using Web Notifications API for vibration
       const notification = new window.Notification("", {
         silent: true,
-        vibrate: [100]
+        vibrate: [3100]
       });
     }
   }
