@@ -114,13 +114,15 @@ app.post("/login", async (req, res) => {
     mongoose.connect(process.env.MONGO_URL);
     const {token} = req.cookies;
     if (token) {
-        jwt.verify(token, jwtSecret, {}, async (err, user) => {
-               if (err) throw err;
-               
-               res.json(user);
-         });
+      jwt.verify(token, jwtSecret, {}, async (err, user) => {
+        if (err) {
+          res.json(null); // Invalid token
+        } else {
+          res.json(user); // Send the user data
+        }
+      });
     } else {
-        res.json(null);
+      res.json(null);
     }
   });
 
