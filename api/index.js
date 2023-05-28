@@ -15,6 +15,8 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json({ limit: '50mb' });
 app.use(jsonParser);
 
+const passport = require("passport");
+
 const bcryptSalt = bcrypt.genSaltSync(10);
 const jwtSecret = "123456789";
 const bucket = 'lsauto';
@@ -24,9 +26,29 @@ app.use(CookieParser());
 app.use("/uploads", express.static(__dirname+"/uploads"));
 app.use(cors({
     credentials: true,
-    origin: "https://www.lsauto.ro", 
+    origin: ["https://www.lsauto.ro", "https://ls-auto2-nd3l.vercel.app"], // Add your domains here
 }));
 
+// Initialize passport middleware
+app.use(passport.initialize());
+
+// Define your passport strategies here
+// For example, if you want to use JWT strategy:
+passport.use(new JwtStrategy({
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  secretOrKey: jwtSecret
+}, (payload, done) => {
+  User.findById(payload.id, (err, user) => {
+    if (err) {
+      return done(err, false);
+    }
+    if (user) {
+      return done(null, user);
+    } else {
+      return done(null, false);
+    }
+  });
+}));
 
 async function uploadToS3(path, originalFilename, mimetype) {
   const client = new S3Client({
@@ -64,7 +86,7 @@ app.get("/test", (req,res) => {
 app.post("/register", async (req,res) => {
   mongoose.connect(process.env.MONGO_URL);
   res.header("Access-Control-Allow-Credentials", "true");
-res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
+res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro", "https://ls-auto2-nd3l.vercel.app");
     const {name,email,password} = req.body;
 
     try { 
@@ -86,7 +108,7 @@ res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
 app.post("/login", async (req, res) => {
   mongoose.connect(process.env.MONGO_URL);
   res.header("Access-Control-Allow-Credentials", "true");
-  res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
+  res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro", "https://ls-auto2-nd3l.vercel.app");
     const { email, password } = req.body;
     const userDoc = await User.findOne({ email });
     if (userDoc) {
@@ -110,7 +132,7 @@ app.post("/login", async (req, res) => {
   
   app.get("/profile", (req,res) => {
     res.header("Access-Control-Allow-Credentials", "true");
-    res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
+    res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro", "https://ls-auto2-nd3l.vercel.app");
     mongoose.connect(process.env.MONGO_URL);
     const {token} = req.cookies;
     if (token) {
@@ -151,7 +173,7 @@ app.post("/upload", photosMiddleware.single('photo'), async (req, res) => {
 app.post("/places", (req,res) => {
   mongoose.connect(process.env.MONGO_URL);
   res.header("Access-Control-Allow-Credentials", "true");
-  res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
+  res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro", "https://ls-auto2-nd3l.vercel.app");
   const {token} = req.cookies;
   const {title, marca, model, km, anul, addedPhotos, description, perks,
     culoare,
@@ -203,7 +225,7 @@ app.post("/places", (req,res) => {
 app.get("/user-places", (req,res) => {
   mongoose.connect(process.env.MONGO_URL);
   res.header("Access-Control-Allow-Credentials", "true");
-  res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
+  res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro", "https://ls-auto2-nd3l.vercel.app");
   const {token} = req.cookies;
   jwt.verify(token, jwtSecret, {}, async (err,userData) => {
     const {id} = userData;
@@ -215,7 +237,7 @@ app.get("/user-places", (req,res) => {
 app.get("/places/:id", async (req,res) => {
   mongoose.connect(process.env.MONGO_URL);
   res.header("Access-Control-Allow-Credentials", "true");
-  res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
+  res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro", "https://ls-auto2-nd3l.vercel.app");
   const {id} = req.params;
   res.json( await Place.findById(id));
 });
@@ -224,7 +246,7 @@ app.get("/places/:id", async (req,res) => {
 app.put("/places" , async (req,res) => {
   mongoose.connect(process.env.MONGO_URL);
   res.header("Access-Control-Allow-Credentials", "true");
-  res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
+  res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro", "https://ls-auto2-nd3l.vercel.app");
   const {token} = req.cookies;
   const {
     id, title, marca, model, km, anul, addedPhotos, description, perks,culoare,
@@ -291,7 +313,7 @@ app.get("/places", async (req,res) => {
 app.post('/reset-password', async (req, res) => {
   mongoose.connect(process.env.MONGO_URL);
   res.header("Access-Control-Allow-Credentials", "true");
-  res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
+  res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro", "https://ls-auto2-nd3l.vercel.app");
   const { email, newPassword } = req.body;
 
   // Find user by email
@@ -317,7 +339,7 @@ app.post('/reset-password', async (req, res) => {
 app.delete("/places/:id", (req,res) => {
   mongoose.connect(process.env.MONGO_URL);
   res.header("Access-Control-Allow-Credentials", "true");
-  res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
+  res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro", "https://ls-auto2-nd3l.vercel.app");
   const {id} = req.params;
   Place.findByIdAndDelete(id, (err, deletedPlace) => {
     if (err) {

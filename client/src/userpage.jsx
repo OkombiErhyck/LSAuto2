@@ -20,7 +20,9 @@ if (!ready) {
     return "loading...";
 }
 
-
+if (ready && !user) {
+    return <Navigate to={"/"}/>
+}
 
 async function logout() {
    await axios.post("/logout");
