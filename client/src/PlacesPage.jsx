@@ -3,50 +3,39 @@ import axios from 'axios';
 import './Myadds.css';
 import Image from './image';
 import { Link, useParams } from 'react-router-dom';
-
-
+import { useDispatch } from 'react-redux';
+import { incrementClickCount } from './actions';
 
 export default function PlacesPage() {
   const [places, setPlaces] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     axios.get('/user-places').then(({ data }) => {
-      const placesWithClickCount = data.map(place => ({ ...place, clickCount: 0 }));
-      setPlaces(placesWithClickCount);
+      setPlaces(data);
     });
   }, []);
 
   const handleDelete = (event, id) => {
     event.preventDefault();
     axios.delete(`/places/${id}`).then(() => {
-      setPlaces(prevPlaces => prevPlaces.filter(place => place._id !== id));
+      setPlaces((prevPlaces) => prevPlaces.filter((place) => place._id !== id));
     });
   };
 
   const handlePlaceClick = (id) => {
-    setPlaces(prevPlaces =>
-      prevPlaces.map(place => {
-        if (place._id === id) {
-          return {
-            ...place,
-            clickCount: place.clickCount + 1
-          };
-        }
-        return place;
-      })
-    );
+    dispatch(incrementClickCount(id));
   };
 
   return (
     <>
       <div className="top"></div>
-
       <div className="main2">
         <div className="container">
           <div className="details container">
             <div className="row row-cols-1 row-cols-md-3 g-4">
               {places.length > 0 &&
-                places.map(place => (
+                places.map((place) => (
                   <Link className="link-no-underline" to={"/write/" + place._id} key={place._id}>
                     <div className="col">
                       <div className="box card-body p-0  shadow-sm mb-5" onClick={() => handlePlaceClick(place._id)}>
@@ -68,11 +57,14 @@ export default function PlacesPage() {
                             <button style={{ background: "#cccccc00", color: "var(--main)" }} className="btn1">
                               Detalii
                             </button>
-                            <button style={{ color: "red" }} className="btn1" onClick={(event) => handleDelete(event, place._id)}>
+                            <button
+                              style={{ color: "red" }}
+                              className="btn1"
+                              onClick={(event) => handleDelete(event, place._id)}
+                            >
                               Sterge
                             </button>
                           </div>
-                          <p>Clicks: {place.clickCount}</p> {/* Display the click count */}
                         </div>
                       </div>
                     </div>
