@@ -96,12 +96,8 @@ app.post("/login", async (req, res) => {
         jwt.sign({email:userDoc.email, id:userDoc._id, name:userDoc.name}, jwtSecret, {}, (err, token) => {
              if (err) throw err;
         
-             res.cookie("token", token, {
-              sameSite: 'lax',  // Adjust the sameSite value based on your requirements
-              secure: true,
-              domain: "lsauto.ro", // Set the domain to your website's domain
-            }).json(userDoc);
-       
+        res.cookie("token", token, { sameSite: 'none', secure: true }).json(userDoc);
+
     });
 
       } else {
