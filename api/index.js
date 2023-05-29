@@ -156,12 +156,33 @@ app.post('/update-click-count/:id', (req, res) => {
   const { id } = req.params;
 
   // Find the place by id in your database
-  // Increment the click count for the place
-  // Update the place with the new click count
+  Place.findById(id, (err, place) => {
+    if (err) {
+      // Handle the error appropriately
+      return res.status(500).json({ error: 'An error occurred' });
+    }
+    
+    if (!place) {
+      // Handle the case when the place is not found
+      return res.status(404).json({ error: 'Place not found' });
+    }
 
-  // Respond with a success message or the updated place object
-  res.json({ message: 'Click count updated successfully' });
+    // Increment the click count for the place
+    place.clickCount += 1;
+
+    // Save the updated place in the database
+    place.save((err, updatedPlace) => {
+      if (err) {
+        // Handle the error appropriately
+        return res.status(500).json({ error: 'An error occurred' });
+      }
+
+      // Respond with the updated place object
+      res.json(updatedPlace);
+    });
+  });
 });
+
 
 
 app.post("/places", (req,res) => {
@@ -281,7 +302,8 @@ app.put("/places" , async (req,res) => {
         caroserie,
         putere,
         normaeuro,
-        combustibil
+        combustibil,
+        clickCount: placeDoc.clickCount + 1,
       });
       await placeDoc.save();
       res.json("ok");
