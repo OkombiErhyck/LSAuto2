@@ -15,6 +15,7 @@ export default function IndexPage() {
 
   
   
+  
   const [places, setPlaces] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [placesPerPage, setPlacesPerPage] = useState(9);
@@ -38,6 +39,38 @@ export default function IndexPage() {
   const [selectedPutereMin, setSelectedPutereMin] = useState("");
   const [selectedPutereMax, setSelectedPutereMax] = useState("");
 
+  const [clickCounts, setClickCounts] = useState({});
+
+  // Function to handle place click
+  const handlePlaceClick = (placeId) => {
+    // Get the current click count for the place
+    const currentCount = clickCounts[placeId] || 0;
+
+    // Update the click count by 1
+    const updatedCounts = {
+      ...clickCounts,
+      [placeId]: currentCount + 1
+    };
+
+    // Update the state with the updated click counts
+    setClickCounts(updatedCounts);
+
+    // Send the updated click count to the server or update the database here
+    // Example code for sending the click count to the server
+    fetch(`/api/places/${placeId}/clicks`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ clicks: updatedCounts[placeId] })
+    })
+    .then(response => {
+      // Handle the response
+    })
+    .catch(error => {
+      // Handle the error
+    });
+  };
 
   
   const data = [
@@ -957,14 +990,15 @@ export default function IndexPage() {
         </div>
         
         <div className="details container">
-          <div className="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4">
-          
-            {currentPlaces.length > 0 && currentPlaces.map(place => ( 
-              <Link
-              to={"/place/" + place._id}
-              key={place._id}
-              className="link-no-underline"
-              target="_blank">
+      <div className="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {currentPlaces.length > 0 && currentPlaces.map(place => ( 
+          <Link
+            to={"/place/" + place._id}
+            key={place._id}
+            className="link-no-underline"
+            target="_blank"
+            onClick={() => handlePlaceClick(place._id)} // Add the click event handler
+          >
                 <div className="col ">
                   <div className="box card-body p-0  shadow-sm mb-5">
                     {place.photos.length > 0 && (

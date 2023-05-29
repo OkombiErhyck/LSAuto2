@@ -147,40 +147,12 @@ app.post("/upload", photosMiddleware.single('photo'), async (req, res) => {
 });
 
 
-// Assuming you're using Express.js for your server
+app.post('/api/places/:placeId/clicks', (req, res) => {
+  const placeId = req.params.placeId;
+  const { clicks } = req.body;
 
-// Import necessary modules and setup your server
-
-// Define a route for updating the click count
-app.post('/update-click-count/:id', (req, res) => {
-  const { id } = req.params;
-
-  // Find the place by id in your database
-  Place.findById(id, (err, place) => {
-    if (err) {
-      // Handle the error appropriately
-      return res.status(500).json({ error: 'An error occurred' });
-    }
-    
-    if (!place) {
-      // Handle the case when the place is not found
-      return res.status(404).json({ error: 'Place not found' });
-    }
-
-    // Increment the click count for the place
-    place.clickCount += 1;
-
-    // Save the updated place in the database
-    place.save((err, updatedPlace) => {
-      if (err) {
-        // Handle the error appropriately
-        return res.status(500).json({ error: 'An error occurred' });
-      }
-
-      // Respond with the updated place object
-      res.json(updatedPlace);
-    });
-  });
+  
+  res.sendStatus(200);
 });
 
 
@@ -230,6 +202,8 @@ app.post("/places", (req,res) => {
 
     });
     res.json(placeDoc);
+
+     
   });
 });
 
