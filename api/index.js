@@ -148,18 +148,14 @@ app.post("/upload", photosMiddleware.single('photo'), async (req, res) => {
 
 
 app.post('/api/places/:placeId/clicks', (req, res) => {
+  mongoose.connect(process.env.MONGO_URL);
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
   const placeId = req.params.placeId;
   const { clicks } = req.body;
 
-  // Update the click count in the database
-  Place.findByIdAndUpdate(placeId, { clickCount: clicks }, (err, updatedPlace) => {
-    if (err) {
-      console.error('Error updating click count:', err);
-      res.sendStatus(500); // Internal Server Error
-    } else {
-      res.sendStatus(200); // Success
-    }
-  });
+  
+  res.sendStatus(200);
 });
 
 
