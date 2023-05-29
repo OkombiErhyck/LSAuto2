@@ -149,72 +149,11 @@ app.post("/upload", photosMiddleware.single('photo'), async (req, res) => {
 
    
 
-app.post("/places", (req, res) => {
+app.post('/api/places/:placeId/clicks', (req, res) => {
   mongoose.connect(process.env.MONGO_URL);
   res.header("Access-Control-Allow-Credentials", "true");
   res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
-  const { token } = req.cookies;
-  const {
-    title,
-    marca,
-    model,
-    km,
-    anul,
-    addedPhotos,
-    description,
-    perks,
-    culoare,
-    nume,
-    mail,
-    telefon,
-    cilindre,
-    tractiune,
-    transmisie,
-    seriesasiu,
-    caroserie,
-    putere,
-    normaeuro,
-    combustibil,
-    clicks // New field to capture the initial click count
-  } = req.body;
-
-  jwt.verify(token, jwtSecret, {}, (err, userData) => {
-    if (err) {
-      throw err;
-    }
-
-    // Create the new place document with the initial click count
-    const placeDoc = Place.create({
-      owner: userData.id,
-      title,
-      marca,
-      anul,
-      model,
-      km,
-      nume,
-      mail,
-      telefon,
-      photos: addedPhotos,
-      description,
-      perks,
-      culoare,
-      cilindre,
-      tractiune,
-      transmisie,
-      seriesasiu,
-      caroserie,
-      putere,
-      normaeuro,
-      combustibil,
-      clickCount: clicks // Set the initial click count
-    });
-
-    // Send the response with the newly created place document
-    res.json(placeDoc);
-  });
-});
-
-app.post('/api/places/:placeId/clicks', (req, res) => {
+ 
   const placeId = req.params.placeId;
   const { clicks } = req.body;
 
@@ -234,6 +173,58 @@ app.post('/api/places/:placeId/clicks', (req, res) => {
   );
 });
 
+
+
+
+app.post("/places", (req,res) => {
+  mongoose.connect(process.env.MONGO_URL);
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
+  const {token} = req.cookies;
+  const {title, marca, model, km, anul, addedPhotos, description, perks,
+    culoare,
+    nume,
+    mail,
+    telefon,
+    cilindre,
+    tractiune,
+    transmisie,
+    seriesasiu,
+    caroserie,
+    putere,
+    normaeuro,
+    combustibil} = req.body;
+  jwt.verify(token, jwtSecret, {}, (err, userData) => {
+    if (err) throw err;
+    const placeDoc = Place.create({
+      owner: userData.id,
+      title,
+      marca,
+      anul,
+      model,
+      km,
+      nume,
+    mail,
+    telefon,
+      photos:addedPhotos,
+      description,
+      perks,
+      culoare,
+      cilindre,
+      tractiune,
+      transmisie,
+      seriesasiu,
+      caroserie,
+      putere,
+      normaeuro,
+      combustibil
+
+    });
+    res.json(placeDoc);
+
+     
+  });
+});
 
 
 
