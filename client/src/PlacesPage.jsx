@@ -16,12 +16,7 @@ export default function PlacesPage() {
     });
   }, []);
 
-  const handleDelete = (event, id) => {
-    event.preventDefault();
-    axios.delete(`/places/${id}`).then(() => {
-      setPlaces(prevPlaces => prevPlaces.filter(place => place._id !== id));
-    });
-  };
+   
 
   const handlePlaceClick = (id) => {
     setPlaces(prevPlaces =>
@@ -36,6 +31,15 @@ export default function PlacesPage() {
       })
     );
   };
+
+  const handleDelete = (event, id) => {
+    event.preventDefault();
+    axios.delete(`/places/${id}`).then(() => {
+      setPlaces(prevPlaces => prevPlaces.filter(place => place._id !== id));
+    });
+  };
+
+
 
   return (
     <>

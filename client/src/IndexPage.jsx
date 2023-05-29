@@ -13,7 +13,28 @@ export default function IndexPage() {
 
   
 
-  
+  useEffect(() => {
+    axios.get('/user-places').then(({ data }) => {
+      const placesWithClickCount = data.map(place => ({ ...place, clickCount: 0 }));
+      setPlaces(placesWithClickCount);
+    });
+  }, []);
+
+   
+
+  const handlePlaceClick = (id) => {
+    setPlaces(prevPlaces =>
+      prevPlaces.map(place => {
+        if (place._id === id) {
+          return {
+            ...place,
+            clickCount: place.clickCount + 1
+          };
+        }
+        return place;
+      })
+    );
+  };
   
   const [places, setPlaces] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -966,6 +987,8 @@ export default function IndexPage() {
               className="link-no-underline"
               target="_blank">
                 <div className="col ">
+                <div className="box card-body p-0  shadow-sm mb-5" onClick={() => handlePlaceClick(place._id)}>
+                      
                   <div className="box card-body p-0  shadow-sm mb-5">
                     {place.photos.length > 0 && (
                       <Image src={ place.photos[0]} className="img-fluid" style={{height: "270px", width: "100%", objectFit: "cover"}}/>
@@ -985,11 +1008,13 @@ export default function IndexPage() {
                   </div>
                 </div>
                 </div>
+                </div>
               </Link>
             ))}
           </div>
         </div>
-      </div>
+        </div>
+      
       <div className="pagination">
         <ul>
           {Array.from({ length: totalPages }, (_, i) => i + 1).map(pageNumber => (
