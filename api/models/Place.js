@@ -21,8 +21,11 @@ const placeSchema = new mongoose.Schema({
   km: Number,
   nume:String,
   mail: String,
-  telefon: String
-
+  telefon: String,
+  clickCount: {
+    type: Number,
+    default: 0
+  },
 
 
 });

@@ -66,9 +66,9 @@ export default function PlacesPage() {
                               {place.putere} cp | {place.anul} | {place.km} km <h5>{place.title}€</h5>
                             </div>
                             <button style={{ background: "#cccccc00", color: "var(--main)" }} className="btn1">
-                              Detalii
+                              Editeaza
                             </button>
-                            <button style={{ color: "red" }} className="btn1" onClick={(event) => handleDelete(event, place._id)}>
+                            <button style={{ backgroundColor: "red" }} className="btn1" onClick={(event) => handleDelete(event, place._id)}>
                               Sterge
                             </button>
                           </div>

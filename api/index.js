@@ -147,6 +147,21 @@ app.post("/upload", photosMiddleware.single('photo'), async (req, res) => {
 });
 
 
+// Assuming you're using Express.js for your server
+
+// Import necessary modules and setup your server
+
+// Define a route for updating the click count
+app.post('/update-click-count/:id', (req, res) => {
+  const { id } = req.params;
+
+  // Find the place by id in your database
+  // Increment the click count for the place
+  // Update the place with the new click count
+
+  // Respond with a success message or the updated place object
+  res.json({ message: 'Click count updated successfully' });
+});
 
 
 app.post("/places", (req,res) => {
