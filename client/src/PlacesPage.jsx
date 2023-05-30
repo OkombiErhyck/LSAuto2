@@ -76,7 +76,7 @@ export default function PlacesPage() {
                               Sterge
                             </button>
                           </div>
-                          <p>Clicks: {place.clickCount}</p> {/* Display the click count */}
+                          <p>Vizualizari: {place.clickCount}</p> {/* Display the click count */}
                         </div>
                       </div>
                     </div>

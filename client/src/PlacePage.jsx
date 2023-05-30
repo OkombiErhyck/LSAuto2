@@ -25,6 +25,8 @@ export default function PlacePage() {
   };
   
 
+
+  
   useEffect(() => {
     if (!id) {
       return;
@@ -46,6 +48,7 @@ export default function PlacePage() {
       }
     }
 
+
     // Adjust the carousel image size on mount
     adjustCarouselImageSize();
 
@@ -57,6 +60,26 @@ export default function PlacePage() {
       window.removeEventListener('resize', adjustCarouselImageSize);
     }
   }, []);
+  useEffect(() => {
+    const setMetaTags = () => {
+      const metaTags = [
+        { property: "og:title", content: place.title },
+        { property: "og:description", content: place.description },
+        { property: "og:image", content: place.imageURL },
+        { property: "og:url", content: window.location.href },
+        { property: "og:type", content: "website" },
+      ];
+
+      metaTags.forEach((tag) => {
+        const metaTag = document.createElement("meta");
+        metaTag.setAttribute("property", tag.property);
+        metaTag.setAttribute("content", tag.content);
+        document.head.appendChild(metaTag);
+      });
+    };
+
+    setMetaTags();
+  }, [place]);
 
   if (!place) return "";
 
@@ -94,6 +117,9 @@ export default function PlacePage() {
       console.error(error.message);
     }
   };
+
+
+  
    
   return (
     <>

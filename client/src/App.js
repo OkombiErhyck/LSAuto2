@@ -48,7 +48,7 @@ function App() {
             <Route path='/userpage' element={<Userpage />} />
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<Signup />} />
-            <Route path='/PlacesPage' element={<PlacesPage />} />
+            <Route path="/place/:id" element={<PlacePage />} />
             <Route path='/IndexPage' element={<IndexPage />} />
             <Route path='/place/:id' element={<PlacePage />} />
             <Route path='/reset-password' element={<ResetPassword />} />
