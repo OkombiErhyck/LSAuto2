@@ -48,7 +48,7 @@ function App() {
             <Route path='/userpage' element={<Userpage />} />
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<Signup />} />
-            <Route path="/place/:id" element={<PlacePage />} />
+            <Route path='/PlacesPage' element={<PlacesPage />} />
             <Route path='/IndexPage' element={<IndexPage />} />
             <Route path='/place/:id' element={<PlacePage />} />
             <Route path='/reset-password' element={<ResetPassword />} />
@@ -60,6 +60,7 @@ function App() {
     </div>
   );
 }
+
 function Main() {
   const [isLoaded, setIsLoaded] = useState(false);
 
