@@ -35,36 +35,7 @@ export default function PlacePage() {
   }, [id]);
   
   
-  useEffect(() => {
-    // Set Open Graph metadata tags dynamically
-    const ogTitle = document.createElement("meta");
-    ogTitle.setAttribute("property", "og:title");
-    ogTitle.setAttribute("content", `${place.marca} ${place.model}`);
-    document.head.appendChild(ogTitle);
-
-    const ogDescription = document.createElement("meta");
-    ogDescription.setAttribute("property", "og:description");
-    ogDescription.setAttribute("content", place.description);
-    document.head.appendChild(ogDescription);
-
-    const ogImage = document.createElement("meta");
-    ogImage.setAttribute("property", "og:image");
-    ogImage.setAttribute("content", place.photos[0]);
-    document.head.appendChild(ogImage);
-
-    const ogUrl = document.createElement("meta");
-    ogUrl.setAttribute("property", "og:url");
-    ogUrl.setAttribute("content", window.location.href);
-    document.head.appendChild(ogUrl);
-
-    // Clean up the created metadata tags when the component unmounts
-    return () => {
-      document.head.removeChild(ogTitle);
-      document.head.removeChild(ogDescription);
-      document.head.removeChild(ogImage);
-      document.head.removeChild(ogUrl);
-    };
-  }, [place]);
+  
   
 
   useEffect(() => {
