@@ -368,6 +368,7 @@ export default function Write() {
         "Edge",
         "Flex",
         "Fusion",
+        "Kuga",
         "Transit",
         "Ranger",
         "GT"
