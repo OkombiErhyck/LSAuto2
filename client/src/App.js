@@ -60,7 +60,6 @@ function App() {
     </div>
   );
 }
-
 function Main() {
   const [isLoaded, setIsLoaded] = useState(false);
 
