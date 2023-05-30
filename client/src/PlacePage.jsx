@@ -35,6 +35,10 @@ export default function PlacePage() {
       setPlace(response.data);
     });
   }, [id]);
+  
+  
+  
+  
 
   useEffect(() => {
     function adjustCarouselImageSize() {
