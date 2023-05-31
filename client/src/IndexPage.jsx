@@ -664,19 +664,25 @@ export default function IndexPage() {
 {showOptiuni && (
   <div className= "filter-container" >
   <div className="filter-item">
+  <div className="optiuni">
     <label>Optiuni</label>
     {perkOptions.map((perk) => (
       <div key={perk}>
+      <label htmlFor={perk}>
         <input
           type="checkbox"
           id={perk}
           value={perk}
           onChange={(event) => handlePerkSelect(event.target.checked, event.target.value)}
         />
-        <label htmlFor={perk}>{perk}</label>
+         {perk}</label>
       </div>
     ))}
   </div>
+</div>
+    
+
+
 
           
  
@@ -940,21 +946,23 @@ export default function IndexPage() {
 {showOptiuni && (
   <div className= "filter-container" >
   <div className="filter-item">
+  <div className="optiuni">
     <label>Optiuni</label>
     {perkOptions.map((perk) => (
       <div key={perk}>
+      <label htmlFor={perk}>
         <input
           type="checkbox"
           id={perk}
           value={perk}
           onChange={(event) => handlePerkSelect(event.target.checked, event.target.value)}
         />
-        <label htmlFor={perk}>{perk}</label>
+        {perk}</label>
       </div>
     ))}
   </div>
-
-          
+</div>
+    
 
 </div>)}
           
