@@ -6,6 +6,7 @@ import Carousel from "react-bootstrap/Carousel";
 import Image from "./image";
 import Details from './details';
 import Carvertical from "./images/carve.png";
+import { FaPhone, FaWhatsapp } from 'react-icons/fa';
 
 export default function PlacePage() {
   const { id } = useParams();
@@ -25,7 +26,7 @@ export default function PlacePage() {
   };
   
 
-
+  
   
   useEffect(() => {
     if (!id) {
@@ -99,7 +100,14 @@ export default function PlacePage() {
   };
 
 
-  
+  const handleCall = () => {
+    window.location.href = `tel:${place.telefon}`;
+  };
+
+  const handleMessage = () => {
+    window.location.href = `https://wa.me/${place.telefon}`;
+  };
+
    
   return (
     <>
@@ -270,6 +278,16 @@ export default function PlacePage() {
    
 </div>
   </div>
+  <div className="call-message-buttons">
+        <button style={{background:"#ff8e3d"}} onClick={handleCall}>
+          <FaPhone className="button-icon" />
+          Suna
+        </button>
+        <button style={{background:"green"}} onClick={handleMessage}>
+          <FaWhatsapp className="button-icon" />
+          Whatsapp
+        </button>
+      </div>
     </>
   );
 }

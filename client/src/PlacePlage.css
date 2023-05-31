@@ -321,3 +321,43 @@
     transform: translateX(-100%);
   }
 }
+
+
+.call-message-buttons {
+  position: fixed;
+  bottom: 0px;
+  left: 50%;
+  backdrop-filter: blur(10px);
+  transform: translateX(-50%);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding:10px;
+  border-radius: 10px;
+  background:#00000038;
+}
+
+.button-icon {
+  font-size: 24px; /* Adjust the font size as needed */
+}
+
+.call-message-buttons button {
+  margin: 0 10px;
+  padding: 16px 50px;
+  align-items: center;
+  display: flex;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ffffff;
+  color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.call-message-buttons button:hover {
+  background-color:var(--main);
+}
+

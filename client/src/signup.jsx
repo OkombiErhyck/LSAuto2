@@ -58,6 +58,11 @@ function Signup(){
             {passwordError && <p className="error">{passwordError}</p>} {/* Display error message if password is not strong */}
             <br></br> 
             <button className="loginbtn">Register<span></span></button>
+            <br></br> 
+            <a style={{fontSize:"15px"}} href="/login" className="navbar-brand">
+         Ai deja cont? 
+        </a>
+        <br></br> 
           </form>   
         </div>    
       </div>

@@ -107,10 +107,12 @@ export default function IndexPage() {
 
 
   useEffect(() => {
-    axios.get("/places").then(response => { 
-      setPlaces(response.data);
+    axios.get("/places").then(response => {
+      const sortedPlaces = response.data.sort((a, b) => new Date(b.date) - new Date(a.date)); // Sort places by date in descending order
+      setPlaces(sortedPlaces);
     });
   }, []);
+  
   const [selectedPerks, setSelectedPerks] = useState([]);
   const [perkOptions] = useState([
     "bluetooth",
@@ -253,7 +255,7 @@ export default function IndexPage() {
     handleExtraChange();       // Reapply extra filters and update result count
     handleOptiuniChange();     // Reapply optiuni filters and update result count
   };
-
+   
 
   const kmArray = [];
   for (let km = new Date().getFullYear(); km >= 0; km--) {
@@ -988,7 +990,7 @@ export default function IndexPage() {
 
 
         </div>
-        
+       
         <div className="details container">
       <div className="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4">
         {currentPlaces.length > 0 && currentPlaces.map(place => ( 
@@ -1023,7 +1025,9 @@ export default function IndexPage() {
             ))}
           </div>
         </div>
+        
       </div>
+       
       <div className="pagination">
         <ul>
           {Array.from({ length: totalPages }, (_, i) => i + 1).map(pageNumber => (

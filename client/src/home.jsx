@@ -21,7 +21,7 @@ function Home(){
   const aboutRef = useRef(null);
   const detailsRef = useRef(null);
    
-  const cookiePopupRef = useRef(null);
+  
   const details2Ref = useRef(null);
 
   // Intersection Observer setup
@@ -45,7 +45,7 @@ function Home(){
     observer.observe(aboutRef.current);
     observer.observe(detailsRef.current);
    
-    observer.observe(cookiePopupRef.current);
+  
     observer.observe(details2Ref.current);
     return () => {
       observer.disconnect();
@@ -74,9 +74,9 @@ function Home(){
         <Details2/>
       </div>
       
-      <div ref={cookiePopupRef} style={{ opacity: 0, transform: 'translateY(20px)' }}>
+      
         <CookiePolicyPopup/> 
-      </div>
+      
        
        </div>
      );

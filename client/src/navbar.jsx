@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import MenuImg from "./images/menu.png";
 import { useState, useContext } from "react";
 import { UserContext } from "./UserContext";
+import { FaPlus } from 'react-icons/fa';
 
 
 const NavBar =() => {
@@ -25,6 +26,10 @@ const NavBar =() => {
         <a href="/" className="navbar-brand">
           <span>LS</span>Auto
         </a>
+        <a style={{padding: "5px", border:" solid 2px #ff8e3d",  borderRadius:"10px", display:"flex", alignItems: 'center'}} href="/Signup" className="nav-link">
+        <FaPlus className="plus-icon" />      vinde
+                  </a>
+        
         <button
           className="navbar-toggler"
           type="button"
@@ -36,6 +41,9 @@ const NavBar =() => {
         >
           <img src={MenuImg} alt="menu" />
         </button>
+         
+
+         
         <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
           <div className="navbar-nav">
           <div className="nav-item">
