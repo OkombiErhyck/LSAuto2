@@ -383,14 +383,14 @@ background: #e9e9e9;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-bottom: 100px;
+  margin-bottom: 200px;
 }
 
 .spinner {
   border: 4px solid #f3f3f3;
   border-top: 4px solid var(--main);
   border-radius: 50%;
-  margin-bottom: 200px;
+  
   margin-top: 150px;
   width: 130px;
   height: 130px;
