@@ -343,8 +343,8 @@
 }
 
 .call-message-buttons button {
-  margin: 0 10px;
-  padding: 16px 50px;
+  margin: 0 5px;
+  padding: 12px 40px;
   align-items: center;
   display: flex;
   font-size: 16px;

@@ -105,8 +105,11 @@ export default function PlacePage() {
   };
 
   const handleMessage = () => {
-    window.location.href = `https://wa.me/${place.telefon}`;
+    const countryCode = "+40"; // Replace with your desired country code
+    const phoneNumber = place.telefon;
+    window.location.href = `https://wa.me/${countryCode}${phoneNumber}`;
   };
+  
 
    
   return (
