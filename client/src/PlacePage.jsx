@@ -110,7 +110,7 @@ export default function PlacePage() {
   };
 
   const handleMessage = () => {
-    const countryCode = "+40"; // Replace with your desired country code
+    const countryCode = "+4"; // Replace with your desired country code
     const phoneNumber = place.telefon;
     window.location.href = `https://wa.me/${countryCode}${phoneNumber}`;
   };
