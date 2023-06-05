@@ -24,7 +24,7 @@ app.use(CookieParser());
 app.use("/uploads", express.static(__dirname + "/uploads"));
 app.use(cors({
   credentials: true,
-  origin: "https://www.lsauto.ro",
+  origin: "https://ls-auto2.vercel.app",
 }));
 
 async function uploadToS3(path, originalFilename, mimetype) {
