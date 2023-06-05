@@ -99,32 +99,37 @@ app.post('/login', async (req, res) => {
         { expiresIn: '1h' }
       );
 
-      res.json({ token, user: userDoc });
+      res.cookie('token', token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'none'
+      });
+
+      res.json({ success: true });
     } else {
-      res.status(422).json('pass not ok');
+      res.status(422).json({ error: 'Invalid credentials' });
     }
   } else {
-    res.status(404).json('not found');
+    res.status(404).json({ error: 'User not found' });
   }
 });
 
+app.get('/profile', (req, res) => {
+  const { token } = req.cookies;
 
-  
-  app.get("/profile", (req,res) => {
-    res.header("Access-Control-Allow-Credentials", "true");
-    res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
-    mongoose.connect(process.env.MONGO_URL);
-    const {token} = req.cookies;
-    if (token) {
-        jwt.verify(token, jwtSecret, {}, async (err, user) => {
-               if (err) throw err;
-               
-               res.json(user);
-         });
-    } else {
-        res.json(null);
-    }
-  });
+  if (token) {
+    jwt.verify(token, jwtSecret, (err, decodedToken) => {
+      if (err) {
+        res.clearCookie('token');
+        res.status(401).json({ error: 'Invalid token' });
+      } else {
+        res.json(decodedToken);
+      }
+    });
+  } else {
+    res.status(401).json({ error: 'Token not found' });
+  }
+});
 
 
 app.post("/logout", (req,res) => {
