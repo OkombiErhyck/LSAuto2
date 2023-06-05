@@ -115,6 +115,11 @@ app.post("/login", authenticateUser, async (req, res) => {
   }
 });
 
+app.get("/login", (req, res) => {
+  res.sendFile(__dirname + "/login.html");
+});
+
+
 app.get("/profile", authenticateUser, (req, res) => {
   res.header("Access-Control-Allow-Credentials", "true");
   res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
