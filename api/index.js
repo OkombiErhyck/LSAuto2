@@ -109,32 +109,21 @@ app.post("/login", async (req, res) => {
   });
 
   
-  app.get("/profile", (req, res) => {
+  app.get("/profile", (req,res) => {
     res.header("Access-Control-Allow-Credentials", "true");
     res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
     mongoose.connect(process.env.MONGO_URL);
-    const { token } = req.cookies;
+    const {token} = req.cookies;
     if (token) {
-      jwt.verify(token, jwtSecret, {}, async (err, user) => {
-        if (err) {
-          // Clear invalid token if verification fails
-          res.clearCookie("token");
-          res.status(401).json("Invalid token");
-        } else {
-          const userDoc = await User.findById(user.id);
-          if (userDoc) {
-            res.json(userDoc);
-          } else {
-            res.clearCookie("token");
-            res.status(404).json("User not found");
-          }
-        }
-      });
+        jwt.verify(token, jwtSecret, {}, async (err, user) => {
+               if (err) throw err;
+               
+               res.json(user);
+         });
     } else {
-      res.json(null);
+        res.json(null);
     }
   });
-  
 
 
 app.post("/logout", (req,res) => {
