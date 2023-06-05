@@ -88,30 +88,25 @@ app.post("/login", async (req, res) => {
   mongoose.connect(process.env.MONGO_URL);
   res.header("Access-Control-Allow-Credentials", "true");
   res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
-  const { email, password } = req.body;
-  const userDoc = await User.findOne({ email });
+    const { email, password } = req.body;
+    const userDoc = await User.findOne({ email });
+    if (userDoc) {
+      const passOk = bcrypt.compareSync(password, userDoc.password);
+      if (passOk) {
+        jwt.sign({email:userDoc.email, id:userDoc._id, name:userDoc.name}, jwtSecret, {}, (err, token) => {
+             if (err) throw err;
+        
+        res.cookie("token", token, { sameSite: 'none', secure: true }).json(userDoc);
 
-  if (userDoc) {
-    const passOk = bcrypt.compareSync(password, userDoc.password);
+    });
 
-    if (passOk) {
-      const token = jwt.sign({ email: userDoc.email, id: userDoc._id, name: userDoc.name }, jwtSecret);
-
-      res.cookie("token", token, {
-        sameSite: "none",
-        secure: true,
-        httpOnly: true,
-      });
-
-      res.json(userDoc);
+      } else {
+        res.status(422).json("pass not ok");
+      }
     } else {
-      res.status(422).json("Invalid password");
+      res.status(404).json("not found");
     }
-  } else {
-    res.status(404).json("User not found");
-  }
-});
-
+  });
 
   
   app.get("/profile", (req,res) => {
