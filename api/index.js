@@ -26,9 +26,6 @@ app.use("/uploads", express.static(__dirname+"/uploads"));
 app.use(cors({
     credentials: true,
     origin: "https://ls-auto2.vercel.app", 
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    preflightContinue: false,
-    optionsSuccessStatus: 204,
 }));
 
 
