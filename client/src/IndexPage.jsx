@@ -1050,7 +1050,7 @@ export default function IndexPage() {
         <ul>
           {Array.from({ length: totalPages }, (_, i) => i + 1).map(pageNumber => (
             <li key={pageNumber}>
-              <button onClick={() => handlePageChange(pageNumber)}>{pageNumber}</button>
+              <button style={{borderRadius: '15px', backdropFilter: 'blur(10px)'}}onClick={() => handlePageChange(pageNumber)}>{pageNumber}</button>
             </li>
           ))}
         </ul>

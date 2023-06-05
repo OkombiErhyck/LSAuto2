@@ -26,6 +26,14 @@ export default function Details() {
     startAutoScroll();
     return stopAutoScroll;
   }, []);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    axios.get('/places').then(response => {
+      const sortedPlaces = response.data.sort((a, b) => new Date(b.date) - new Date(a.date));
+      setPlaces(sortedPlaces);
+      setLoading(false); // Set loading to false when the data is fetched
+    });
+  }, []);
 
   const shuffleArray = (array) => {
     let currentIndex = array.length,  randomIndex;
@@ -71,6 +79,12 @@ export default function Details() {
   return (
     <div className="main2"> 
       <div className="container">
+      {loading ? (
+          <div className="loader">
+        <div className="spinner"> </div>
+        <span className="loading-text">Lenes Automobile</span>
+      </div>
+       ) : (
         <div className="details container">
           <div className="carousel-container row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4" style={{ overflowX: "scroll", scrollBehavior: "smooth", whiteSpace: "nowrap", flexWrap:"nowrap" }} ref={containerRef}>
             {limitedPlaces.length > 0 && limitedPlaces.map(place => ( 
@@ -96,7 +110,7 @@ export default function Details() {
             ))}
           </div>
         </div>
-      
+        )}
       </div>
     </div>
   );
