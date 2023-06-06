@@ -22,8 +22,8 @@ const bucket = 'lsauto';
 
 
 app.use(cors({
-  credentials: true,
   origin: "https://www.lsauto.ro", 
+  credentials: true,
 }));
 app.use(CookieParser());
 app.use(express.json());
