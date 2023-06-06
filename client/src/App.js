@@ -27,8 +27,9 @@ const Details = lazy(() => import('./details'));
 
 
 
-axios.defaults.baseURL = 'https://ls-auto2.vercel.app';
+axios.defaults.baseURL = 'https://www.lsauto.ro';
 axios.defaults.withCredentials = true;
+
 
 function App() {
  
