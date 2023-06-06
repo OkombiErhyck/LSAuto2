@@ -1,7 +1,8 @@
-import { useState, useContext, useEffect } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate } from 'react-router-dom';
+import "./signup.css";
+import { useContext, useState, useEffect } from "react";
 import axios from "axios";
-import { UserContext } from "./UserContext";
+import { UserContext } from './UserContext';
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -12,34 +13,38 @@ function Login() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      // Token is present, set the user in context
-      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      // Set the user context if a token exists in localStorage
+      axios.defaults.headers.common["Authorization"] = token;
       axios.get("/profile")
-        .then((response) => {
+        .then(response => {
           setUser(response.data);
           setRedirect(true);
         })
-        .catch((error) => {
-          console.error("Error fetching user profile:", error);
+        .catch(error => {
+          console.log(error);
+          // Remove the invalid token from localStorage
+          localStorage.removeItem("token");
         });
     }
-  }, []);
+  }, [setUser]);
 
   async function handleLoginSubmit(ev) {
     ev.preventDefault();
     try {
       const { data } = await axios.post("/login", { email, password });
-      setUser(data);
+      // Store the token in localStorage
       localStorage.setItem("token", data.token);
-      axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
+      // Set the default authorization header for subsequent requests
+      axios.defaults.headers.common["Authorization"] = data.token;
+      setUser(data);
       setRedirect(true);
-    } catch (error) {
+    } catch (e) {
       alert("Login failed");
     }
   }
 
   if (redirect) {
-    return <Navigate to={"/userpage"} />;
+    return <Navigate to="/userpage" />;
   }
 
   return (
@@ -68,7 +73,9 @@ function Login() {
             />
             <br></br>
             <br></br>
-            <button className="loginbtn">Logheaza-te</button>
+            <button className="loginbtn">
+              Logheaza-te<span> </span>
+            </button>
           </form>
           <a style={{ color: "gray" }} href="/reset-password">
             Ai uitat parola?
