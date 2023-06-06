@@ -8,18 +8,16 @@ export function UserContextProvider({ children }) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    if (!user) {
-      axios
-        .get('/profile', { withCredentials: true })
-        .then(({ data }) => {
-          setUser(data);
-          setReady(true);
-        })
-        .catch(() => {
-          setUser(null);
-          setReady(true);
-        });
-    }
+    axios
+      .get('/profile', { withCredentials: true })
+      .then(({ data }) => {
+        setUser(data);
+        setReady(true);
+      })
+      .catch(() => {
+        setUser(null);
+        setReady(true);
+      });
   }, []);
 
   const login = (email, password) => {
@@ -48,7 +46,7 @@ export function UserContextProvider({ children }) {
 
   return (
     <UserContext.Provider value={{ user, setUser, ready, login, logout }}>
-      {children}
+      {ready ? children : null}
     </UserContext.Provider>
   );
 }
