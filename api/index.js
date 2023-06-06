@@ -20,8 +20,8 @@ const bcryptSalt = bcrypt.genSaltSync(10);
 const jwtSecret = "123456789";
 const bucket = 'lsauto';
 
-app.use(express.json());
 app.use(CookieParser());
+app.use(express.json());
 app.use("/uploads", express.static(__dirname+"/uploads"));
 app.use(cors({
     credentials: true,
