@@ -7,9 +7,9 @@ const User = require("./models/User.js");
 require("dotenv").config();
 const app = express();
 const CookieParser = require("cookie-parser");
-const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3');
-const fs = require("fs");
-const Place = require("./models/Place.js");
+const {S3Client, PutObjectCommand} = require('@aws-sdk/client-s3');
+const fs =require("fs");
+const Place =require("./models/Place.js");
 const multer = require('multer');
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json({ limit: '50mb' });
@@ -60,27 +60,33 @@ app.post("/login", async (req, res) => {
   if (userDoc) {
     const passOk = bcrypt.compareSync(password, userDoc.password);
     if (passOk) {
-      const token = jwt.sign({ email: userDoc.email, id: userDoc._id, name: userDoc.name }, jwtSecret);
+      jwt.sign({ email: userDoc.email, id: userDoc._id, name: userDoc.name }, jwtSecret, {}, (err, token) => {
+        if (err) throw err;
 
-      res.cookie("token", token, { sameSite: 'none', secure: true, httpOnly: true }).json(userDoc);
+        res.set('Authorization', `Bearer ${token}`)
+          .cookie("token", token, { sameSite: 'none', secure: true, httpOnly: true })
+          .json(userDoc);
+      });
     } else {
-      res.status(422).json("Invalid email or password");
+      res.status(422).json("pass not ok");
     }
   } else {
-    res.status(404).json("User not found");
+    res.status(404).json("not found");
   }
 });
 
-app.get("/profile", async (req, res) => {
+app.get("/profile", (req, res) => {
   const { token } = req.cookies;
   if (token) {
-    try {
-      const decoded = jwt.verify(token, jwtSecret);
-      const userDoc = await User.findById(decoded.id);
-      res.json(userDoc);
-    } catch (err) {
-      res.clearCookie("token").json(null);
-    }
+    jwt.verify(token, jwtSecret, {}, async (err, decoded) => {
+      if (err) {
+        res.clearCookie("token").json(null);
+      } else {
+        // Token is valid, user is logged in
+        const userDoc = await User.findById(decoded.id);
+        res.json(userDoc);
+      }
+    });
   } else {
     res.json(null);
   }
