@@ -99,7 +99,7 @@ app.post("/login", async (req, res) => {
         if (err) throw err;
         
         res.set('Authorization', `Bearer ${token}`)
-          .cookie("token", token, { sameSite: 'none', secure: true, httpOnly: true })
+          .cookie("token", token, {domain: ".lsauto.ro" , sameSite: 'none', secure: true, httpOnly: true })
           .json(userDoc);
       });
     } else {
