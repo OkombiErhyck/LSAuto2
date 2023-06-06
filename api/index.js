@@ -22,39 +22,72 @@ const bucket = 'lsauto';
 
 app.use(CookieParser());
 app.use(express.json());
-app.use("/uploads", express.static(__dirname + "/uploads"));
+app.use("/uploads", express.static(__dirname+"/uploads"));
 app.use(cors({
-  credentials: true,
-  origin: "https://www.lsauto.ro",
+    credentials: true,
+    origin: "https://www.lsauto.ro", 
 }));
 
-mongoose.connect(process.env.MONGO_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-  .then(() => {
-    console.log('Connected to MongoDB');
-   
-  })
-  .catch((error) => {
-    console.error('Error connecting to MongoDB:', error);
+
+async function uploadToS3(path, originalFilename, mimetype) {
+  const client = new S3Client({
+    region: 'eu-north-1',
+    credentials: {
+
+      accessKeyId: process.env.S3_ACCESS_KEY,
+      secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+    },
+
   });
 
-app.post("/register", async (req, res) => {
-  const { name, email, password } = req.body;
-  try {
+  const parts =originalFilename.split('-');
+  const ext = parts[parts.length - 1];
+  const newFilename = Date.now() + '-' + ext;
+ await client.send(new PutObjectCommand({
+    Bucket: bucket,
+    Body: fs.readFileSync(path),
+    Key: newFilename,
+    ContentType: mimetype,
+    ACL: 'public-read',
+  }));
+  return `https://${bucket}.s3.amazonaws.com/${newFilename}`;
+}
+
+
+
+
+app.get("/test", (req,res) => {
+  mongoose.connect(process.env.MONGO_URL);
+    res.json("test ok");
+});
+
+
+app.post("/register", async (req,res) => {
+  mongoose.connect(process.env.MONGO_URL);
+  res.header("Access-Control-Allow-Credentials", "true");
+res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
+    const {name,email,password} = req.body;
+
+    try { 
     const userDoc = await User.create({
-      name,
-      email,
-      password: bcrypt.hashSync(password, bcryptSalt),
+        name,
+        email,
+        password:bcrypt.hashSync(password, bcryptSalt),
     });
+
+
     res.json(userDoc);
-  } catch (e) {
+} catch (e) {
     res.status(422).json(e);
-  }
+}
+
+
 });
 
 app.post("/login", async (req, res) => {
+  mongoose.connect(process.env.MONGO_URL);
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
   const { email, password } = req.body;
   const userDoc = await User.findOne({ email });
   if (userDoc) {
@@ -62,7 +95,7 @@ app.post("/login", async (req, res) => {
     if (passOk) {
       jwt.sign({ email: userDoc.email, id: userDoc._id, name: userDoc.name }, jwtSecret, {}, (err, token) => {
         if (err) throw err;
-
+        
         res.set('Authorization', `Bearer ${token}`)
           .cookie("token", token, { sameSite: 'none', secure: true, httpOnly: true })
           .json(userDoc);
@@ -75,7 +108,11 @@ app.post("/login", async (req, res) => {
   }
 });
 
+
+  
 app.get("/profile", (req, res) => {
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
   const { token } = req.cookies;
   if (token) {
     jwt.verify(token, jwtSecret, {}, async (err, decoded) => {
@@ -92,8 +129,11 @@ app.get("/profile", (req, res) => {
   }
 });
 
-app.post("/logout", (req, res) => {
-  res.clearCookie("token").json(true);
+
+
+app.post("/logout", (req,res) => {
+  
+  res.cookie("token", "").json(true);
 });
 
 
