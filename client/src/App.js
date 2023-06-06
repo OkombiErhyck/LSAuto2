@@ -8,8 +8,7 @@ import { Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 import { UserContextProvider } from './UserContext';
 import SplashScreen from './SplashScreen';
-import { UserContext } from "./UserContext";
-import { useContext } from "react";
+
 
 const About = lazy(() => import('./about'));
 const Login = lazy(() => import('./login'));
@@ -32,7 +31,7 @@ axios.defaults.baseURL = 'https://ls-auto2.vercel.app';
 axios.defaults.withCredentials = true;
 
 function App() {
-  const {ready,user,setUser} = useContext(UserContext);
+ 
  
 
   return (
