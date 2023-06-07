@@ -15,6 +15,7 @@ export default function Perks({ selected, onChange }) {
       }
     }
   
+    const [showGeneral, setShowGeneral] = useState(false);
     const [showAudio, setShowAudio] = useState(false);
     const [showConfort, setShowConfort] = useState(false);
     const [showElectronice, setShowElectronice] = useState(false);
@@ -22,6 +23,10 @@ export default function Perks({ selected, onChange }) {
     const [showSiguranta, setShowSiguranta] = useState(false);
     
   
+    const handleGeneralToggle = () => {
+      setShowGeneral(!showGeneral);
+    };
+
     const handleAudioToggle = () => {
       setShowAudio(!showAudio);
     };
@@ -48,6 +53,17 @@ export default function Perks({ selected, onChange }) {
             <h4>Optiuni generale</h4>
           <p>Selectacti din optiunile</p>
           <div className="optiuni">
+          
+          <span
+  className={`cauta-button ${showGeneral ? "active" : ""}`}
+  onClick={handleGeneralToggle}
+>
+ Generale
+</span>
+
+      {showGeneral && (
+        <div className="filter-container" style={{ background: "#d5d5d5" }}>
+        <div className="filter-item">
           <div>
             <label>
               <input type="checkbox"  checked={selected.includes("bluetooth")} name="bluetooth" onChange={handleCbClick}/>
@@ -200,6 +216,8 @@ export default function Perks({ selected, onChange }) {
     <span>Oglinzi încălzite</span>
   </label>
 </div>
+</div>
+</div>)}
         
         <h4 style={{color:"transparent"}}>Optiuni avansate</h4>
 
