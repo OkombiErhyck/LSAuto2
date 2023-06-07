@@ -50,8 +50,8 @@ export default function Perks({ selected, onChange }) {
     }
     return(
         <>
-            <h4>Optiuni generale</h4>
-          <p>Selectacti din optiunile</p>
+            <h4>Optiuni </h4>
+         
           <div className="optiuni">
           
           <span
@@ -219,9 +219,7 @@ export default function Perks({ selected, onChange }) {
 </div>
 </div>)}
         
-        <h4 style={{color:"transparent"}}>Optiuni avansate</h4>
-
-<h4>Optiuni avansate</h4>
+      
         <span
   className={`cauta-button ${showAudio ? "active" : ""}`}
   onClick={handleAudioToggle}
