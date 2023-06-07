@@ -1,45 +1,58 @@
-.holder {
-    position: relative;
-    width: auto;
-    height: 215px;
-  }
-  
-  .img1 {
-    width: auto;
-    height: 184px;
-  }
-  
-  svg {
-    position: absolute;
-    top: 50%;
-    left: 25%;
-    transform: translate(-50%, -50%);
-    width: auto;
-    height: 55px;
-    background: #bbbbbb;
-    border-radius: 50px;
-    padding: 10px;
-  }
+.photos-uploader {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
 
+.photos-uploader .photo-wrapper {
+  position: relative;
+  width: 275px;
+  height: auto;
+}
 
-  .my-button {
-    display: inline-block;
-    background-color: #eee;
-    border: none;
-    padding: 100px 0px;
-    font-size: 16px;
-    color: #333;
-   position: absolute;
-  }
-  .loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-  }
-   
-  
-   
+.photos-uploader .photo {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.photos-uploader .button-wrapper {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.photos-uploader .button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #eeeeee;
+  color: #333333;
+  border: none;
+  cursor: pointer;
+}
+
+.photos-uploader .button:hover {
+  background-color: #dddddd;
+}
+
+.photos-uploader .button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.photos-uploader .loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333333;
+}
