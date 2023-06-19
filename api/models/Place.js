@@ -22,7 +22,7 @@ const placeSchema = new mongoose.Schema({
   nume:String,
   mail: String,
   telefon: String,
-  clickCount: {
+  clicks: {
     type: Number,
     default: 0
   },

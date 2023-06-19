@@ -9,28 +9,11 @@ import { incrementClickCount } from './actions';
 export default function PlacesPage() {
   const [places, setPlaces] = useState([]);
 
-  useEffect(() => {
-    axios.get('/user-places').then(({ data }) => {
-      const placesWithClickCount = data.map(place => ({ ...place, clickCount: 0 }));
-      setPlaces(placesWithClickCount);
-    });
-  }, []);
+  
 
    
 
-  const handlePlaceClick = (id) => {
-    setPlaces(prevPlaces =>
-      prevPlaces.map(place => {
-        if (place._id === id) {
-          return {
-            ...place,
-            clickCount: place.clickCount + 1
-          };
-        }
-        return place;
-      })
-    );
-  };
+ 
 
   const handleDelete = (event, id) => {
     event.preventDefault();
@@ -76,7 +59,7 @@ export default function PlacesPage() {
                               Sterge
                             </button>
                           </div>
-                          <p>Vizualizari: {place.clickCount}</p> {/* Display the click count */}
+                          <p>Vizualizari: {place.clicks}</p> {/* Display the click count */}
                         </div>
                       </div>
                     </div>

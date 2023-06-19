@@ -156,33 +156,31 @@ app.post("/upload", photosMiddleware.single('photo'), async (req, res) => {
 
    
 
-app.post('/api/places/:placeId/clicks', (req, res) => {
-  mongoose.connect(process.env.MONGO_URL);
-   
-  res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "POST");
-  res.header("Access-Control-Allow-Headers", "Content-Type");
-  res.send();
-  const placeId = req.params.placeId;
-  const { clicks } = req.body;
+app.put('/places/:placeId/clicks', async (req, res) => {
+  try {
+    const placeId = req.params.placeId;
+    const { clicks } = req.body;
 
-  // Update the click count in the database
-  Place.findByIdAndUpdate(
-    placeId,
-    { clickCount: clicks },
-    { new: true }, // To return the updated document
-    (err, updatedPlace) => {
-      if (err) {
-        console.error('Error updating click count:', err);
-        res.sendStatus(500); // Internal Server Error
-      } else {
-        res.sendStatus(200); // Success
-      }
+    // Update the click count in the database
+    const updatedPlace = await Place.findByIdAndUpdate(
+      placeId,
+      { clicks: clicks },
+      { new: true } // To return the updated document
+    );
+
+    if (!updatedPlace) {
+      return res.status(404).json({ message: 'Place not found' });
     }
-  );
-});
 
+    // Save the updated place to the database
+    await updatedPlace.save();
+
+    res.sendStatus(200); // Success
+  } catch (error) {
+    console.error('Error updating click count:', error);
+    res.sendStatus(500); // Internal Server Error
+  }
+});
 
 
 

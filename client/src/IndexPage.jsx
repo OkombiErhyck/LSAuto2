@@ -39,38 +39,9 @@ export default function IndexPage() {
   const [selectedPutereMin, setSelectedPutereMin] = useState("");
   const [selectedPutereMax, setSelectedPutereMax] = useState("");
 
-  const [clickCounts, setClickCounts] = useState({});
-
+  
   // Function to handle place click
-  const handlePlaceClick = (placeId) => {
-    // Get the current click count for the place
-    const currentCount = clickCounts[placeId] || 0;
-
-    // Update the click count by 1
-    const updatedCounts = {
-      ...clickCounts,
-      [placeId]: currentCount + 1
-    };
-
-    // Update the state with the updated click counts
-    setClickCounts(updatedCounts);
-
-    // Send the updated click count to the server or update the database here
-    // Example code for sending the click count to the server
-    fetch(`/api/places/${placeId}/clicks`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ clicks: updatedCounts[placeId] })
-    })
-    .then(response => {
-      // Handle the response
-    })
-    .catch(error => {
-      // Handle the error
-    });
-  };
+  
 
   
   const data = [
@@ -416,6 +387,35 @@ export default function IndexPage() {
 
 };
 
+const handlePlaceClick = async (placeId) => {
+  try {
+    // Get the place object from the current state
+    const clickedPlace = places.find((place) => place._id === placeId);
+    if (!clickedPlace) {
+      return; // Place not found, handle error if needed
+    }
+
+    // Increment the click count by 1
+    const updatedPlace = { ...clickedPlace, clickCount: clickedPlace.clickCount + 1 };
+
+    // Update the place in the state
+    const updatedPlaces = places.map((place) => {
+      if (place._id === placeId) {
+        return updatedPlace;
+      }
+      return place;
+    });
+    setPlaces(updatedPlaces);
+
+    // Send a PUT request to update the click count in the backend (optional)
+    await axios.put(`/places/${placeId}/clicks`, { clicks: updatedPlace.clickCount });
+
+    // Handle success if needed
+  } catch (error) {
+    console.error("Error updating click count:", error);
+    // Handle error if needed
+  }
+};
   
   return (<> 
   <div className="top"></div>
@@ -1031,7 +1031,7 @@ export default function IndexPage() {
                      
 
 
-  <button style={{background : "#cccccc00", color : "var(--main)"}} className="btn1">Detalii</button>
+  <button style={{background : "#cccccc00", color : "var(--main)"}} className="btn1"  onClick={() => handlePlaceClick(place._id)}>Detalii</button>
                     </div>
                   </div>
                 </div>

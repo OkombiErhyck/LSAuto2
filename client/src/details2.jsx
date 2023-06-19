@@ -43,7 +43,38 @@ export default function Details() {
   };
 
   const limitedPlaces = shuffleArray(places).slice(0, 6); // display 3 random posts
+  
 
+  const handlePlaceClick = async (placeId) => {
+    try {
+      // Get the place object from the current state
+      const clickedPlace = places.find((place) => place._id === placeId);
+      if (!clickedPlace) {
+        return; // Place not found, handle error if needed
+      }
+  
+      // Increment the click count by 1
+      const updatedPlace = { ...clickedPlace, clickCount: clickedPlace.clickCount + 1 };
+  
+      // Update the place in the state
+      const updatedPlaces = places.map((place) => {
+        if (place._id === placeId) {
+          return updatedPlace;
+        }
+        return place;
+      });
+      setPlaces(updatedPlaces);
+  
+      // Send a PUT request to update the click count in the backend (optional)
+      await axios.put(`/places/${placeId}/clicks`, { clicks: updatedPlace.clickCount });
+  
+      // Handle success if needed
+    } catch (error) {
+      console.error("Error updating click count:", error);
+      // Handle error if needed
+    }
+  };
+  
   return(
     <div className="main2"> 
       <div className="container">
@@ -56,7 +87,7 @@ export default function Details() {
         <div className="details container">
         <div className="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4">
             {limitedPlaces.length > 0 && limitedPlaces.map(place => ( 
-              <Link to={"/place/" + place._id} key={place._id} className="link-no-underline" >
+              <Link to={"/place/" + place._id} key={place._id} className="link-no-underline" onClick={() => handlePlaceClick(place._id)}>
               <div className="col ">
                   <div className="box card-body p-0  shadow-sm mb-5">
                     {place.photos.length > 0 && (
@@ -70,7 +101,7 @@ export default function Details() {
   </div>
  
                      
-                      <button style={{background : "#cccccc00", color : "var(--main)"}} className="btn1">Detalii</button>
+                      <button style={{background : "#cccccc00", color : "var(--main)"}} className="btn1"  onClick={() => handlePlaceClick(place._id)} >Detalii</button>
                     </div>
                   </div>
                 </div>
