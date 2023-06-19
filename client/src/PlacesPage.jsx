@@ -36,7 +36,7 @@ export default function PlacesPage() {
                 places.map(place => (
                   <Link className="link-no-underline" to={"/write/" + place._id} key={place._id}>
                     <div className="col">
-                      <div className="box card-body p-0  shadow-sm mb-5" onClick={() => handlePlaceClick(place._id)}>
+                      <div className="box card-body p-0  shadow-sm mb-5">
                         {place.photos.length > 0 && (
                           <Image
                             src={place.photos[0]}
