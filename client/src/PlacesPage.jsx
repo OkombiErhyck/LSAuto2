@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Myadds.css';
 import Image from './image';
+import View from './images/view.png';
 import { Link } from 'react-router-dom';
 
 export default function PlacesPage() {
@@ -48,7 +49,7 @@ export default function PlacesPage() {
                             <div>
                               {place.putere} cp | {place.anul} | {place.km} km <h5>{place.title}€</h5>
                             </div>
-                            <div>Vizualizari {place.clicks}</div>
+                            <div> <img src={View} style={{height:"5px", width:"auto"}} alt=""/> {place.clicks}</div>
                             <button style={{ background: "#cccccc00", color: "var(--main)" }} className="btn1">
                               Editeaza
                             </button>
