@@ -407,8 +407,8 @@ const handlePlaceClick = async (placeId) => {
     });
     setPlaces(updatedPlaces);
 
-    // Send a PUT request to update the click count in the backend (optional)
-    await axios.put(`/places/${placeId}/clicks`, { clicks: updatedPlace.clicks });
+    // Send a POST request to update the click count in the backend
+    await axios.post(`/places/${placeId}/clicks`, { clicks: updatedPlace.clicks });
 
     // Handle success if needed
   } catch (error) {
@@ -416,6 +416,7 @@ const handlePlaceClick = async (placeId) => {
     // Handle error if needed
   }
 };
+
   
   return (<> 
   <div className="top"></div>

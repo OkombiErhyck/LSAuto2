@@ -157,7 +157,9 @@ app.post("/upload", photosMiddleware.single('photo'), async (req, res) => {
    
 
 app.post('/places/:placeId/clicks', async (req, res) => {
-  
+  mongoose.connect(process.env.MONGO_URL);
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
   try {
     const placeId = req.params.placeId;
     const { clicks } = req.body;
