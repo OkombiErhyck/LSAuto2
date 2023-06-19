@@ -396,7 +396,7 @@ const handlePlaceClick = async (placeId) => {
     }
 
     // Increment the click count by 1
-    const updatedPlace = { ...clickedPlace, clickCount: clickedPlace.clickCount + 1 };
+    const updatedPlace = { ...clickedPlace, clicks: clickedPlace.clicks + 1 };
 
     // Update the place in the state
     const updatedPlaces = places.map((place) => {
@@ -408,7 +408,7 @@ const handlePlaceClick = async (placeId) => {
     setPlaces(updatedPlaces);
 
     // Send a PUT request to update the click count in the backend (optional)
-    await axios.put(`/places/${placeId}/clicks`, { clicks: updatedPlace.clickCount });
+    await axios.put(`/places/${placeId}/clicks`, { clicks: updatedPlace.clicks });
 
     // Handle success if needed
   } catch (error) {
