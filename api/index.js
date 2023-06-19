@@ -304,7 +304,7 @@ app.put("/places" , async (req,res) => {
         putere,
         normaeuro,
         combustibil,
-        clickCount: placeDoc.clickCount + 1,
+        clicks: placeDoc.clicks + 1,
       });
       await placeDoc.save();
       res.json("ok");
