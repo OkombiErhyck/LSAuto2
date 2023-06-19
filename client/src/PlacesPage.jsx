@@ -4,31 +4,14 @@ import './Myadds.css';
 import Image from './image';
 import { Link } from 'react-router-dom';
 
-import { incrementClickCount } from './actions';
-
 export default function PlacesPage() {
   const [places, setPlaces] = useState([]);
 
   useEffect(() => {
     axios.get('/user-places').then(({ data }) => {
-      const placesWithClicks = data.map(place => ({ ...place, clicks: 0 }));
-      setPlaces(placesWithClicks);
+      setPlaces(data);
     });
   }, []);
-
-  const handlePlaceClick = (id) => {
-    setPlaces(prevPlaces =>
-      prevPlaces.map(place => {
-        if (place._id === id) {
-          return {
-            ...place,
-            clicks: place.clicks + 1
-          };
-        }
-        return place;
-      })
-    );
-  };
 
   const handleDelete = (event, id) => {
     event.preventDefault();
@@ -49,7 +32,7 @@ export default function PlacesPage() {
                 places.map(place => (
                   <Link className="link-no-underline" to={"/write/" + place._id} key={place._id}>
                     <div className="col">
-                      <div className="box card-body p-0  shadow-sm mb-5" onClick={() => handlePlaceClick(place._id)}>
+                      <div className="box card-body p-0 shadow-sm mb-5">
                         {place.photos.length > 0 && (
                           <Image
                             src={place.photos[0]}
@@ -65,6 +48,7 @@ export default function PlacesPage() {
                             <div>
                               {place.putere} cp | {place.anul} | {place.km} km <h5>{place.title}€</h5>
                             </div>
+                            <div>Vizualizari {place.clicks}</div>
                             <button style={{ background: "#cccccc00", color: "var(--main)" }} className="btn1">
                               Editeaza
                             </button>
@@ -72,7 +56,6 @@ export default function PlacesPage() {
                               Sterge
                             </button>
                           </div>
-                          <p>Clicks: {place.clicks}</p> {/* Display the clicks count */}
                         </div>
                       </div>
                     </div>
