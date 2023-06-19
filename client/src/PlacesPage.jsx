@@ -9,7 +9,12 @@ import { incrementClickCount } from './actions';
 export default function PlacesPage() {
   const [places, setPlaces] = useState([]);
 
-  
+  useEffect(() => {
+    axios.get('/user-places').then(({ data }) => {
+      const placesWithClickCount = data.map(place => ({ ...place, clicks: 0 }));
+      setPlaces(placesWithClickCount);
+    });
+  }, []);
 
    
 
