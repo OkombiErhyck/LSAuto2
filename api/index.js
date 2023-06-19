@@ -162,12 +162,11 @@ app.post('/places/:placeId/clicks', async (req, res) => {
   res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
   try {
     const placeId = req.params.placeId;
-    const { clicks } = req.body;
 
     // Update the click count in the database
     const updatedPlace = await Place.findByIdAndUpdate(
       placeId,
-      { $inc: { clicks: clicks } },
+      { $inc: { clickCount: 1 } }, // Increment the click count by 1
       { new: true } // To return the updated document
     );
 
