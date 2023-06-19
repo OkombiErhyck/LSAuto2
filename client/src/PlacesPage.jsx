@@ -11,12 +11,10 @@ export default function PlacesPage() {
 
   useEffect(() => {
     axios.get('/user-places').then(({ data }) => {
-      const placesWithClickCount = data.map(place => ({ ...place, clicks: 0 }));
-      setPlaces(placesWithClickCount);
+      const placesWithClicks = data.map(place => ({ ...place, clicks: 0 }));
+      setPlaces(placesWithClicks);
     });
   }, []);
-
-   
 
   const handlePlaceClick = (id) => {
     setPlaces(prevPlaces =>
@@ -24,7 +22,7 @@ export default function PlacesPage() {
         if (place._id === id) {
           return {
             ...place,
-            clickCount: place.clickCount + 1
+            clicks: place.clicks + 1
           };
         }
         return place;
@@ -38,8 +36,6 @@ export default function PlacesPage() {
       setPlaces(prevPlaces => prevPlaces.filter(place => place._id !== id));
     });
   };
-
-
 
   return (
     <>
@@ -76,7 +72,7 @@ export default function PlacesPage() {
                               Sterge
                             </button>
                           </div>
-                          <p>Vizualizari: {place.clicks}</p> {/* Display the click count */}
+                          <p>Clicks: {place.clicks}</p> {/* Display the clicks count */}
                         </div>
                       </div>
                     </div>
