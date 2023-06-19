@@ -13,7 +13,19 @@ export default function PlacesPage() {
 
    
 
- 
+  const handlePlaceClick = (id) => {
+    setPlaces(prevPlaces =>
+      prevPlaces.map(place => {
+        if (place._id === id) {
+          return {
+            ...place,
+            clickCount: place.clickCount + 1
+          };
+        }
+        return place;
+      })
+    );
+  };
 
   const handleDelete = (event, id) => {
     event.preventDefault();
@@ -36,7 +48,7 @@ export default function PlacesPage() {
                 places.map(place => (
                   <Link className="link-no-underline" to={"/write/" + place._id} key={place._id}>
                     <div className="col">
-                      <div className="box card-body p-0  shadow-sm mb-5">
+                      <div className="box card-body p-0  shadow-sm mb-5" onClick={() => handlePlaceClick(place._id)}>
                         {place.photos.length > 0 && (
                           <Image
                             src={place.photos[0]}
