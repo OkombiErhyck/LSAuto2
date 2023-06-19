@@ -167,7 +167,7 @@ app.post('/places/:placeId/clicks', async (req, res) => {
     // Update the click count in the database
     const updatedPlace = await Place.findByIdAndUpdate(
       placeId,
-      { $inc: { clickCount: clicks } },
+      { $inc: { clicks: clicks } },
       { new: true } // To return the updated document
     );
 
