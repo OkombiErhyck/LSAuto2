@@ -156,28 +156,26 @@ app.post("/upload", photosMiddleware.single('photo'), async (req, res) => {
 
    
 
-app.put('/places/:placeId/clicks', async (req, res) => {
+app.put("/places/:placeId/clicks", async (req, res) => {
   try {
     const placeId = req.params.placeId;
-    const { clicks } = req.body;
 
-    // Update the click count in the database
-    const updatedPlace = await Place.findByIdAndUpdate(
-      placeId,
-      { clicks: clicks },
-      { new: true } // To return the updated document
-    );
+    // Find the place by its ID
+    const place = await Place.findById(placeId);
 
-    if (!updatedPlace) {
-      return res.status(404).json({ message: 'Place not found' });
+    if (!place) {
+      return res.status(404).json({ message: "Place not found" });
     }
 
+    // Increment the click count by 1
+    place.clickCount += 1;
+
     // Save the updated place to the database
-    await updatedPlace.save();
+    await place.save();
 
     res.sendStatus(200); // Success
   } catch (error) {
-    console.error('Error updating click count:', error);
+    console.error("Error updating click count:", error);
     res.sendStatus(500); // Internal Server Error
   }
 });
