@@ -68,7 +68,7 @@ function Home(){
        
       
       
-      <div ref={details2Ref} style={{ opacity: 0, transform: 'translateY(10px)' }}>
+      <div ref={details2Ref} style={{ opacity: 0, transform: 'translateY(30px)' }}>
         <Details2/>
       </div>
       

@@ -3,6 +3,7 @@
 }
 .header img {
     height: 100vh;
+    border-bottom: solid 3px grey;
     width: 100%;
     object-fit: cover;
 }
