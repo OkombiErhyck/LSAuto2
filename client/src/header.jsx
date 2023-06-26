@@ -24,7 +24,6 @@ const Header = () => {
           <h2>
             Gaseste-ti masina <span>potrivita</span> !
           </h2>
-          
 
       
       <Link to="/IndexPage" className="btn">
