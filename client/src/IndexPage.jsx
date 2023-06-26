@@ -426,7 +426,7 @@ const handlePlaceClick = async (placeId) => {
      
         className={`filter-button ${showFilter ? 'active' : ''}`}
         onClick={handleFilterToggle}
-      >Filtreaza</button>
+      >Cautare detaliata</button>
   
 {showFilter && (
   <div className="filter-container">

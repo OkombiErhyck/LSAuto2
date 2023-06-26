@@ -17,7 +17,7 @@ function Home(){
   
 
 
-  const about2Ref = useRef(null);
+ 
   const aboutRef = useRef(null);
   const detailsRef = useRef(null);
    
@@ -41,7 +41,7 @@ function Home(){
     }, options);
 
     
-    observer.observe(about2Ref.current);
+   
     observer.observe(aboutRef.current);
     observer.observe(detailsRef.current);
    
@@ -58,9 +58,7 @@ function Home(){
 
 <Header/>
       
-      <div ref={about2Ref} style={{ opacity: 0, transform: 'translateY(20px)' }}>
-        <About2/>
-      </div>
+     
       <div ref={detailsRef} style={{ opacity: 0, transform: 'translateY(20px)' }}>
         <Details/> 
       </div>
@@ -70,7 +68,7 @@ function Home(){
        
       
       
-      <div ref={details2Ref} style={{ opacity: 0, transform: 'translateY(20px)' }}>
+      <div ref={details2Ref} style={{ opacity: 0, transform: 'translateY(10px)' }}>
         <Details2/>
       </div>
       

@@ -9,7 +9,7 @@
  }
  
 *{
-    font-family:  'Roboto Slab', Roboto, monospace;
+    font-family:  'Roboto ', Roboto, monospace;
     transition: 0.2s;
 }
 *::section {
