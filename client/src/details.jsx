@@ -95,7 +95,7 @@ export default function Details() {
                       <Image src={place.photos[0]} className="img-fluid" style={{ height: "270px", width: "100%", objectFit: "cover" }}/>
                     )}
                     <div className="box_content">
-                      <h4>{place.marca} {place.model}</h4>
+                      <h5>{place.marca} {place.model}</h5>
                       <div className="row pl-2 pr-2">
                         <div>
                           {place.putere} cp | {place.anul} | {place.km} km

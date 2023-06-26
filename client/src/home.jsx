@@ -22,7 +22,7 @@ function Home(){
   const detailsRef = useRef(null);
    
   
-  const details2Ref = useRef(null);
+  
 
   // Intersection Observer setup
   useEffect(() => {
@@ -46,7 +46,7 @@ function Home(){
     observer.observe(detailsRef.current);
    
   
-    observer.observe(details2Ref.current);
+    
     return () => {
       observer.disconnect();
     };
@@ -68,9 +68,9 @@ function Home(){
        
       
       
-      <div ref={details2Ref} style={{ opacity: 0, transform: 'translateY(5px)' }}>
+     
         <Details2/>
-      </div>
+      
       
       
         <CookiePolicyPopup/> 
