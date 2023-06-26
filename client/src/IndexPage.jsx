@@ -40,7 +40,6 @@ export default function IndexPage() {
   const [selectedPutereMax, setSelectedPutereMax] = useState("");
 
   
-  // Function to handle place click
   
 
   
@@ -407,7 +406,7 @@ const handlePlaceClick = async (placeId) => {
     });
     setPlaces(updatedPlaces);
 
-    // Send a POST request to update the click count in the backend
+    // Send a PUT request to update the click count in the backend (optional)
     await axios.post(`/places/${placeId}/clicks`, { clicks: updatedPlace.clicks });
 
     // Handle success if needed
@@ -416,7 +415,6 @@ const handlePlaceClick = async (placeId) => {
     // Handle error if needed
   }
 };
-
   
   return (<> 
   <div className="top"></div>
