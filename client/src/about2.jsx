@@ -11,6 +11,7 @@ const About2 = () => {
       <h1 className="font-weight-bold">Ce este <span>LS</span>Auto?</h1>
       <p className="text-muted lead" id="p">Locul potrivit pentru cei care doresc să-și vândă mașina. Încrederea și transparența sunt valorile noastre de bază, iar serviciile noastre sunt profesionale.   Alegeți LSAuto pentru o experiență de vânzare a mașinii fără stres.</p>
     </div>
+    
   </div>
   <div className="row">
     

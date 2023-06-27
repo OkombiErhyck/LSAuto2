@@ -6,6 +6,7 @@ import Carousel from "react-bootstrap/Carousel";
 import Image from "./image";
 import Details from "./details";
 import Carvertical from "./images/logoca.png";
+
 import { FaPhone, FaWhatsapp } from "react-icons/fa";
 
 export default function PlacePage() {

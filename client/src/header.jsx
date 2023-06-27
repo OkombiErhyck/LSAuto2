@@ -1,7 +1,7 @@
 import HeaderImg from "./images/1.jpeg";
 import "./header.css";
 import { Link } from "react-router-dom";
- 
+import Credit from "./images/credit.png";
 
 const Header = () => {
 
@@ -31,6 +31,7 @@ const Header = () => {
           </Link>
         </div>
       </div>
+      
     </>
   );
 };
