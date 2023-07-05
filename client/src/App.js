@@ -21,9 +21,10 @@ const IndexPage = lazy(() => import('./IndexPage'));
 const PlacePage = lazy(() => import('./PlacePage'));
 const ResetPassword = lazy(() => import('./reset-password'));
 const Despre = lazy(() => import('./despre'));
+const Contact = lazy(() => import('./contact'));
 const CookiePolicyPopup = lazy(() => import('./CookiePolicyPopup'));
 const Details = lazy(() => import('./details'));
-const Contact = lazy(() => import('./contact'));
+
 
 
 
