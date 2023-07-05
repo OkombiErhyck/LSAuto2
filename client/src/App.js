@@ -3,6 +3,7 @@ import './App.css';
 import React, { useState, useEffect, lazy, Suspense } from 'react';
 import Navbar from './navbar';
 import Footer from './footer/footer';
+import Footer2 from './footer2';
 import Home from './home';
 import { Routes, Route } from 'react-router-dom';
 import axios from 'axios';
@@ -22,7 +23,7 @@ const ResetPassword = lazy(() => import('./reset-password'));
 const Despre = lazy(() => import('./despre'));
 const CookiePolicyPopup = lazy(() => import('./CookiePolicyPopup'));
 const Details = lazy(() => import('./details'));
-
+const Contact = lazy(() => import('./contact'));
 
 
 
@@ -47,6 +48,7 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/userpage' element={<Userpage />} />
             <Route path='/login' element={<Login />} />
+            <Route path='/contact' element={<Contact />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/PlacesPage' element={<PlacesPage />} />
             <Route path='/IndexPage' element={<IndexPage />} />

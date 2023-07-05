@@ -3,12 +3,8 @@ import "./footer2.css";
 const Footer2 = () => {
     return (
         <>
-           <div className="container py-5">
-      <div className="row">
-        <div className="col-6 offset-3 text-center py-5">
-          <h1 className="font-weight-bold">Afla mai multe despre mine si afacerea mea </h1>
-           </div>
-      </div>
+           <div className="container py-5" style={{marginBottom: "-12%"}}>
+     
       <br/><br/><br/><br/>
       <div className="row">
         <ul>
