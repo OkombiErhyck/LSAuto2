@@ -1,5 +1,5 @@
-/*
-ul {
+
+.ul {
   display: flex;
   flex-wrap: wrap;
   }
@@ -11,7 +11,7 @@ ul {
   }
   
   @media (max-width: 600px) {
-  ul {
+  .ul {
     flex-direction: column;
     margin-top: 60px;
     
@@ -25,8 +25,8 @@ ul {
   
   }
   
-  ul {
-  
+  .ul {
+    align-items: center;
   position:relative;
   top:50%;
   left:55%;
@@ -36,12 +36,12 @@ ul {
   padding:0;
   }
   
-  ul li {
+  .ul li {
   list-style:none;
   margin:0 5px;
   }
   
-  ul li a .fa {
+  .ul li a .fa {
   font-size: 40px;
   color: #262626;
   line-height:80px;
@@ -49,7 +49,7 @@ ul {
   padding-right: 14px;
   }
   
-  ul li a span {
+  .ul li a span {
   padding:0;
   margin:0;
   position:absolute;
@@ -60,91 +60,93 @@ ul {
   font-weight: 600;
   }
   
-  ul li a {
+  .ul li a {
   text-decoration: none;
   display:absolute;
   display:block;
   width:210px;
   height:80px;
-  background: #fff;
+  background:var(--main);
   text-align:left;
   padding-left: 20px;
   transform: rotate(0deg) skew(0deg) translate(0,0);
   transition:.5s;
   box-shadow: -20px 20px 10px rgba(0,0,0,.5);
   }
-  ul li a:before {
+  .ul li a:before {
   content: '';
   position: absolute;
   top:10px;
   left:-20px;
   height:100%;
   width:20px;
-  background: #b1b1b1;
+  background: #b96516;
   transform: .5s;
   transform: rotate(0deg) skewY(-45deg);
   }
-  ul li a:after {
+  .ul li a:after {
   content: '';
   position: absolute;
   bottom:-20px;
   left:-10px;
   height:20px;
   width:100%;
-  background: #b1b1b1;
+  background: #ad3e0e;
   transform: .5s;
   transform: rotate(0deg) skewX(-45deg);
   }
   
-  ul li a:hover {
+  .ul li a:hover {
   transform: rotate(-0deg) skew(5deg) translate(20px,-15px);
   box-shadow: -50px 50px 50px rgba(0,0,0,.5);
   }
   
-  ul li:hover .fa {
+  .ul li:hover .fa {
   color:#fff;
   }
   
-  ul li:hover span {
+  .ul li:hover span {
   color:#fff;
   }
   
-  ul li:hover:nth-child(1) a{
-  background: #3b5998;
-  }
-  ul li:hover:nth-child(1) a:before{
-  background: #365492;
-  }
-  ul li:hover:nth-child(1) a:after{
-  background: #4a69ad;
+  ul li:hover:nth-child(1) a {
+    background: linear-gradient(to right, #7ee9f7, #ff6b9e);
   }
   
-  ul li:hover:nth-child(2) a{
-  background: #e42c2c;
-  }
-  ul li:hover:nth-child(2) a:before{
-  background: #b34848;
-  }
-  ul li:hover:nth-child(2) a:after{
-  background: #835050;
+  ul li:hover:nth-child(1) a:before {
+    background:  #7ee7f7;
   }
   
-  ul li:hover:nth-child(4) a{
+  ul li:hover:nth-child(1) a:after {
+    background: linear-gradient(to right, #7ecff7, #ff6b9e);
+  }
+  
+  .ul li:hover:nth-child(2) a{
+  background: #6c6b6b;
+  }
+  .ul li:hover:nth-child(2) a:before{
+  background: #373737;
+  }
+  .ul li:hover:nth-child(2) a:after{
+  background: #393939;
+  }
+  
+  .ul li:hover:nth-child(4) a{
   background: #dd4b39;
   }
-  ul li:hover:nth-child(4) a:before{
+  .ul li:hover:nth-child(4) a:before{
   background: #b33a2b;
   }
-  ul li:hover:nth-child(4) a:after{
+  .ul li:hover:nth-child(4) a:after{
   background: #e66a5a;
   }
   
-  ul li:hover:nth-child(3) a{
+  .ul li:hover:nth-child(3) a{
   background: #e4405f;
   }
-  ul li:hover:nth-child(3) a:before{
+  .ul li:hover:nth-child(3) a:before{
   background: #d81c3f;
   }
-  ul li:hover:nth-child(3) a:after{
+  .ul li:hover:nth-child(3) a:after{
   background: #e46880;
-  }*/
+  }

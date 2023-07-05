@@ -3,7 +3,7 @@ import './App.css';
 import React, { useState, useEffect, lazy, Suspense } from 'react';
 import Navbar from './navbar';
 import Footer from './footer/footer';
-import Footer2 from './footer2';
+import Footer2 from './footer/footer2';
 import Home from './home';
 import { Routes, Route } from 'react-router-dom';
 import axios from 'axios';
@@ -29,7 +29,7 @@ const Details = lazy(() => import('./details'));
 
 
 
-axios.defaults.baseURL = 'https://api.lsauto.ro';
+axios.defaults.baseURL = 'http://localhost:4000';
 axios.defaults.withCredentials = true;
 
 function App() {
