@@ -6,17 +6,14 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 
 const Footer = () => {
-    const history = useHistory();
-
-  const handleClick = () => {
-    history.push('/contact'); // Replace '/contact' with the actual route to your contact component
-  };
+    
     return (
         <>
         
            <footer>
             
-            
+        
+                
                 <p>Copyright &copy; LSAuto | 2023 All rights reserved  <a href="/despre" className="nav-link">
                     politici
                   </a></p>
