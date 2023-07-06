@@ -15,7 +15,7 @@ const Footer = () => {
            <div className="container py-5" style={{marginBottom: "-8%"}}>
      
      <br/><br/><br/><br/>
-     <div className="row">
+     <div className="row" id="row">
        <ul className="ul">
          <li>
          <a href="https://www.tiktok.com/@lsauto.ro">
