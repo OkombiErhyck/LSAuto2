@@ -499,7 +499,7 @@ const handlePlaceClick = async (placeId) => {
           <div className="filter-item">
           <label htmlFor="model-select"> </label>
       <select id="model-select" value={selectedModel} onChange={handleModelSelect}>
-        <option value="">Model</option>
+        <option value="">Modele Disponibile</option>
         {filteredPlaces.map(place => (
           <option key={place.id} value={place.model}>{place.model}</option>
         ))}
@@ -783,7 +783,7 @@ const handlePlaceClick = async (placeId) => {
           <div className="filter-item">
           <label htmlFor="model-select"> </label>
       <select id="model-select" value={selectedModel} onChange={handleModelSelect}>
-        <option value="">Model</option>
+        <option value="">Modele Disponibile</option>
         {filteredPlaces.map(place => (
           <option key={place.id} value={place.model}>{place.model}</option>
         ))}
