@@ -350,7 +350,7 @@ export default function Write() {
     },
     {
       brand: "Dacia",
-      models: [  "Duster",  "Spring","Logan", "Sandero", "Lodgy", "Dokker", "Nova", "Solenza", "Supernova", "Solenza", "1304  ", "1305  ", "1307 ", "1309  ", "1306  ", "1308  ", "1300  ", "1310  ", "1304  ", "1305  ",    "1309  ", "1306  ", "1308  ",  , "1307  ", "1309  "  ]
+      models: [  "Duster",  "Spring", "Jogger","Logan", "Sandero", "Lodgy", "Dokker", "Nova", "Solenza", "Supernova", "Solenza", "1304  ", "1305  ", "1307 ", "1309  ", "1306  ", "1308  ", "1300  ", "1310  ", "1304  ", "1305  ",    "1309  ", "1306  ", "1308  ",  , "1307  ", "1309  "  ]
       },
       {
         brand: "Daewoo",
