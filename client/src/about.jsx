@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import background from "./images/07how-to-buy-anew-car-9.jpg";
 import { Link } from 'react-router-dom';
-import Credit from "./images/credit.png";
+
 
 import "./about.css";
 const About = () => {
@@ -17,20 +17,9 @@ const About = () => {
       
 
         <div className="col-12 col-md-5 offset-md-1 p-5 align-self-center">
-        <a
-                  href="https://l.profitshare.ro/l/11980600"
-                  target="_top"
-                >
-                  <img
-                    style={{ width: "600px" , marginLeft:"-70px", marginTop:"-70px"}}
-                    src={Credit}
-                    alt="credit"
-                  />
-                </a>
-                <br>
+       
                   
-                </br>
-                <br></br>
+                
 
           <h2>Vrei sa iti vinzi masina?</h2>
           <p className="text-muted lead">Platforma noastra ofera solutia perfecta pentru cei care doresc sa isi vanda masina singuri.
