@@ -1338,7 +1338,7 @@ async function savePlace(ev) {
     putere,
     normaeuro,
     combustibil,
-    locatie
+    locatie,
   };
 if (id) {
   //update
