@@ -1046,14 +1046,24 @@ const handlePlaceClick = async (placeId) => {
       </div>
        
       <div className="pagination">
-        <ul>
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map(pageNumber => (
-            <li key={pageNumber}>
-              <button style={{borderRadius: '15px', backdropFilter: 'blur(10px)'}}onClick={() => handlePageChange(pageNumber)}>{pageNumber}</button>
-            </li>
-          ))}
-        </ul>
-      </div>
+  <ul>
+    {Array.from({ length: totalPages }, (_, i) => i + 1).map(pageNumber => (
+      <li key={pageNumber}>
+        <button
+          style={{
+            borderRadius: '15px',
+            backdropFilter: 'blur(10px)',
+            fontWeight: pageNumber === currentPage ? 'bold' : 'normal'
+          }}
+          onClick={() => handlePageChange(pageNumber)}
+        >
+          {pageNumber}
+        </button>
+      </li>
+    ))}
+  </ul>
+</div>
+
      
     </>
   );
