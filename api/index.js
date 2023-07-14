@@ -22,7 +22,7 @@ const bucket = 'lsauto';
 
 
 app.use(cors({
-  origin: "https://lsauto.ro", 
+  origin: "https://www.lsauto.ro", 
   credentials: true,
 }));
 app.use(CookieParser());
@@ -67,7 +67,7 @@ app.get("/test", (req,res) => {
 app.post("/register", async (req,res) => {
   mongoose.connect(process.env.MONGO_URL);
   res.header("Access-Control-Allow-Credentials", "true");
-res.set("Access-Control-Allow-Origin", "https://lsauto.ro");
+res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
     const {name,email,password} = req.body;
 
     try { 
@@ -89,7 +89,7 @@ res.set("Access-Control-Allow-Origin", "https://lsauto.ro");
 app.post("/login", async (req, res) => {
   mongoose.connect(process.env.MONGO_URL);
   res.header("Access-Control-Allow-Credentials", "true");
-  res.set("Access-Control-Allow-Origin", "https://lsauto.ro");
+  res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
   const { email, password } = req.body;
   const userDoc = await User.findOne({ email });
   if (userDoc) {
@@ -114,7 +114,7 @@ app.post("/login", async (req, res) => {
   
 app.get("/profile", (req, res) => {
   res.header("Access-Control-Allow-Credentials", "true");
-  res.set("Access-Control-Allow-Origin", "https://lsauto.ro");
+  res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
   const { token } = req.cookies;
   if (token) {
     jwt.verify(token, jwtSecret, {}, async (err, decoded) => {
@@ -159,7 +159,7 @@ app.post("/upload", photosMiddleware.single('photo'), async (req, res) => {
 app.post('/places/:placeId/clicks', async (req, res) => {
   mongoose.connect(process.env.MONGO_URL);
   res.header("Access-Control-Allow-Credentials", "true");
-  res.set("Access-Control-Allow-Origin", "https://lsauto.ro");
+  res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
   try {
     const placeId = req.params.placeId;
 
@@ -190,7 +190,7 @@ app.post('/places/:placeId/clicks', async (req, res) => {
 app.post("/places", (req,res) => {
   mongoose.connect(process.env.MONGO_URL);
   res.header("Access-Control-Allow-Credentials", "true");
-  res.set("Access-Control-Allow-Origin", "https://lsauto.ro");
+  res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
   const {token} = req.cookies;
   const {title, marca, model, km, anul, addedPhotos, description, perks,
     culoare,
@@ -244,7 +244,7 @@ app.post("/places", (req,res) => {
 app.get("/user-places", (req,res) => {
   mongoose.connect(process.env.MONGO_URL);
   res.header("Access-Control-Allow-Credentials", "true");
-  res.set("Access-Control-Allow-Origin", "https://lsauto.ro");
+  res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
   const {token} = req.cookies;
   jwt.verify(token, jwtSecret, {}, async (err,userData) => {
     const {id} = userData;
@@ -256,7 +256,7 @@ app.get("/user-places", (req,res) => {
 app.get("/places/:id", async (req,res) => {
   mongoose.connect(process.env.MONGO_URL);
   res.header("Access-Control-Allow-Credentials", "true");
-  res.set("Access-Control-Allow-Origin", "https://lsauto.ro");
+  res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
   const {id} = req.params;
   res.json( await Place.findById(id));
 });
@@ -265,7 +265,7 @@ app.get("/places/:id", async (req,res) => {
 app.put("/places" , async (req,res) => {
   mongoose.connect(process.env.MONGO_URL);
   res.header("Access-Control-Allow-Credentials", "true");
-  res.set("Access-Control-Allow-Origin", "https://lsauto.ro");
+  res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
   const {token} = req.cookies;
   const {
     id, title, marca, model, km, anul, addedPhotos, description, perks,culoare,
@@ -321,7 +321,7 @@ app.put("/places" , async (req,res) => {
 app.get("/places", async (req,res) => {
   mongoose.connect(process.env.MONGO_URL);
   res.header("Access-Control-Allow-Credentials", "true");
-  res.set("Access-Control-Allow-Origin", "https://lsauto.ro");
+  res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
   res.json( await Place.find() );
 });
 
@@ -335,7 +335,7 @@ app.get("/places", async (req,res) => {
 app.post('/reset-password', async (req, res) => {
   mongoose.connect(process.env.MONGO_URL);
   res.header("Access-Control-Allow-Credentials", "true");
-  res.set("Access-Control-Allow-Origin", "https://lsauto.ro");
+  res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
   const { email, newPassword } = req.body;
 
   // Find user by email
@@ -361,7 +361,7 @@ app.post('/reset-password', async (req, res) => {
 app.delete("/places/:id", (req,res) => {
   mongoose.connect(process.env.MONGO_URL);
   res.header("Access-Control-Allow-Credentials", "true");
-  res.set("Access-Control-Allow-Origin", "https://lsauto.ro");
+  res.set("Access-Control-Allow-Origin", "https://www.lsauto.ro");
   const {id} = req.params;
   Place.findByIdAndDelete(id, (err, deletedPlace) => {
     if (err) {
