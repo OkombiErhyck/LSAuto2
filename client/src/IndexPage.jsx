@@ -1050,11 +1050,8 @@ const handlePlaceClick = async (placeId) => {
     {Array.from({ length: totalPages }, (_, i) => i + 1).map(pageNumber => (
       <li key={pageNumber}>
         <button
-          style={{
-            borderRadius: '15px',
-            backdropFilter: 'blur(10px)',
-            fontWeight: pageNumber === currentPage ? 'bold' : 'normal'
-          }}
+          style={{borderRadius: '15px', backdropFilter: 'blur(10px)'}}
+          className={currentPage === pageNumber ? 'active' : ''}
           onClick={() => handlePageChange(pageNumber)}
         >
           {pageNumber}
@@ -1063,6 +1060,7 @@ const handlePlaceClick = async (placeId) => {
     ))}
   </ul>
 </div>
+
 
      
     </>
