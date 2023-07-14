@@ -249,14 +249,17 @@ export default function PlacePage() {
             <div className="contContainer">
               <h3>CONTACT</h3>
               <p>
-                <span style={{ color: "var(--main)" }}>Nume:</span> {place.nume}
+                <span style={{ color: "var(--main)" }}></span> {place.nume}
               </p>
               <p>
-                <span style={{ color: "var(--main)" }}>Telefon:</span>{" "}
+                <span style={{ color: "var(--main)" }}></span> {place.locatie}
+              </p>
+              <p>
+                <span style={{ color: "var(--main)" }}></span>{" "}
                 {place.telefon}
               </p>
               <p>
-                <span style={{ color: "var(--main)" }}>Email: </span>{" "}
+                <span style={{ color: "var(--main)" }}></span>{" "}
                 {place.mail}
               </p>
             </div>
