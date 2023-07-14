@@ -280,6 +280,7 @@ app.put("/places" , async (req,res) => {
     nume,
     mail,
     telefon,
+    locatie,
   } = req.body;
   jwt.verify(token, jwtSecret, {}, async (err, userData) => {
     if (err) throw err;
@@ -307,6 +308,7 @@ app.put("/places" , async (req,res) => {
         putere,
         normaeuro,
         combustibil,
+        locatie,
         clicks: placeDoc.clicks + 1,
       });
       await placeDoc.save();

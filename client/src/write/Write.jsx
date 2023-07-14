@@ -1271,6 +1271,7 @@ export default function Write() {
   console.log({id});
   const [title,setTitle] = useState("");
   const [nume,setNume] = useState("");
+  const [locatie,setLocatie] = useState("");
   const [mail,setMail] = useState("");
   const [telefon,setTelefon] = useState("");
   const [culoare,setCuloare] = useState("");
@@ -1298,6 +1299,7 @@ export default function Write() {
       const {data} = response;
       setCuloare(data.culoare);
       setNume(data.nume);
+      setLocatie(data.locatie);
       setMail(data.mail);
       setTelefon(data.telefon);
       setTractiune(data.tractiune);
@@ -1335,7 +1337,8 @@ async function savePlace(ev) {
     caroserie,
     putere,
     normaeuro,
-    combustibil
+    combustibil,
+    locatie
   };
 if (id) {
   //update
@@ -1508,29 +1511,8 @@ const generateModelOptions = () => {
               type="text"
               value={cilindre} onChange={ev => setCilindre(ev.target.value)}
             />
-            <h5>Nume pentu contact</h5>
-             <input
-              className="writeInput"
-              placeholder="Nume"
-              type="text"
-              value={nume} onChange={ev => setNume(ev.target.value)}
-            />
-            <h5>Telefon</h5>
-             <input
-              className="writeInput"
-              placeholder="07xxxxxxxx"
-              type="text"
-              value={telefon} onChange={ev => setTelefon(ev.target.value)}
-            />
-            <h5>eMail</h5>
-             <input
-              className="writeInput"
-              placeholder="abc@xyz.com"
-              type="text"
-              value={mail} onChange={ev => setMail(ev.target.value)}
-            />
 
-             <h5>Kilometri</h5>
+<h5>Kilometri</h5>
              <input
               className="writeInput"
               placeholder="10000"
@@ -1543,6 +1525,36 @@ const generateModelOptions = () => {
               placeholder="2012"
               type="text"
               value={anul} onChange={ev => setAnul(ev.target.value)}
+            />
+             
+            <h5>Nume pentu contact/ Dealer</h5>
+             <input
+              className="writeInput"
+              placeholder="Nume EXauto"
+              type="text"
+              value={nume} onChange={ev => setNume(ev.target.value)}
+            />
+            <h5>Telefon</h5>
+             <input
+              className="writeInput"
+              placeholder="07xxxxxxxx"
+              type="text"
+              value={telefon} onChange={ev => setTelefon(ev.target.value)}
+            />
+           
+            <h5>eMail</h5>
+             <input
+              className="writeInput"
+              placeholder="abc@xyz.com"
+              type="text"
+              value={mail} onChange={ev => setMail(ev.target.value)}
+            />
+ <h5>Locatie</h5>
+             <input
+              className="writeInput"
+              placeholder="Judet-Oras"
+              type="text"
+              value={locatie} onChange={ev => setTelefon(ev.target.value)}
             />
              
              <PhotosUpLoader addedPhotos={addedPhotos} onChange={setAddedPhotos}/>
