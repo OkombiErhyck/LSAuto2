@@ -1053,7 +1053,7 @@ const handlePlaceClick = async (placeId) => {
           style={{
             borderRadius: '15px',
             backdropFilter: 'blur(10px)',
-            fontWeight: pageNumber === currentPage ? 'bold' : 'normal'
+            background: activePage === pageNumber ? 'white' : 'transparent'
           }}
           onClick={() => handlePageChange(pageNumber)}
         >
