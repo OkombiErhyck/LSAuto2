@@ -1554,7 +1554,7 @@ const generateModelOptions = () => {
               className="writeInput"
               placeholder="Judet-Oras"
               type="text"
-              value={locatie} onChange={ev => setTelefon(ev.target.value)}
+              value={locatie} onChange={ev => setLocatie(ev.target.value)}
             />
              
              <PhotosUpLoader addedPhotos={addedPhotos} onChange={setAddedPhotos}/>
