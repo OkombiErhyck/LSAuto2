@@ -1065,19 +1065,37 @@ const handlePlaceClick = async (placeId) => {
        
       <div className="pagination">
   <ul>
-    {Array.from({ length: totalPages }, (_, i) => i + 1).map(pageNumber => (
-      <li key={pageNumber}>
-        <button
-          style={{borderRadius: '15px', backdropFilter: 'blur(10px)'}}
-          className={currentPage === pageNumber ? 'active' : ''}
-          onClick={() => handlePageChange(pageNumber)}
-        >
-          {pageNumber}
-        </button>
-      </li>
-    ))}
+    {Array.from({ length: totalPages }, (_, i) => i + 1).map(pageNumber => {
+      if (
+        pageNumber <= 3 || // Display first 3 pages
+        pageNumber === totalPages || // Display last page
+        (currentPage >= 4 && currentPage - pageNumber <= 1) || // Display pages close to current page
+        (currentPage <= totalPages - 3 && pageNumber - currentPage <= 1) // Display pages close to current page
+      ) {
+        return (
+          <li key={pageNumber}>
+            <button
+              style={{ borderRadius: '15px', backdropFilter: 'blur(10px)' }}
+              className={currentPage === pageNumber ? 'active' : ''}
+              onClick={() => handlePageChange(pageNumber)}
+            >
+              {pageNumber}
+            </button>
+          </li>
+        );
+      }
+      if (pageNumber === 4 || pageNumber === totalPages - 2) {
+        return (
+          <li key={pageNumber}>
+            <span className="ellipsis">...</span>
+          </li>
+        );
+      }
+      return null;
+    })}
   </ul>
 </div>
+
 
 
      
