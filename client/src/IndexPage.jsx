@@ -1070,7 +1070,9 @@ const handlePlaceClick = async (placeId) => {
        
       <div className="pagination">
   <ul>
-    {Array.from({ length: totalPages }, (_, i) => i + 1).map(pageNumber => {
+  {Array.from({ length: totalPages }, (_, i) => i + 1)
+      .reverse() // Reverse the array
+      .map((pageNumber) =>  {
       if (
         pageNumber <= 3 || // Display first 3 pages
         pageNumber === totalPages || // Display last page
