@@ -497,14 +497,23 @@ const handlePlaceClick = async (placeId) => {
           </div>
 
           <div className="filter-item">
-          <label htmlFor="model-select"> </label>
-      <select id="model-select" value={selectedModel} onChange={handleModelSelect}>
-        <option value="">Modele Disponibile</option>
-        {filteredPlaces.map(place => (
-          <option key={place.id} value={place.model}>{place.model}</option>
-        ))}
-      </select>
-    </div>
+  <label htmlFor="model-select"> </label>
+  <select id="model-select" value={selectedModel} onChange={handleModelSelect}>
+    <option value="">Modele Disponibile</option>
+    {filteredPlaces.reduce((acc, place) => {
+      const existingIndex = acc.findIndex(item => item.model === place.model);
+      if (existingIndex !== -1) {
+        acc[existingIndex].count++;
+      } else {
+        acc.push({ model: place.model, count: 1 });
+      }
+      return acc;
+    }, []).map(item => (
+      <option key={item.model} value={item.model}>{`${item.model} (${item.count})`}</option>
+    ))}
+  </select>
+</div>
+
     <div className="filter-item">
   <label htmlFor="anul-min-select"> </label>
   <input   placeholder="Anul de la" id="anul-min-select" type="number" value={selectedAnulMin} onChange={(event) => setSelectedAnulMin(event.target.value)} />
@@ -781,14 +790,23 @@ const handlePlaceClick = async (placeId) => {
           </div>
 
           <div className="filter-item">
-          <label htmlFor="model-select"> </label>
-      <select id="model-select" value={selectedModel} onChange={handleModelSelect}>
-        <option value="">Modele Disponibile</option>
-        {filteredPlaces.map(place => (
-          <option key={place.id} value={place.model}>{place.model}</option>
-        ))}
-      </select>
-    </div>
+  <label htmlFor="model-select"> </label>
+  <select id="model-select" value={selectedModel} onChange={handleModelSelect}>
+    <option value="">Modele Disponibile</option>
+    {filteredPlaces.reduce((acc, place) => {
+      const existingIndex = acc.findIndex(item => item.model === place.model);
+      if (existingIndex !== -1) {
+        acc[existingIndex].count++;
+      } else {
+        acc.push({ model: place.model, count: 1 });
+      }
+      return acc;
+    }, []).map(item => (
+      <option key={item.model} value={item.model}>{`${item.model} (${item.count})`}</option>
+    ))}
+  </select>
+</div>
+
     <div className="filter-item">
   <label htmlFor="anul-min-select"> </label>
   <input   placeholder="Anul de la" id="anul-min-select" type="number" value={selectedAnulMin} onChange={(event) => setSelectedAnulMin(event.target.value)} />
