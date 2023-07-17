@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 
 export default function PlacesPage() {
   const [places, setPlaces] = useState([]);
-  const [showPlaces, setShowPlaces] = useState(true);
 
   useEffect(() => {
     axios.get('/user-places').then(({ data }) => {
@@ -29,12 +28,8 @@ export default function PlacesPage() {
       <div className="main2">
         <div className="container">
           <div className="details container">
-            <button onClick={() => setShowPlaces(!showPlaces)}>
-              {showPlaces ? 'Hide Places' : 'Show Places'}
-            </button>
             <div className="row row-cols-1 row-cols-md-3 g-4">
-              {showPlaces &&
-                places.length > 0 &&
+              {places.length > 0 &&
                 places.map(place => (
                   <Link className="link-no-underline" to={"/write/" + place._id} key={place._id}>
                     <div className="col">
