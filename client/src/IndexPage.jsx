@@ -41,7 +41,10 @@ export default function IndexPage() {
 
   
   
-
+  useEffect(() => {
+    const reversedPlaces = [...places].reverse();
+    setPlaces(reversedPlaces);
+  }, []);
   
   const data = [
     {
@@ -1026,11 +1029,7 @@ const handlePlaceClick = async (placeId) => {
            
         <div className="details container">
       <div className="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4">
-      {currentPlaces.length > 0 &&
-      currentPlaces
-        .slice()
-        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // Sort by createdAt in descending order
-        .map((place) => ( 
+      {currentPlaces.length > 0 && currentPlaces.map(place =>( 
           <Link
             to={"/place/" + place._id}
             key={place._id}
