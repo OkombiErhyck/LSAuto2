@@ -249,6 +249,9 @@ export default function PlacePage() {
             <div className="contContainer">
               <h3>CONTACT</h3>
               <p>
+                <span style={{ color: "var(--main)" }}></span> {place.dealer}
+              </p>
+              <p>
                 <span style={{ color: "var(--main)" }}></span> {place.nume}
               </p>
               <p>

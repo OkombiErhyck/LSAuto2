@@ -1271,6 +1271,7 @@ export default function Write() {
   console.log({id});
   const [title,setTitle] = useState("");
   const [nume,setNume] = useState("");
+  const [dealer,setDealer] = useState("");
   const [locatie,setLocatie] = useState("");
   const [mail,setMail] = useState("");
   const [telefon,setTelefon] = useState("");
@@ -1299,6 +1300,7 @@ export default function Write() {
       const {data} = response;
       setCuloare(data.culoare);
       setNume(data.nume);
+      setDealer(data.dealer);
       setLocatie(data.locatie);
       setMail(data.mail);
       setTelefon(data.telefon);
@@ -1339,6 +1341,7 @@ async function savePlace(ev) {
     normaeuro,
     combustibil,
     locatie,
+    dealer,
   };
 if (id) {
   //update
@@ -1527,12 +1530,19 @@ const generateModelOptions = () => {
               value={anul} onChange={ev => setAnul(ev.target.value)}
             />
              
-            <h5>Nume pentu contact/ Dealer</h5>
+            <h5>Persoana de  contact</h5>
              <input
               className="writeInput"
-              placeholder="Nume EXauto"
+              placeholder="Nume"
               type="text"
               value={nume} onChange={ev => setNume(ev.target.value)}
+            />
+            <h5>Dealer (optional)</h5>
+             <input
+              className="writeInput"
+              placeholder=" EXauto"
+              type="text"
+              value={dealer} onChange={ev => setDealer(ev.target.value)}
             />
             <h5>Telefon</h5>
              <input
@@ -1542,7 +1552,7 @@ const generateModelOptions = () => {
               value={telefon} onChange={ev => setTelefon(ev.target.value)}
             />
            
-            <h5>eMail</h5>
+            <h5>Email</h5>
              <input
               className="writeInput"
               placeholder="abc@xyz.com"

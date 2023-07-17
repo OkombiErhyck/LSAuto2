@@ -195,6 +195,8 @@ app.post("/places", (req,res) => {
   const {title, marca, model, km, anul, addedPhotos, description, perks,
     culoare,
     nume,
+    locatie,
+    dealer,
     mail,
     telefon,
     cilindre,
@@ -227,6 +229,8 @@ app.post("/places", (req,res) => {
       seriesasiu,
       caroserie,
       putere,
+      locatie,
+    dealer,
       normaeuro,
       combustibil
 
@@ -281,6 +285,7 @@ app.put("/places" , async (req,res) => {
     mail,
     telefon,
     locatie,
+    dealer,
   } = req.body;
   jwt.verify(token, jwtSecret, {}, async (err, userData) => {
     if (err) throw err;
@@ -309,6 +314,7 @@ app.put("/places" , async (req,res) => {
         normaeuro,
         combustibil,
         locatie,
+    dealer,
         clicks: placeDoc.clicks + 1,
       });
       await placeDoc.save();

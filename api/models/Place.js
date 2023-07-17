@@ -23,6 +23,7 @@ const placeSchema = new mongoose.Schema({
   mail: String,
   telefon: String,
   locatie: String,
+  dealer: String,
   clicks: {
     type: Number,
     default: 0
