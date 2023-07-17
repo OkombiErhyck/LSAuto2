@@ -416,8 +416,8 @@ const handlePlaceClick = async (placeId) => {
   }
 };
 
-const reversedPlaces = [...places].reverse(); 
-  
+ 
+  const reversedPlaces = [...places].reverse();
   return (<> 
   <div className="top"></div>
     <div className="main2"> 
@@ -1028,7 +1028,7 @@ const reversedPlaces = [...places].reverse();
         <div className="details container">
       <div className="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4">
       {reversedPlaces.length > 0 &&
-                reversedPlaces.map(place =>  ( 
+                reversedPlaces.map(place => ( 
           <Link
             to={"/place/" + place._id}
             key={place._id}
@@ -1065,7 +1065,6 @@ const reversedPlaces = [...places].reverse();
         </div>
         )}
       </div>
-       
       <div className="pagination">
   <ul>
     {Array.from({ length: totalPages }, (_, i) => i + 1).map(pageNumber => {
@@ -1093,14 +1092,15 @@ const reversedPlaces = [...places].reverse();
       ) {
         return (
           <li key={pageNumber}>
-            <span className="ellipsis" style={{color: 'var(--main)' }}>...</span>
+            <span className="ellipsis" style={{ color: 'var(--main)' }}>...</span>
           </li>
         );
       }
       return null;
-    })}
+    }).filter(Boolean)}
   </ul>
 </div>
+
 
 
 
