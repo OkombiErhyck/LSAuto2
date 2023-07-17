@@ -1028,8 +1028,8 @@ const handlePlaceClick = async (placeId) => {
       <div className="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4">
       {currentPlaces.length > 0 &&
       currentPlaces
-        .slice()
         .reverse() 
+        .slice()
         .map((place) => ( 
           <Link
             to={"/place/" + place._id}
@@ -1070,9 +1070,7 @@ const handlePlaceClick = async (placeId) => {
        
       <div className="pagination">
   <ul>
-  {Array.from({ length: totalPages }, (_, i) => i + 1)
-      .reverse() // Reverse the array
-      .map((pageNumber) =>  {
+    {Array.from({ length: totalPages }, (_, i) => i + 1).map(pageNumber => {
       if (
         pageNumber <= 3 || // Display first 3 pages
         pageNumber === totalPages || // Display last page
