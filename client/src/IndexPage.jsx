@@ -1028,8 +1028,8 @@ const handlePlaceClick = async (placeId) => {
       <div className="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4">
       {currentPlaces.length > 0 &&
       currentPlaces
-        .reverse() 
         .slice()
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // Sort by createdAt in descending order
         .map((place) => ( 
           <Link
             to={"/place/" + place._id}
