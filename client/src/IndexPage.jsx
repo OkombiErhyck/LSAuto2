@@ -1084,7 +1084,10 @@ const handlePlaceClick = async (placeId) => {
           </li>
         );
       }
-      if (pageNumber === 4 || pageNumber === totalPages - 2) {
+      if (
+        (currentPage >= 5 && pageNumber === 4) || // Display page 4 when current page is 5 or above
+        (currentPage <= totalPages - 4 && pageNumber === totalPages - 1) // Display second-to-last page when current page is 4 or below
+      ) {
         return (
           <li key={pageNumber}>
             <span className="ellipsis">...</span>
@@ -1095,6 +1098,7 @@ const handlePlaceClick = async (placeId) => {
     })}
   </ul>
 </div>
+
 
 
 
