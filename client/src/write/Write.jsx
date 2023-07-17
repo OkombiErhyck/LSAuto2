@@ -350,7 +350,7 @@ export default function Write() {
     },
     {
       brand: "Dacia",
-      models: [  "Duster",  "Spring", "Jogger","Logan", "Sandero", "Lodgy", "Dokker", "Nova", "Solenza", "Supernova", "Solenza", "1304  ", "1305  ", "1307 ", "1309  ", "1306  ", "1308  ", "1300  ", "1310  ", "1304  ", "1305  ",    "1309  ", "1306  ", "1308  ",  , "1307  ", "1309  "  ]
+      models: [  "Duster",  "Spring", "Jogger","Logan","Logan MCV", "Sandero", "Lodgy", "Dokker", "Nova", "Solenza", "Supernova", "Solenza", "1304  ", "1305  ", "1307 ", "1309  ", "1306  ", "1308  ", "1300  ", "1310  ", "1304  ", "1305  ",    "1309  ", "1306  ", "1308  ",  , "1307  ", "1309  "  ]
       },
       {
         brand: "Daewoo",
@@ -543,23 +543,24 @@ export default function Write() {
                   {
                     brand: "Jaguar",
                     models: [
-                    "SS Jaguar 100",
-                    "Jaguar Mark 1",
-                    "Jaguar Mark 2",
-                    "Jaguar E-Type",
-                    "Jaguar XJ",
-                    "Jaguar XJS",
-                    "Jaguar XJ220",
-                    "Jaguar XK8/XKR",
-                    "Jaguar S-Type",
-                    "Jaguar X-Type",
-                    "Jaguar XK",
-                    "Jaguar XF",
-                    "Jaguar XJ (X351)",
-                    "Jaguar F-Type",
-                    "Jaguar XE",
-                    "Jaguar I-PACE",
-                    "Jaguar F-PACE"
+                    "SS  100",
+                    " Mark 1",
+                    " Mark 2",
+                    " E-Type",
+                    " XJ",
+                    " XJS",
+                    " XJ220",
+                    " XK8/XKR",
+                    " S-Type",
+                    " X-Type",
+                    " XK",
+                    " XF",
+                    " XJ (X351)",
+                    " F-Type",
+                    " XE",
+                    " I-PACE",
+                    " F-PACE",
+                    " E-PACE"
                     ]
                     },
                     {

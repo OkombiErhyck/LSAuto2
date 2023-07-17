@@ -1090,7 +1090,7 @@ const handlePlaceClick = async (placeId) => {
       ) {
         return (
           <li key={pageNumber}>
-            <span className="ellipsis">...</span>
+            <span className="ellipsis" style={{color: 'var(--main)' }}>...</span>
           </li>
         );
       }
