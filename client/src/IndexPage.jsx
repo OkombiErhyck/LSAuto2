@@ -415,6 +415,8 @@ const handlePlaceClick = async (placeId) => {
     // Handle error if needed
   }
 };
+
+const reversedPlaces = [...places].reverse(); 
   
   return (<> 
   <div className="top"></div>
