@@ -78,10 +78,11 @@ export default function IndexPage() {
   useEffect(() => {
     axios.get('/places').then(response => {
       const sortedPlaces = response.data.sort((a, b) => new Date(b.date) - new Date(a.date));
-      setPlaces(sortedPlaces);
+      setPlaces(sortedPlaces.reverse()); // Reverse the sortedPlaces array
       setLoading(false); // Set loading to false when the data is fetched
     });
   }, []);
+  
   
   const [selectedPerks, setSelectedPerks] = useState([]);
   const [perkOptions] = useState([
