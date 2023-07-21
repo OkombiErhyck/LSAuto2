@@ -77,6 +77,7 @@ export default function Details() {
   
   return(
     <div className="main2"> 
+    <h4>Cele mai vizualizate anunturi</h4>
       <div className="container">
       {loading ? (
           <div className="loader">

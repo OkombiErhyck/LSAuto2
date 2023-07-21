@@ -79,6 +79,7 @@ export default function Details() {
   return (
     <div className="main2"> 
       <div className="container">
+      <h4>Recent adaugate</h4>
       {loading ? (
           <div className="loader">
         <div className="spinner"> </div>
