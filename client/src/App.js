@@ -12,6 +12,7 @@ import SplashScreen from './SplashScreen';
 
 
 const About = lazy(() => import('./about'));
+const Dealer = lazy(() => import('./dealer'));
 const Login = lazy(() => import('./login'));
 const Signup = lazy(() => import('./signup'));
 const Userpage = lazy(() => import('./userpage'));
@@ -43,6 +44,7 @@ function App() {
         <Suspense fallback={<SplashScreen />}>
           <Routes>
             <Route path='/details' element={<Details />} />
+            <Route path='/dealer' element={<Dealer />} />
             <Route path='/Write' element={<Write />} />
             <Route path='/Write/:id' element={<Write />} />
             <Route path='/' element={<Home />} />
