@@ -77,7 +77,7 @@ export default function Details() {
   
   return(
     <div className="main2"> 
-    <h3  style={{marginTop: "5%",marginLeft: "35%"}}>Cele mai vizualizate anunturi</h3>
+    <h3  style={{marginTop: "5%",width: "376px", padding:"10px", color:"white"}}>Cele mai vizualizate anunturi</h3>
       <div className="container">
       {loading ? (
           <div className="loader">
