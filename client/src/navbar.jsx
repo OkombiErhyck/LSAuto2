@@ -61,6 +61,11 @@ const NavBar =() => {
                   Contact
                   </a>
                 </div>
+                <div className="nav-item">
+                  <a href="/despre" className="nav-link">
+                  Politici
+                  </a>
+                </div>
                
             {user ? (
               <div className="nav-item">

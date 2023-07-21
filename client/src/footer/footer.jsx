@@ -40,9 +40,7 @@ const Footer = () => {
      </div>
    </div>
                 
-                <p>Copyright &copy; LSAuto | 2023 All rights reserved  <a href="/despre" className="nav-link">
-                    politici
-                  </a></p>
+                <p>Copyright &copy; LSAuto | 2023 All rights reserved </p>
            </footer>
         </>
     );
