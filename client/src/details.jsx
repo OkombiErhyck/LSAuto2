@@ -79,7 +79,7 @@ export default function Details() {
   return (
     <div className="main2"> 
       <div className="container">
-      <h4>Recent adaugate</h4>
+      <h3  style={{marginTop: "5%",marginLeft: "35%"}}>Recent adaugate</h3>
       {loading ? (
           <div className="loader">
         <div className="spinner"> </div>
