@@ -18,39 +18,14 @@ function Home(){
 
 
  
-  const aboutRef = useRef(null);
-  const detailsRef = useRef(null);
+  
+  
    
   
   
 
   // Intersection Observer setup
-  useEffect(() => {
-    const options = {
-      rootMargin: '0px',
-      threshold: 0.2
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          gsap.to(entry.target, { opacity: 1, y: 0, duration: 1 });
-          observer.unobserve(entry.target);
-        }
-      });
-    }, options);
-
-    
-   
-    observer.observe(aboutRef.current);
-    observer.observe(detailsRef.current);
-   
-  
-    
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
+ 
 
    return(
     
@@ -59,12 +34,12 @@ function Home(){
 <Header/>
       
      
-      <div ref={detailsRef} style={{ opacity: 0, transform: 'translateY(20px)' }}>
+     
         <Details/> 
-      </div>
-      <div ref={aboutRef} style={{ opacity: 0, transform: 'translateY(20px)' }}>
+     
+
         <About/> 
-      </div>
+    
        
       
       

@@ -11,7 +11,7 @@ const About = () => {
         <>
         
 
-
+<div className='good'> 
            <div className="container-fluid p-0">
       <div className="row no-gutters">
       
@@ -34,6 +34,7 @@ const About = () => {
         <div className="d-none d-md-block col-md-5 offset-md-1" id="about-bg-1" style={{ backgroundImage: `url(${background})` }}>
         </div>
       </div>
+    </div>
     </div>
         </>
     );

@@ -9,7 +9,7 @@ const About2 = () => {
   <div className="row">
     <div className="col-6 offset-3 text-center py-5">
       <h1 className="font-weight-bold">Ce este <span>LS</span>Auto?</h1>
-      <p className="text-muted lead" id="p">Locul potrivit pentru cei care doresc să-și vândă mașina. Încrederea și transparența sunt valorile noastre de bază, iar serviciile noastre sunt profesionale.   Alegeți LSAuto pentru o experiență de vânzare a mașinii fără stres.</p>
+      <p className="text-muted lead" id="p">Este platforma unde poți posta anunțuri gratuite. Vinde sau cumpără vehicule într-un mod simplu</p>
     </div>
     
   </div>
