@@ -12,10 +12,28 @@ const Footer = () => {
         
            <footer>
             
-           <div className="container py-5" style={{marginBottom: "-8%"}}>
-     
-     <br/><br/><br/><br/>
-     <div className="row" id="row">
+          
+  
+      <div className="footer-container">
+        <div className="footer-column">
+        <br></br><br></br>
+          <h4>Meniu</h4>
+          <a href="/" className="nav-link">Acasa</a>
+          <a href="/indexpage" className="nav-link"> Anunturi</a>
+          <a href="/despre" className="nav-link">
+            Politici
+          </a>
+          <a href="/login" className="nav-link">
+                    Log In
+                  </a>
+                  <a href="/signup" className="nav-link">
+                    Sign Up
+                  </a>
+
+        </div>
+        <div className="footer-column">
+        <br></br><br></br><br></br><br></br><br></br><br></br>
+        <div className="row" id="row">
        <ul className="ul">
          <li>
          <a href="https://www.tiktok.com/@lsauto.ro">
@@ -38,8 +56,12 @@ const Footer = () => {
          </li>
        </ul>
      </div>
-   </div>
-                
+        </div>
+      </div>
+     
+
+ 
+
                 <p>Copyright &copy; LSAuto | 2023 All rights reserved </p>
            </footer>
         </>
