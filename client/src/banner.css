@@ -1,0 +1,36 @@
+/* Banner Container */
+.banner {
+    position: fixed;
+    margin-top: 70px;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #f5f5f500;
+    padding: 20px;
+    text-align: center;
+    z-index: 999; /* Set a high z-index to keep it above everything */
+  }
+  
+  /* Banner Close Button */
+  .banner-close-button {
+    position: absolute;
+    top: 40px;
+    right: 5px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #ffffff;
+    cursor: pointer;
+  }
+  
+  /* Margin for content below the banner */
+  body {
+    margin-top:  250px; /* Adjust the value as needed to match your banner height */
+  }
+  .banner-image {
+    width: 100%;
+    height: auto;
+    display: block; /* Ensures no extra space is added below the image */
+  }
+  /* Rest of the styles for banner content, image, and button remain the same */
+  

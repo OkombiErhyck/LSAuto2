@@ -3,6 +3,7 @@ import './App.css';
 import React, { useState, useEffect, lazy, Suspense } from 'react';
 import Navbar from './navbar';
 import Footer from './footer/footer';
+import Banner from "./banner";
 import Footer2 from './footer/footer2';
 import Home from './home';
 import { Routes, Route } from 'react-router-dom';
@@ -39,7 +40,7 @@ function App() {
     <div className='App'>
       <UserContextProvider>
         <Navbar />
-     
+     <Banner/>
         <Suspense fallback={<SplashScreen />}>
           <Routes>
             <Route path='/details' element={<Details />} />
