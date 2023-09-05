@@ -31,7 +31,7 @@ const handleCloseBanner = () => {
       // Reset after reappearing 3 times
       setReappearCount(0);
     }
-  }, 60000);
+  }, 20000);
 };
 
   // Use useEffect to reset the margin and timer when isVisible changes
