@@ -27,7 +27,7 @@ const Header = () => {
 
       
       <Link to="/IndexPage" className="btn">
-            Vezi toate <span>anunturile</span>
+           Cauta 
           </Link>
         </div>
       </div>
