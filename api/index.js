@@ -22,7 +22,7 @@ const bucket = 'lsauto';
 
 
 app.use(cors({
-  origin: "https://www.lsauto.ro", 
+  origin: "https://ls-auto2-nd3l.vercel.app", 
   credentials: true,
 }));
 app.use(CookieParser());
