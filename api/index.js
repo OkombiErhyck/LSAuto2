@@ -23,7 +23,7 @@ const bucket = 'lsauto';
 
 app.use(cors({
   origin: "https://ls-auto2-nd3l.vercel.app", 
-  credentials: true,
+  credentials: true, 
 }));
 app.use(CookieParser());
 app.use(express.json());
