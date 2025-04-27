@@ -99,7 +99,7 @@ app.post("/login", async (req, res) => {
         if (err) throw err;
         
         res.set('Authorization', `Bearer ${token}`)
-          .cookie("token", token, {domain: ".https://ls-auto2-nd3l.vercel.app" , sameSite: 'none', secure: true, httpOnly: true })
+          .cookie("token", token, {domain: ".lsauto.com" , sameSite: 'none', secure: true, httpOnly: true })
           .json(userDoc);
       });
     } else {
